@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Soda</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
+    <head>
+        <title>SODA</title>
+        <%= stylesheet_link_tag 'screen.css', :media => 'screen, projection' %>
+        <%= stylesheet_link_tag 'print.css', :media => 'print' %>
+        <%= csrf_meta_tag %>
+    </head>
+    <body>
+        <div class="notice"><%= notice %></div>
+        <div class="alert"><%= alert %></div>
 
-<%= yield %>
+        <%= yield %>
 
-</body>
+    </body>
 </html>
