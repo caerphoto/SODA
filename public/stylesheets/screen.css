@@ -152,5 +152,8 @@ p.first {
 /* line 92, ../../app/stylesheets/screen.scss */
 #try-demo {
   text-align: center;
+}
+/* line 94, ../../app/stylesheets/screen.scss */
+#try-demo a {
   font-size: 150%;
 }
