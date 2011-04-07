@@ -178,7 +178,7 @@ a:hover {
   font-family: "Palatino", "Palatino Linotype", "Book Antiqua", serif;
 }
 /* line 123, ../../app/stylesheets/screen.scss */
-#preview p {
+#preview p, #preview ul, #preview ol {
   margin-bottom: 6pt;
 }
 /* line 125, ../../app/stylesheets/screen.scss */
@@ -213,4 +213,17 @@ a:hover {
 #preview h4 {
   font-weight: normal;
   font-style: italic;
+}
+/* line 149, ../../app/stylesheets/screen.scss */
+#preview ul, #preview ol {
+  list-style-position: outside;
+  margin-left: 1.3em;
+}
+/* line 154, ../../app/stylesheets/screen.scss */
+#preview ul {
+  list-style-type: disc;
+}
+/* line 156, ../../app/stylesheets/screen.scss */
+#preview ol {
+  list-style-type: decimal;
 }
