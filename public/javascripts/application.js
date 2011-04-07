@@ -1,6 +1,22 @@
-/*global $ */
-$(function () {
-    var $input = $("#editor textarea");
+/*global $, Attacklab */
 
-    $input.focus();
+$(function () {
+    var $input = $("#editor"),
+        $preview = $("#preview"),
+        showdown = new Attacklab.showdown.converter(),
+        prevText = "";
+
+    $input.keyup(function () {
+        var newText = $input.val();
+        if (newText === prevText) {
+            return;
+        }
+
+        $preview.html(showdown.makeHtml(newText));
+
+        prevText = newText;
+    });
+
+    $input.focus().keyup();
+
 });

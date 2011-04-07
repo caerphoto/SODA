@@ -1,18 +1,18 @@
 <div id="toolbar">This will be the toolbar.</div>
 
-<div id="editor-scroller">
-    <div id="editor">
-        <textarea rows="0" cols="0">
-This is the main plain-text entry area. It has a default height of 220mm, but will expand to fit the text if necessary.
+<textarea id="editor" rows="0" cols="0">#Sample Document
 
-The toolbar will have a button to switch between entry mode and preview mode, and I will probably add an option to have both views visible side by side.
-        </textarea>
-    </div>
+##Section 1
+
+On the left is the text entry area, and on the right is the formatted preview.
+
+The toolbar will have a button to switch between entry mode and preview mode, and I will probably add an option to have both views visible side by side.</textarea>
+
+<div id="preview-scroller">
+    <div id="preview"></div>
 </div>
 
 <div id="footer">This will be the status bar, showing things like word count
 etc.</div>
-
-<div id="preview"></div>
 
 <%= javascript_include_tag :defaults %>
