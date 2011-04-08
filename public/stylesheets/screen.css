@@ -138,7 +138,7 @@ a:hover {
 }
 
 /* line 81, ../../app/stylesheets/screen.scss */
-#footer {
+#statusbar {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -146,9 +146,10 @@ a:hover {
   height: 28px;
   background: #FFF;
   border-top: 2px solid #22aa66;
+  padding-left: 20px;
 }
 
-/* line 93, ../../app/stylesheets/screen.scss */
+/* line 95, ../../app/stylesheets/screen.scss */
 #editor-wrapper, #preview-scroller {
   display: block;
   position: absolute;
@@ -156,7 +157,7 @@ a:hover {
   bottom: 30px;
 }
 
-/* line 100, ../../app/stylesheets/screen.scss */
+/* line 102, ../../app/stylesheets/screen.scss */
 #editor-wrapper {
   right: 60%;
   left: 20px;
@@ -165,7 +166,7 @@ a:hover {
   background-color: #FFF;
 }
 
-/* line 109, ../../app/stylesheets/screen.scss */
+/* line 111, ../../app/stylesheets/screen.scss */
 #editor {
   outline: none;
   border: none;
@@ -175,7 +176,7 @@ a:hover {
   font-size: 100%;
 }
 
-/* line 118, ../../app/stylesheets/screen.scss */
+/* line 120, ../../app/stylesheets/screen.scss */
 #preview-scroller {
   overflow: auto;
   left: 40%;
@@ -183,7 +184,7 @@ a:hover {
   margin: 0;
 }
 
-/* line 125, ../../app/stylesheets/screen.scss */
+/* line 127, ../../app/stylesheets/screen.scss */
 #preview {
   margin: 20px;
   padding: 15mm 20mm;
@@ -191,53 +192,53 @@ a:hover {
   font-size: 12pt;
   font-family: "Palatino", "Palatino Linotype", "Book Antiqua", serif;
 }
-/* line 134, ../../app/stylesheets/screen.scss */
+/* line 136, ../../app/stylesheets/screen.scss */
 #preview p, #preview ul, #preview ol {
   margin-bottom: 0.5em;
 }
-/* line 136, ../../app/stylesheets/screen.scss */
+/* line 138, ../../app/stylesheets/screen.scss */
 #preview em {
   font-style: italic;
 }
-/* line 137, ../../app/stylesheets/screen.scss */
+/* line 139, ../../app/stylesheets/screen.scss */
 #preview strong {
   font-weight: bold;
 }
-/* line 139, ../../app/stylesheets/screen.scss */
+/* line 141, ../../app/stylesheets/screen.scss */
 #preview h1, #preview h2, #preview h3, #preview h4, #preview h5, #preview h6 {
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", "Arial", sans-serif;
   font-weight: bold;
   margin-top: 1em;
   margin-bottom: 0.5em;
 }
-/* line 146, ../../app/stylesheets/screen.scss */
+/* line 148, ../../app/stylesheets/screen.scss */
 #preview h1 {
   text-align: center;
   font-size: 150%;
 }
-/* line 151, ../../app/stylesheets/screen.scss */
+/* line 153, ../../app/stylesheets/screen.scss */
 #preview h2 {
   font-size: 120%;
 }
-/* line 153, ../../app/stylesheets/screen.scss */
+/* line 155, ../../app/stylesheets/screen.scss */
 #preview h3 {
   font-style: italic;
 }
-/* line 155, ../../app/stylesheets/screen.scss */
+/* line 157, ../../app/stylesheets/screen.scss */
 #preview h4 {
   font-weight: normal;
   font-style: italic;
 }
-/* line 160, ../../app/stylesheets/screen.scss */
+/* line 162, ../../app/stylesheets/screen.scss */
 #preview ul, #preview ol {
   list-style-position: outside;
   margin-left: 2em;
 }
-/* line 165, ../../app/stylesheets/screen.scss */
+/* line 167, ../../app/stylesheets/screen.scss */
 #preview ul {
   list-style-type: disc;
 }
-/* line 167, ../../app/stylesheets/screen.scss */
+/* line 169, ../../app/stylesheets/screen.scss */
 #preview ol {
   list-style-type: decimal;
 }

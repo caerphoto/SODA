@@ -2,7 +2,7 @@
 
 $linkColor: #2A6;
 $toolbarHeight: 50px;
-$footerHeight: 30px;
+$statusbarHeight: 30px;
 
 body {
     background-color: #F0F0E8;
@@ -78,23 +78,25 @@ a {
     }
 }
 
-#footer {
+#statusbar {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
 
-    height: $footerHeight - 2;
+    height: $statusbarHeight - 2;
 
     background: #FFF;
     border-top: 2px solid $linkColor;
+
+    padding-left: 20px;
 }
 
 #editor-wrapper, #preview-scroller {
     display: block;
     position: absolute;
     top: $toolbarHeight;
-    bottom: $footerHeight;
+    bottom: $statusbarHeight;
 }
 
 #editor-wrapper {

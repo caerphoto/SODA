@@ -4,6 +4,7 @@ $(function () {
     var $input = $("#editor"),
         $preview = $("#preview"),
         $toolbar = $("#toolbar"),
+        $zoomLevel = $("#zoom-level"),
 
         showdown = new Attacklab.showdown.converter(),
         prevText = "",
@@ -43,6 +44,8 @@ $(function () {
     $(window).resize(function () {
         // Assume A4 paper size for now (210mm wide).
         zoom = $preview.innerWidth() / pageWidth / PPMM;
+
+        $zoomLevel.text(Math.round(zoom * 100));
 
         $preview.css({ fontSize: ptToPx(12), padding: mmToPx(20) });
     });
