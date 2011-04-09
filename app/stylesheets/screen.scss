@@ -56,6 +56,24 @@ a {
     }
 }
 
+.loading-message {
+    background: $linkColor inline-image("loading-w-g.gif") no-repeat 10px center;
+    z-index: 99;
+    color: #FFF;
+}
+
+
+#app-loading-message {
+    position: absolute;
+    top: $toolbarHeight + 20;
+    left: 45%;
+    padding: 10px 10px 10px 65px;
+
+    -moz-box-shadow:0px 0px 7px $linkColor;
+    -webkit-box-shadow:0px 0px 7px $linkColor;
+    box-shadow:0px 0px 7px $linkColor;
+}
+
 #toolbar {
     height: $toolbarHeight - 2;
     background: #FFF;

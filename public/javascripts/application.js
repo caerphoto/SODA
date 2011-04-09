@@ -64,6 +64,7 @@ $(function () {
         $zoomLevel.text(Math.round(zoom * 100));
     });
 
+    $("#app-loading-message").remove();
     $input.focus().keyup();
     $(window).resize();
 });

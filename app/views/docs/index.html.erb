@@ -1,4 +1,10 @@
-<div id="toolbar">This will be the toolbar.</div>
+<div id="toolbar">
+    This will be the toolbar.
+</div>
+
+<div id="app-loading-message" class="loading-message">
+    Application loading. You may begin typing while this happens.
+</div>
 
 <div id="editor-wrapper">
 <textarea id="editor"># Title (heading level 1)
@@ -32,12 +38,25 @@ You can also do numbered lists, like this:
 </div>
 
 <div id="preview-scroller">
-    <div class="preview-page">
-    </div>
-    <%#<div class="page-splitter"></div>%>
+    <div class="preview-page"></div>
 </div>
 
-<div id="statusbar">Base font size: 12pt, margins: 20mm, automatic zoom level:
+<div id="statusbar">Base font size: 12pt, page width: 210mm, margins: 20mm, automatic zoom level:
     <span id="zoom-level">1</span>%</div>
 
-<%= javascript_include_tag :defaults %>
+<% if Rails.env.production? %>
+    <%= javascript_include_tag "all.js" %>
+<% else %>
+    <%=  javascript_include_tag :libs %>
+<% end %>
+
+<script type="text/javascript">
+    // Lazy loading of main application JS.
+    var se = document.createElement("script");
+    <% if Rails.env.production? %>
+    se.src = "/javascripts/application-min.js";
+    <% else %>
+    se.src = "/javascripts/application.js";
+    <% end %>
+    document.getElementsByTagName("head")[0].appendChild(se);
+</script>

@@ -30,9 +30,7 @@ module Soda
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    # JavaScript files you want as :defaults (application.js is always included).
-    #config.action_view.javascript_expansions[:defaults] = %w(underscore-min showdown-min http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js)
-    config.action_view.javascript_expansions[:defaults] = %w(underscore-min showdown-min jquery.min)
+    config.action_view.javascript_expansions[:libs] = %w(jquery-min underscore-min showdown-min)
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
