@@ -84,12 +84,12 @@ a:hover {
 }
 
 /* line 28, ../../app/stylesheets/screen.scss */
-#main, #preview, #editor-wrapper {
+#main, .preview-page, #editor-wrapper {
   border: 1px solid #CCC;
 }
 
 /* line 32, ../../app/stylesheets/screen.scss */
-#main, #preview {
+#main, .preview-page {
   background-color: #F8F8F5;
   -moz-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.3);
@@ -178,67 +178,83 @@ a:hover {
 
 /* line 120, ../../app/stylesheets/screen.scss */
 #preview-scroller {
-  overflow: auto;
+  overflow-y: scroll;
+  overflow-x: auto;
   left: 40%;
   right: 0;
   margin: 0;
 }
 
-/* line 127, ../../app/stylesheets/screen.scss */
-#preview {
+/* line 128, ../../app/stylesheets/screen.scss */
+.page-splitter {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 210mm;
+  border-bottom: 1px dashed #AAA;
+}
+
+/* line 136, ../../app/stylesheets/screen.scss */
+.preview-page {
+  width: 170mm;
   margin: 20px;
-  padding: 15mm 20mm;
-  line-height: 1.4;
+  padding: 20mm;
+  -webkit-transform-origin: left top;
+  -moz-transform-origin: left top;
+  -o-transform-origin: left top;
+  -ms-transform-origin: left top;
+  transform-origin: left top;
   font-size: 12pt;
   font-family: "Palatino", "Palatino Linotype", "Book Antiqua", serif;
+  line-height: 1.4;
 }
-/* line 136, ../../app/stylesheets/screen.scss */
-#preview p, #preview ul, #preview ol {
+/* line 151, ../../app/stylesheets/screen.scss */
+.preview-page p, .preview-page ul, .preview-page ol {
   margin-bottom: 0.5em;
 }
-/* line 138, ../../app/stylesheets/screen.scss */
-#preview em {
+/* line 153, ../../app/stylesheets/screen.scss */
+.preview-page em {
   font-style: italic;
 }
-/* line 139, ../../app/stylesheets/screen.scss */
-#preview strong {
+/* line 154, ../../app/stylesheets/screen.scss */
+.preview-page strong {
   font-weight: bold;
 }
-/* line 141, ../../app/stylesheets/screen.scss */
-#preview h1, #preview h2, #preview h3, #preview h4, #preview h5, #preview h6 {
+/* line 156, ../../app/stylesheets/screen.scss */
+.preview-page h1, .preview-page h2, .preview-page h3, .preview-page h4, .preview-page h5, .preview-page h6 {
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", "Arial", sans-serif;
   font-weight: bold;
   margin-top: 1em;
   margin-bottom: 0.5em;
 }
-/* line 148, ../../app/stylesheets/screen.scss */
-#preview h1 {
+/* line 163, ../../app/stylesheets/screen.scss */
+.preview-page h1 {
   text-align: center;
   font-size: 150%;
 }
-/* line 153, ../../app/stylesheets/screen.scss */
-#preview h2 {
+/* line 168, ../../app/stylesheets/screen.scss */
+.preview-page h2 {
   font-size: 120%;
 }
-/* line 155, ../../app/stylesheets/screen.scss */
-#preview h3 {
+/* line 170, ../../app/stylesheets/screen.scss */
+.preview-page h3 {
   font-style: italic;
 }
-/* line 157, ../../app/stylesheets/screen.scss */
-#preview h4 {
+/* line 172, ../../app/stylesheets/screen.scss */
+.preview-page h4 {
   font-weight: normal;
   font-style: italic;
 }
-/* line 162, ../../app/stylesheets/screen.scss */
-#preview ul, #preview ol {
+/* line 177, ../../app/stylesheets/screen.scss */
+.preview-page ul, .preview-page ol {
   list-style-position: outside;
   margin-left: 2em;
 }
-/* line 167, ../../app/stylesheets/screen.scss */
-#preview ul {
+/* line 182, ../../app/stylesheets/screen.scss */
+.preview-page ul {
   list-style-type: disc;
 }
-/* line 169, ../../app/stylesheets/screen.scss */
-#preview ol {
+/* line 184, ../../app/stylesheets/screen.scss */
+.preview-page ol {
   list-style-type: decimal;
 }

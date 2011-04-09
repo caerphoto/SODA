@@ -25,11 +25,11 @@ a {
     }
 }
 
-#main, #preview, #editor-wrapper {
+#main, .preview-page, #editor-wrapper {
     border: 1px solid #CCC;
 }
 
-#main, #preview {
+#main, .preview-page {
     background-color: #F8F8F5;
 
     -moz-box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
@@ -118,20 +118,35 @@ a {
 }
 
 #preview-scroller {
-    overflow: auto;
+    overflow-y: scroll;
+    overflow-x: auto;
     left: 40%;
     right: 0;
     margin: 0;
 }
 
-#preview {
+.page-splitter {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 210mm;
+    border-bottom: 1px dashed #AAA;
+}
+
+.preview-page {
+    width: 170mm;
     margin: 20px;
-    padding: 15mm 20mm;
+    padding: 20mm;
 
-    line-height: 1.4;
+    -webkit-transform-origin: left top;
+    -moz-transform-origin: left top;
+    -o-transform-origin: left top;
+    -ms-transform-origin: left top;
+    transform-origin: left top;
+
     font-size: 12pt;
-
     font-family: "Palatino", "Palatino Linotype", "Book Antiqua", serif;
+    line-height: 1.4;
 
     p, ul, ol { margin-bottom: 0.5em; }
 
@@ -168,4 +183,3 @@ a {
 
     ol { list-style-type: decimal; }
 }
-
