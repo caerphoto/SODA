@@ -4,7 +4,7 @@ $(function () {
     var $input = $("#editor"),
         $previewScroller = $("#preview-scroller"),
         $previewPages = $previewScroller.children(".preview-page"),
-        $pageSplitters = $previewScroller.children(".page-splitter"),
+        //$pageSplitters = $previewScroller.children(".page-splitter"),
         $toolbar = $("#toolbar"),
         $zoomLevel = $("#zoom-level"),
 
