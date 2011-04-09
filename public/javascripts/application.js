@@ -41,6 +41,10 @@ $(function () {
         $previewPages.html(showdown.makeHtml(newText));
 
         prevText = newText;
+    }).focus(function () {
+        $(this).parent().addClass("focus");
+    }).blur(function () {
+        $(this).parent().removeClass("focus");
     });
 
     // Calculate font size based on preview 'page' width.
