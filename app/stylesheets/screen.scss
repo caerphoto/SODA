@@ -209,4 +209,10 @@ a {
     ul { list-style-type: disc; }
 
     ol { list-style-type: decimal; }
+
+    blockquote {
+        margin-left: 1em;
+        border-left: 1px solid #EEE;
+        padding-left: 1em;
+    }
 }
