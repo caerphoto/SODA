@@ -6,6 +6,7 @@ $(function () {
         $previewPages = $previewScroller.children(".preview-page"),
         //$pageSplitters = $previewScroller.children(".page-splitter"),
         $toolbar = $("#toolbar"),
+        $chkNonprinting = $("#chk-nonprinting"),
         $zoomLevel = $("#zoom-level"),
 
         showdown = new Attacklab.showdown.converter(),
@@ -32,6 +33,10 @@ $(function () {
         return mm * zoom * PPMM;
     };
 
+    $chkNonprinting.change(function () {
+        $previewPages.toggleClass("nonprinting", this.checked);
+    });
+
     $input.keyup(function () {
         var newText = $input.val();
         if (newText === prevText) {
@@ -50,7 +55,7 @@ $(function () {
     // Calculate font size based on preview 'page' width.
     $(window).resize(function () {
         // Assume A4 paper size for now (210mm wide).
-        zoom = ($previewScroller.width() - 60) / PAGE_WIDTH / PPMM;
+        zoom = ($previewScroller.width() - 40) / PAGE_WIDTH / PPMM;
 
         $previewPages.css({
             "-webkit-transform": "scale(" + zoom + ")",
@@ -59,11 +64,6 @@ $(function () {
             "-ms-transform": "scale(" + zoom + ")",
             "transform": "scale(" + zoom + ")"
         });
-
-        //$pageSplitters.css({
-            //width: mmToPx(PAGE_WIDTH),
-            //height: mmToPx(PAGE_HEIGHT)
-        //});
 
         $zoomLevel.text(Math.round(zoom * 100));
     });

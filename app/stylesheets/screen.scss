@@ -95,6 +95,12 @@ a {
         -webkit-transition: all 0.1s ease-out;
         transition: all 0.1s ease-out;
     }
+
+    label {
+        margin: 0.5em;
+        display: block;
+        float: left;
+    }
 }
 
 #statusbar {
@@ -119,19 +125,20 @@ a {
 }
 
 #editor-wrapper {
-    right: 60%;
+    right: 55%;
     left: 20px;
 
     margin: 20px auto;
     padding: 10px;
     background-color: #FFF;
 
-    &.focus {
-        border-color: $linkColor;
-        //-moz-box-shadow: 0px 0 2px $linkColor;
-        //-webkit-box-shadow: 0px 0 2px $linkColor;
-        //box-shadow: 0px 0 2px $linkColor;
-    }
+}
+
+.focus {
+    border-color: $linkColor;
+    -moz-box-shadow: 0px 0 3px $linkColor;
+    -webkit-box-shadow: 0px 0 3px $linkColor;
+    box-shadow: 0px 0 3px $linkColor;
 }
 
 #editor {
@@ -143,14 +150,17 @@ a {
     font-size: 100%;
 
     resize: none;
+
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", "Arial", sans-serif;
+    font-size: 14px;
 }
 
 #preview-scroller {
     overflow-y: scroll;
     overflow-x: auto;
-    left: 40%;
+    left: 45%;
     right: 0;
-    margin: 0;
+    margin: 1em 0 1em 1em;
 }
 
 .page-splitter {
@@ -163,7 +173,7 @@ a {
 
 .preview-page {
     width: 170mm;
-    margin: 20px;
+    margin: 0 0 10em 0;
     padding: 20mm;
 
     -webkit-transform-origin: left top;
@@ -222,6 +232,8 @@ a {
         background-color: #EEE;
         border: 1px solid #CCC;
         padding: 3px;
+        font-family: "Consolas", "Inconsolata", "Menlo", monospace;
+        font-size: 75%;
     }
 
     pre {
@@ -230,4 +242,23 @@ a {
             border: none;
         }
     }
+
+    &.nonprinting {
+        p:after, h1:after, h2:after, h3:after, h4:after, h5:after {
+            content: "\00B6";
+            color: #AAA;
+            width: 0;
+            overflow: visible;
+            display: inline-block;
+        }
+
+        br:after {
+            content: "¬";
+        }
+
+        .empty:after {
+            content: "";
+        }
+    }
+
 }

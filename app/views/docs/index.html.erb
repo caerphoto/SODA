@@ -1,5 +1,8 @@
 <div id="toolbar">
-    This will be the toolbar.
+    <label for="chk-nonprinting">
+        <input id="chk-nonprinting" type="checkbox" checked>
+        Show paragraph marks.
+    </label>
 </div>
 
 <div id="app-loading-message" class="loading-message">
@@ -34,11 +37,25 @@ You can also do numbered lists, like this:
 1. This is a numbered list
 2. The items in the input text don't have to be in numerical order.
 7. When formatted, the numbering will be sequential automatically.
-3. So you can re-order the list with copy+paste without worrying about putting the right numbers with each item.</textarea>
+3. So you can re-order the list with copy+paste without worrying about putting the right numbers with each item.
+
+### Quotes
+
+To mark a paragraph as a block quote, precede it with a > character, like so:
+
+>Once upon a midnight dreary, while I pondered, weak and weary,  
+Over many a quaint and curious volume of forgotten lore &mdash;  
+While I nodded, nearly napping, suddenly there came a tapping,  
+As of some one gently rapping, rapping at my chamber door.  
+"'Tis some visiter," I muttered, "tapping at my chamber door &mdash;  
+Only this and nothing more."
+
+</textarea>
 </div>
 
 <div id="preview-scroller">
-    <div class="preview-page" contenteditable="true"></div>
+    <div class="preview-page nonprinting">
+    </div>
 </div>
 
 <div id="statusbar">Base font size: 12pt, page width: 210mm, margins: 20mm, automatic zoom level:
