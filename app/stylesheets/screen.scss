@@ -233,12 +233,13 @@ a {
         border: 1px solid #CCC;
         padding: 3px;
         font-family: "Consolas", "Inconsolata", "Menlo", monospace;
-        font-size: 75%;
+        font-size: 14px;
     }
 
     pre {
+        padding: 4px 8px 0 8px;
         code {
-            padding-bottom: 0;
+            padding: 0;
             border: none;
         }
     }
