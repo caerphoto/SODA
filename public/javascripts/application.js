@@ -1,12 +1,17 @@
 /*global $, Attacklab, window */
 
 $(function () {
-    var $input = $("#editor"),
+    var $input = $("#editor textarea"),
         $previewScroller = $("#preview-scroller"),
-        $previewPages = $previewScroller.children(".preview-page"),
-        //$pageSplitters = $previewScroller.children(".page-splitter"),
+        $preview = $("#preview"),
+        $pages = $(".page"),
         $toolbar = $("#toolbar"),
         $chkNonprinting = $("#chk-nonprinting"),
+        $chkAutozoom = $("#chk-autozoom"),
+        $txtBaseFont = $("#txt-base-font"),
+        $txtBaseFontSize = $("#txt-base-font-size"),
+        $txtHeadingFont = $("#txt-heading-font"),
+
         $zoomLevel = $("#zoom-level"),
 
         showdown = new Attacklab.showdown.converter(),
@@ -34,7 +39,34 @@ $(function () {
     };
 
     $chkNonprinting.change(function () {
-        $previewPages.toggleClass("nonprinting", this.checked);
+        $preview.toggleClass("show-nonprinting", this.checked);
+    });
+
+    $chkAutozoom.change(function () {
+        $(window).resize();
+    });
+
+    $txtBaseFont.change(function () {
+        $pages.css({ fontFamily: $txtBaseFont.val() });
+    });
+
+    $txtBaseFontSize.change(function () {
+        $pages.css({ "font-size": $txtBaseFontSize.val() + "pt" });
+    });
+
+    $txtHeadingFont.change(function () {
+        var styleElement, $styleElement = $("#heading-styles");
+
+        if ($styleElement.length === 0) {
+            styleElement = document.createElement("style");
+            $styleElement = $(styleElement);
+            $styleElement.appendTo(document.head);
+        }
+
+        $styleElement.html("h1,h2,h3,h4,h5,h6 { font-family: '" +
+            $txtHeadingFont.val() + "' !important; }");
+
+
     });
 
     $input.keyup(function () {
@@ -43,7 +75,7 @@ $(function () {
             return;
         }
 
-        $previewPages.html(showdown.makeHtml(newText));
+        $pages.html(showdown.makeHtml(newText));
 
         prevText = newText;
     }).focus(function () {
@@ -57,13 +89,23 @@ $(function () {
         // Assume A4 paper size for now (210mm wide).
         zoom = ($previewScroller.width() - 40) / PAGE_WIDTH / PPMM;
 
-        $previewPages.css({
-            "-webkit-transform": "scale(" + zoom + ")",
-            "-moz-transform": "scale(" + zoom + ")",
-            "-o-transform": "scale(" + zoom + ")",
-            "-ms-transform": "scale(" + zoom + ")",
-            "transform": "scale(" + zoom + ")"
-        });
+        if ($chkAutozoom.attr("checked")) {
+            $preview.css({
+                "-webkit-transform": "scale(" + zoom + ")",
+                "-moz-transform": "scale(" + zoom + ")",
+                "-o-transform": "scale(" + zoom + ")",
+                "-ms-transform": "scale(" + zoom + ")",
+                "transform": "scale(" + zoom + ")"
+            });
+        } else {
+            $preview.css({
+                "-webkit-transform": "",
+                "-moz-transform": "",
+                "-o-transform": "",
+                "-ms-transform": "",
+                "transform": ""
+            });
+        }
 
         $zoomLevel.text(Math.round(zoom * 100));
     });

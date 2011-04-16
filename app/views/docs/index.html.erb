@@ -3,14 +3,35 @@
         <input id="chk-nonprinting" type="checkbox" checked>
         Show paragraph marks.
     </label>
+
+    <label for="chk-autozoom">
+        <input id="chk-autozoom" type="checkbox" checked>
+        Fit preview width.
+    </label>
+
+    <label for="txt-base-font">
+        Paragraph font:
+        <input id="txt-base-font" type="text" value="Palatino">
+    </label>
+
+    <label for="txt-base-font-size">
+        <input id="txt-base-font-size" class="number" type="text" value="12">
+        pt
+    </label>
+
+    <label for="txt-heading-font">
+        Heading font:
+        <input id="txt-heading-font" type="text" value="Lucida Grande">
+    </label>
+</div>
 </div>
 
 <div id="app-loading-message" class="loading-message">
     Application loading. You may begin typing while this happens.
 </div>
 
-<div id="editor-wrapper">
-<textarea id="editor"># Title (heading level 1)
+<div id="editor">
+<textarea># Title (heading level 1)
 
 ## Usage (heading level 2)
 
@@ -48,17 +69,18 @@ Over many a quaint and curious volume of forgotten lore &mdash;
 While I nodded, nearly napping, suddenly there came a tapping,  
 As of some one gently rapping, rapping at my chamber door.  
 "'Tis some visiter," I muttered, "tapping at my chamber door &mdash;  
-Only this and nothing more."
-
-</textarea>
+Only this and nothing more."</textarea>
 </div>
 
 <div id="preview-scroller">
-    <div class="preview-page nonprinting">
+    <div id="preview" class="show-nonprinting">
+        <div class="paper">
+            <div class="page"></div>
+        </div>
     </div>
 </div>
 
-<div id="statusbar">Base font size: 12pt, page width: 210mm, margins: 20mm, automatic zoom level:
+<div id="statusbar">Page width: 210mm, margins: 20mm, automatic zoom level:
     <span id="zoom-level">1</span>%</div>
 
 <% if Rails.env.production? %>
