@@ -12,6 +12,8 @@ $(function () {
         $txtBaseFontSize = $("#txt-base-font-size"),
         $txtHeadingFont = $("#txt-heading-font"),
 
+        $debug = $("#debug"),
+
         $zoomLevel = $("#zoom-level"),
 
         showdown = new Attacklab.showdown.converter(),
@@ -70,12 +72,21 @@ $(function () {
     });
 
     $input.keyup(function () {
-        var newText = $input.val();
+        var newText = $input.val(), tempHTML;
+
         if (newText === prevText) {
             return;
         }
 
-        $pages.html(showdown.makeHtml(newText));
+        //tempHTML = showdown.makeHtml(newText);
+        tempHTML = showdown.makeHtml(newText).replace(
+            // Remove trailing spaces.
+            /\s+\n/g, "").replace(
+            // Replace single carriage returns in paragraphs with line breaks,
+            // and insert 'holder' for nonprinting linebreak markers.
+            /([^>\n])\n/g, '$1<span class="nonprinting-br"></span><br>');
+
+        $pages.html(tempHTML);
 
         prevText = newText;
     }).focus(function () {

@@ -269,6 +269,14 @@ a {
     .empty:after {
         content: "";
     }
+
+    .nonprinting-br:after {
+        content: "\21A9";
+        display: inline-block;
+        width: 0;
+        color: #BBB;
+        overflow: visible;
+    }
 } // &.show-nonprinting
 
 .focus, input:focus {
