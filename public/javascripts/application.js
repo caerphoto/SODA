@@ -6,8 +6,10 @@ $(function () {
         $preview = $("#preview"),
         $pages = $(".page"),
         $toolbar = $("#toolbar"),
+
         $chkNonprinting = $("#chk-nonprinting"),
         $chkAutozoom = $("#chk-autozoom"),
+        $chkLinebreaks = $("#chk-linebreaks"),
         $txtBaseFont = $("#txt-base-font"),
         $txtBaseFontSize = $("#txt-base-font-size"),
         $txtHeadingFont = $("#txt-heading-font"),
@@ -25,7 +27,8 @@ $(function () {
         zoom = 1, PPI = 96, PPMM = PPI / 25.4,
 
         // Functions:
-        pxToPt, ptToPx, pxToMm, ptToMm, mmToPx;
+        pxToPt, ptToPx, pxToMm, ptToMm, mmToPx,
+        updatePreview;
 
     pxToPt = function (px) {
         // 72 points per inch.
@@ -40,12 +43,32 @@ $(function () {
         return mm * zoom * PPMM;
     };
 
+
+    updatePreview = function () {
+        var newText = $input.val(), tempHTML = showdown.makeHtml(newText);
+
+        if ($chkLinebreaks.attr("checked")) {
+            tempHTML = tempHTML.replace(
+                // Remove trailing spaces.
+                /\s+\n/g, "").replace(
+                // Replace single carriage returns in paragraphs with line breaks,
+                // and insert 'holder' for nonprinting linebreak markers.
+                /([^>\n])\n/g, '$1<span class="nonprinting-br"></span><br>');
+        }
+
+        $pages.html(tempHTML);
+    };
+
     $chkNonprinting.change(function () {
         $preview.toggleClass("show-nonprinting", this.checked);
     });
 
     $chkAutozoom.change(function () {
         $(window).resize();
+    });
+
+    $chkLinebreaks.change(function () {
+        updatePreview();
     });
 
     $txtBaseFont.change(function () {
@@ -72,21 +95,13 @@ $(function () {
     });
 
     $input.keyup(function () {
-        var newText = $input.val(), tempHTML;
+        var newText = $input.val();
 
         if (newText === prevText) {
             return;
         }
 
-        //tempHTML = showdown.makeHtml(newText);
-        tempHTML = showdown.makeHtml(newText).replace(
-            // Remove trailing spaces.
-            /\s+\n/g, "").replace(
-            // Replace single carriage returns in paragraphs with line breaks,
-            // and insert 'holder' for nonprinting linebreak markers.
-            /([^>\n])\n/g, '$1<span class="nonprinting-br"></span><br>');
-
-        $pages.html(tempHTML);
+        updatePreview();
 
         prevText = newText;
     }).focus(function () {

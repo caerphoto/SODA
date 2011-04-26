@@ -8,6 +8,7 @@ gem 'rails', '3.0.5'
 gem 'sqlite3'
 
 gem 'devise'
+gem 'omniauth'
 gem "compass", ">= 0.10.6"
 
 # Use unicorn as the web server
