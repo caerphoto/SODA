@@ -44,6 +44,7 @@ a {
     margin: 3em auto;
     max-width: 50em;
 
+
     h1 {
         font-size: 150%;
         font-weight: bold;
@@ -56,6 +57,10 @@ a {
             font-weight: bold;
         }
     }
+}
+
+#main.shad {
+    text-shadow: 0.2em 0.4em 5px rgba(0, 0, 80%, 0.1);
 }
 
 .loading-message {
@@ -190,6 +195,8 @@ a {
         font-size: 12pt;
         font-family: "Palatino", "Palatino Linotype", "Book Antiqua", serif;
         line-height: 1.4;
+
+        text-rendering: geometricPrecision;
 
         p, ul, ol, pre { margin-bottom: 0.5em; }
 

@@ -1,3 +1,4 @@
+
 <div id="main">
     <h1>Soda</h1>
 
@@ -16,3 +17,13 @@
     <p id="try-demo"><a href="docs#demo">Try the demo</a><br/>
     At present the demo has only preview functionality &ndash; saving has not yet been implemented.</p>
 </div>
+
+<script>
+  var divMain = document.getElementById("main"), toggleShadow;
+
+  toggleShadow = function (bOn) {
+    divMain.className = bOn ? "shad" : "";
+  };
+</script>
+
+<label for="chkToggleShadow"><input id="chkToggleShadow" type="checkbox" onclick="toggleShadow(this.checked)"> Toggle shadow</label>
