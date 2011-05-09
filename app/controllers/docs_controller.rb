@@ -1,6 +1,7 @@
 class DocsController < ApplicationController
   def index
-    @default_doc = open("sample.md").read;
+    # temporary - comment this out or change it to use this app's README.md
+    @default_doc = open("../oauthtest_31/README.md").read;
   end
 
   def show
