@@ -1,4 +1,4 @@
-<div id="main" class="shad">
+<div id="main">
 	<h1>Soda</h1>
 
 	<p class="first">Soda is a simple online document application that allows
@@ -13,9 +13,11 @@
 	apply <em>styles</em> to text blocks, such as paragraphs or headings, which
 	you define for the whole document, creating a consistent look.</p>
 
-	<p id="try-demo"><%= link_to "Create a document", docs_path, :method => "POST" %>
-	<br/>
-	At present only <%= link_to "registered" new_user_registration_path %> users
+	<p id="try-demo">
+	<%= link_to "Create a document", docs_path, :method => "POST" %></p>
+
+	<P>
+	At present only <%= link_to "registered", new_user_registration_path %> users
 	are able to save documents, and the navigation between sections is somewhat
 	lacking.</p>
 
