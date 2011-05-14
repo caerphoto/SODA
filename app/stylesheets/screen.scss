@@ -1,11 +1,15 @@
 @import "compass/reset";
 
 $linkColor: #2A6;
-$toolbarHeight: 50px;
+$paperBg: #F8F8F5;
+$pageBg: #F0F0E8;
+
+$navbarHeight: 25px;
+$toolbarHeight: 45px;
 $statusbarHeight: 30px;
 
 body {
-	background-color: #F0F0E8;
+	background-color: $pageBg;
 	color: #333;
 	line-height: 1.5;
 	font-family: sans-serif;
@@ -32,7 +36,7 @@ a {
 }
 
 #main, .paper {
-	background-color: #F8F8F5;
+	background-color: $paperBg;
 
 	-moz-box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
@@ -43,7 +47,6 @@ a {
 	padding: 2em;
 	margin: 3em auto;
 	max-width: 50em;
-
 
 	h1 {
 		font-size: 150%;
@@ -61,6 +64,67 @@ a {
 
 #main.shad {
 	text-shadow: 0.2em 0.4em 5px rgba(0, 0, 80%, 0.1);
+}
+
+#navbar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: $navbarHeight - 1;
+
+	border-bottom: 1px solid #CCC;
+
+	background-color: $paperBg;
+	color: #333;
+
+	font-size: 14px;
+
+	z-index: 101;
+	div {
+		padding: 0.2em 0.5em;
+	}
+}
+
+#logo {
+	float: left;
+
+	a {
+		font-weight: bold;
+	}
+}
+
+#center-links {
+	text-align: center;
+}
+
+#user-panel {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.doc-list {
+	margin: 1em 0;
+
+	li {
+		padding-bottom: 0.5em;
+		border-bottom: 1px solid #CCC;
+		margin-bottom: 0.5em;
+
+		&:last-child {
+			border: none;
+		}
+
+		label {
+			display: inline-block;
+			width: 20em;
+		}
+
+		.delete-link {
+			font-size: 60%;
+		}
+	}
 }
 
 .loading-message {
@@ -82,7 +146,7 @@ a {
 
 #app-loading-message, #doc-saving-message {
 	position: absolute;
-	top: $toolbarHeight + 20;
+	top: $toolbarHeight + $navbarHeight + 20;
 	left: 50%;
 	padding: 10px 10px 10px 65px;
 }
@@ -99,15 +163,17 @@ a {
 
 #toolbar {
 	position: absolute;
-	top: 0;
+	top: $navbarHeight;
 	right: 0;
 	left: 0;
-	height: $toolbarHeight - 2;
+	height: $toolbarHeight - 7;
+	padding-top: 5px;
 
 	background: #FFF;
 	border-bottom: 2px solid $linkColor;
 
 	font-size: 14px;
+
 
 	z-index: 2;
 
@@ -186,7 +252,7 @@ a {
 
 #doc-title-wrapper {
 	position: absolute;
-	top: $toolbarHeight;
+	top: $toolbarHeight + $navbarHeight;
 	left: 20px;
 	right: 55%;
 	margin-top: 20px;
@@ -212,7 +278,7 @@ a {
 }
 
 #editor {
-	top: $toolbarHeight + 50;
+	top: $toolbarHeight + $navbarHeight + 50;
 	right: 55%;
 	left: 20px;
 
@@ -229,24 +295,28 @@ a {
 		height: 100%;
 
 		font-family: "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", "Arial", sans-serif;
-		font-size: 13px;
+		font-size: 14px;
 
 		overflow-x: hidden;
 		overflow-y: scroll;
+
+		&.monospace {
+			font-family: monospace;
+		}
 	}
 }
 
 #preview-scroller {
 	overflow-y: scroll;
 	overflow-x: auto;
-	top: $toolbarHeight;
+	top: $toolbarHeight + $navbarHeight;
 	left: 45%;
 	right: 0;
 	margin-left: 20px;
 
 	&.view-only {
 		position: static;
-		margin: $toolbarHeight auto $statusbarHeight auto;
+		margin: $toolbarHeight + $navbarHeight auto $statusbarHeight auto;
 		width: 230mm;
 		overflow: auto;
 	}

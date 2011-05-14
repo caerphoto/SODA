@@ -5,7 +5,7 @@ class Doc < ActiveRecord::Base
 		if self.exists? id
 			doc = self.find(id)
 
-			if doc.user_id != user_id
+			if doc.user_id > 0 and doc.user_id != user_id
 				:unauthorized
 			else
 				doc

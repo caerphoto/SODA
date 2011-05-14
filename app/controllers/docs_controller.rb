@@ -1,6 +1,10 @@
 class DocsController < ApplicationController
+	attr_accessor :user_id
+
+	before_filter :get_user
+
 	def get_user
-		user_signed_in? ? current_user.id : nil
+		self.user_id = user_signed_in? ? current_user.id : nil
 	end
 
 	def index
@@ -12,11 +16,7 @@ class DocsController < ApplicationController
 	end
 
 	def show
-		@doc_id = params[:id]
-
-		user_id = get_user
-
-		@doc = Doc.get(@doc_id, user_id)
+		@doc = Doc.get(params[:id], user_id)
 
 		respond_to do |format|
 			format.html do
@@ -33,11 +33,7 @@ class DocsController < ApplicationController
 	end
 
 	def edit
-		@doc_id = params[:id]
-
-		user_id = get_user
-
-		@doc = Doc.get(@doc_id, user_id)
+		@doc = Doc.get(params[:id], user_id)
 
 		respond_to do |format|
 			format.html do
@@ -68,11 +64,8 @@ class DocsController < ApplicationController
 	end
 
 	def update
-		user_id = get_user
-		@doc_id = params[:id]
-		@doc = Doc.get(@doc_id, user_id)
-
-		sleep 1
+		doc_id = params[:id]
+		@doc = Doc.get(doc_id, user_id)
 
 		if @doc
 			if @doc != :unauthorized
@@ -85,7 +78,7 @@ class DocsController < ApplicationController
 					render :text => "NO_SAVE"
 				end
 			else
-				render :text => "UNAUTHORIZED - doc owner = #{@doc_id}, your id = #{user_id}"
+				render :text => "UNAUTHORIZED - doc owner = #{doc_id}, your id = #{user_id}"
 			end
 
 		else
@@ -93,5 +86,17 @@ class DocsController < ApplicationController
 		end
 	end
 
+	def destroy
+		doc = Doc.find params[:id]
+
+		if doc.user_id == user_id
+			flash[:notice] = "Document deleted."
+			doc.destroy
+		else
+			flash[:alert] = "Unable to delete document."
+		end
+
+		redirect_to docs_path
+	end
 
 end

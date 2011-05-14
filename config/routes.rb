@@ -3,6 +3,8 @@ Soda::Application.routes.draw do
 
 	resources :docs
 
+	match "delete_doc/:id" => "docs#destroy", :as => :delete_doc
+
 	match "/unknown_doc" => "pages#unknown_doc"
 
 	root :to => "pages#home"

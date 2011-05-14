@@ -1,16 +1,39 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Soda</title>
-        <%= stylesheet_link_tag 'screen.css', :media => 'screen, projection' %>
-        <%= stylesheet_link_tag 'print.css', :media => 'print' %>
-        <%= csrf_meta_tag %>
-    </head>
-    <body>
-        <div class="notice"><%= notice %></div>
-        <div class="alert"><%= alert %></div>
+	<head>
+		<title>Soda</title>
+		<%= stylesheet_link_tag 'screen.css', :media => 'screen, projection' %>
+		<%= stylesheet_link_tag 'print.css', :media => 'print' %>
+		<%= csrf_meta_tag %>
+	</head>
+	<body>
+		<div class="notice"><%= notice %></div>
+		<div class="alert"><%= alert %></div>
 
-        <%= yield %>
+	<div id="navbar">
+		<div id="logo">
+			<%= link_to "Home page", root_path, :class => "logo" %>
+		</div>
 
-    </body>
+	<% if user_signed_in? %>
+		<div id="center-links">
+			<%= link_to "Your saved documents", docs_path %>
+		</div>
+	<% end %>
+
+		<div id="user-panel">
+		<% if user_signed_in? %>
+			<%= current_user.email %>
+			<%= link_to "(options)", edit_user_registration_path %> |
+			<%= link_to "sign out", destroy_user_session_path %>
+		<% else %>
+			<%= link_to "register", new_user_registration_path %> |
+			<%= link_to "sign in", new_user_session_path %>
+		<% end %>
+		</div>
+	</div>
+
+		<%= yield %>
+
+	</body>
 </html>

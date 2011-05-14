@@ -13,6 +13,7 @@ $(function () {
 		$chkNonprinting = $("#chk-nonprinting"),
 		$chkAutozoom = $("#chk-autozoom"),
 		$chkLinebreaks = $("#chk-linebreaks"),
+		$chkMonospace = $("#chk-monospace"),
 		$txtBaseFont = $("#txt-base-font"),
 		$txtBaseFontSize = $("#txt-base-font-size"),
 		$txtHeadingFont = $("#txt-heading-font"),
@@ -149,6 +150,10 @@ $(function () {
 		updatePreview();
 	});
 
+	$chkMonospace.change(function () {
+		$input.toggleClass("monospace", $chkMonospace.attr("checked"));
+	});
+
 	$txtBaseFont.change(function () {
 		$pages.css({ fontFamily: $txtBaseFont.val() });
 	});
@@ -225,7 +230,12 @@ $(function () {
 
 	$("#app-loading-message").remove();
     if (docPath) {
-        $input.focus();
+		if (!$docTitle.val()) {
+			$docTitle.focus();
+		} else {
+			$input.focus();
+		}
+
 		lastSavedText = $input.val();
 		lastSavedTitle = $docTitle.val();
 		modified = false;

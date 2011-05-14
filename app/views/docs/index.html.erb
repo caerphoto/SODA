@@ -1,9 +1,14 @@
 <div id="main">
 	<h1>Your Saved Documents</h1>
 <% if @docs %>
-	<ul>
+	<ul class="doc-list">
 	<% @docs.each do |doc| %>
-		<li><%= link_to doc.title || "<untitled document>", edit_doc_path(doc) %></li>
+		<li>
+			<label><%= doc.title || "<untitled document>" %></label>
+			<%= link_to "edit", edit_doc_path(doc) %> |
+			<%= link_to "view", doc_path(doc) %> |
+			<%= link_to "delete", delete_doc_path(doc), :class => "delete-link"  %>
+		</li>
 	<% end %>
 	</ul>
 <% else %>
