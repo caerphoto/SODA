@@ -1,0 +1,100 @@
+<input type="hidden" value="<%= doc_path(@doc) %>" id="doc-path">
+
+<div id="toolbar">
+	<!-- display options -->
+	<label for="chk-nonprinting">
+		<input id="chk-nonprinting" type="checkbox" checked>
+		Show paragraph marks
+	</label>
+
+	<label for="chk-autozoom">
+		<input id="chk-autozoom" type="checkbox" checked>
+		Fit preview width
+	</label>
+
+	<label for="chk-linebreaks">
+		<input id="chk-linebreaks" type="checkbox" checked>
+		Simple line breaks
+	</label>
+
+	<!-- style options -->
+	<button id="btn-adjust-styles" disabled>Adjust Styles&hellip;</button>
+
+	<!--
+	<label for="txt-base-font">
+		Paragraph font:
+		<input id="txt-base-font" type="text" value="Palatino">
+	</label>
+
+	<label for="txt-base-font-size">
+		<input id="txt-base-font-size" class="number" type="text" value="12">
+		pt
+	</label>
+
+	<label for="txt-heading-font">
+		Heading font:
+		<input id="txt-heading-font" type="text" value="Lucida Grande">
+	</label>
+	-->
+
+	<!-- title and save -->
+	<button id="btn-save" disabled>Save</button>
+	<label class="info">Last saved <span id="doc-age">just now.</span></label>
+</div>
+</div>
+
+<div id="app-loading-message" class="loading-message">
+	Application loading. You may begin typing while this happens.
+</div>
+
+<div id="doc-saving-message" class="saving-message">
+	Saving document&hellip;
+</div>
+
+<div id="doc-title-wrapper">
+	<label for="doc-title">Document title:</label>
+	<div>
+		<input id="doc-title" type="text" value="<%= @doc.title %>">
+	</div>
+</div>
+
+<div id="editor">
+	<textarea><%= @doc.content %></textarea>
+</div>
+
+<div id="preview-scroller">
+	<div id="preview" class="show-nonprinting">
+		<div class="paper">
+			<div class="page"></div>
+		</div>
+	</div>
+</div>
+
+<div id="statusbar">Page width: 210mm, margins: 20mm, automatic zoom level:
+	<span id="zoom-level">1</span>%</div>
+
+<div id="debug"></div>
+
+<% if Rails.env.production? %>
+	<%= javascript_include_tag "all.js" %>
+<% else %>
+	<%=  javascript_include_tag :libs %>
+<% end %>
+
+<script type="text/javascript">
+	// Lazy loading of main application JS.
+var se = document.createElement("script");
+
+// Allow sending of non-GET AJAX requests.
+$(document).ajaxSend(function(e, xhr, options) {
+  var token = $("meta[name='csrf-token']").attr("content");
+  xhr.setRequestHeader("X-CSRF-Token", token);
+});
+
+<% if Rails.env.production? %>
+	se.src = "/javascripts/application-min.js";
+<% else %>
+	se.src = "/javascripts/application.js";
+<% end %>
+document.getElementsByTagName("head")[0].appendChild(se);
+</script>

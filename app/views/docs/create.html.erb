@@ -1,0 +1,42 @@
+<div id="toolbar">
+	<label for="chk-nonprinting">
+		<input id="chk-nonprinting" type="checkbox" checked>
+		Show paragraph marks.
+	</label>
+</div>
+
+<div id="app-loading-message" class="loading-message">
+	Loading document&hellip;
+</div>
+
+<div id="editor">
+	<textarea><%= @doc.content %></textarea>
+</div>
+
+<div id="preview-scroller">
+	<div id="preview" class="show-nonprinting">
+		<div class="paper">
+			<div class="page"></div>
+		</div>
+	</div>
+</div>
+
+<div id="statusbar">Page width: 210mm, margins: 20mm, automatic zoom level:
+	<span id="zoom-level">1</span>%</div>
+
+<% if Rails.env.production? %>
+	<%= javascript_include_tag "all.js" %>
+<% else %>
+	<%=  javascript_include_tag :libs %>
+<% end %>
+
+<script type="text/javascript">
+	// Lazy loading of main application JS.
+var se = document.createElement("script");
+<% if Rails.env.production? %>
+	se.src = "/javascripts/application-min.js";
+<% else %>
+	se.src = "/javascripts/application.js";
+<% end %>
+document.getElementsByTagName("head")[0].appendChild(se);
+</script>
