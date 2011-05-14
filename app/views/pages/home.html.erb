@@ -1,21 +1,23 @@
-
 <div id="main" class="shad">
-    <h1>Soda</h1>
+	<h1>Soda</h1>
 
-    <p class="first">Soda is a simple online document application that allows
-    you to create text documents in styles-based manner.</p>
+	<p class="first">Soda is a simple online document application that allows
+	you to create text documents in styles-based manner.</p>
 
-    <p>Most document editors approach this from a character-level direction:
-    you select some text, then apply a font, size etc. to it. While this is
-    generally fine for short documents, for longer ones it quickly becomes
-    unwieldy as you attempt to maintain consistency throughout.</p>
+	<p>Most document editors approach this from a character-level direction:
+	you select some text, then apply a font, size etc. to it. While this is
+	generally fine for short documents, for longer ones it quickly becomes
+	unwieldy as you attempt to maintain consistency throughout.</p>
 
-    <p>Soda is different: rather than mark selections of text with a font, you
-    apply <em>styles</em> to text blocks, such as paragraphs or headings, which
-    you define for the whole document, creating a consistent look.</p>
+	<p>Soda is different: rather than mark selections of text with a font, you
+	apply <em>styles</em> to text blocks, such as paragraphs or headings, which
+	you define for the whole document, creating a consistent look.</p>
 
-    <p id="try-demo"><a href="docs#demo">Try the demo</a><br/>
-    At present the demo has only preview functionality &ndash; saving has not yet been implemented.</p>
+	<p id="try-demo"><%= link_to "Create a document", docs_path, :method => "POST" %>
+	<br/>
+	At present only <%= link_to "registered" new_user_registration_path %> users
+	are able to save documents, and the navigation between sections is somewhat
+	lacking.</p>
 
-    <p><a href="mailto:soda@caerphoto.com">soda@caerphoto.com</a></p>
+	<p><a href="mailto:soda@caerphoto.com">soda@caerphoto.com</a></p>
 </div>

@@ -1,68 +1,23 @@
-<div id="toolbar">
-    <label for="chk-nonprinting">
-        <input id="chk-nonprinting" type="checkbox" checked>
-        Show paragraph marks.
-    </label>
-
-    <label for="chk-autozoom">
-        <input id="chk-autozoom" type="checkbox" checked>
-        Fit preview width.
-    </label>
-
-    <label for="chk-linebreaks">
-        <input id="chk-linebreaks" type="checkbox" checked>
-        Simple line breaks.
-    </label>
-
-    <label for="txt-base-font">
-        Paragraph font:
-        <input id="txt-base-font" type="text" value="Palatino">
-    </label>
-
-    <label for="txt-base-font-size">
-        <input id="txt-base-font-size" class="number" type="text" value="12">
-        pt
-    </label>
-
-    <label for="txt-heading-font">
-        Heading font:
-        <input id="txt-heading-font" type="text" value="Lucida Grande">
-    </label>
-</div>
-</div>
-
-<div id="app-loading-message" class="loading-message">
-    Application loading. You may begin typing while this happens.
-</div>
-
-<div id="editor">
-    <textarea><%= @default_doc %></textarea>
-</div>
-
-<div id="preview-scroller">
-    <div id="preview" class="show-nonprinting">
-        <div class="paper">
-            <div class="page"></div>
-        </div>
-    </div>
-</div>
-
-<div id="statusbar">Page width: 210mm, margins: 20mm, automatic zoom level:
-    <span id="zoom-level">1</span>%</div>
-
-<% if Rails.env.production? %>
-    <%= javascript_include_tag "all.js" %>
+<div id="main">
+	<h1>Your Saved Documents</h1>
+<% if @docs %>
+	<ul>
+	<% @docs.each do |doc| %>
+		<li><%= link_to doc.title || "<untitled document>", edit_doc_path(doc) %></li>
+	<% end %>
+	</ul>
 <% else %>
-    <%=  javascript_include_tag :libs %>
+	<% if user_signed_in? %>
+		<p>You do not have any saved documents. Would you like to create one?</p>
+	<% else %>
+		<p>Only <%= link_to "registered", new_user_registration_path %> users can
+		see a list of documents they have created.</p>
+
+		<p>You can still save documents without registering, but they will be
+		publicly visible and you will need to make a note of their URLs.</p>
+	<% end %>
 <% end %>
 
-<script type="text/javascript">
-    // Lazy loading of main application JS.
-    var se = document.createElement("script");
-    <% if Rails.env.production? %>
-    se.src = "/javascripts/application-min.js";
-    <% else %>
-    se.src = "/javascripts/application.js";
-    <% end %>
-    document.getElementsByTagName("head")[0].appendChild(se);
-</script>
+	<%= button_to "New Document", docs_path, :method => "POST" %>
+
+</div>
