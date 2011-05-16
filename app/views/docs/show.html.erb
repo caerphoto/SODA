@@ -19,14 +19,11 @@
 
 <div id="preview-scroller" class="view-only">
 	<div id="preview">
-		<div class="paper">
+		<div class="paper dropshadow">
 			<div class="page"></div>
 		</div>
 	</div>
 </div>
-
-<div id="statusbar">Page width: 210mm, margins: 20mm, automatic zoom level:
-	<span id="zoom-level">1</span>%</div>
 
 <% if Rails.env.production? %>
 	<%= javascript_include_tag "all.js" %>

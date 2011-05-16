@@ -32,8 +32,6 @@ GEM
     arel (2.0.9)
     bcrypt-ruby (2.1.2)
     builder (2.1.2)
-    compass (0.10.6)
-      haml (>= 3.0.4)
     devise (1.2.1)
       bcrypt-ruby (~> 2.1.2)
       orm_adapter (~> 0.0.3)
@@ -44,7 +42,6 @@ GEM
       addressable (~> 2.2.4)
       multipart-post (~> 1.1.0)
       rack (< 2, >= 1.1.0)
-    haml (3.0.25)
     i18n (0.5.0)
     mail (2.2.15)
       activesupport (>= 2.3.6)
@@ -137,7 +134,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  compass (>= 0.10.6)
   devise
   omniauth
   rails (= 3.0.5)

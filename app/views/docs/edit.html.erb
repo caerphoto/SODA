@@ -2,25 +2,38 @@
 
 <div id="toolbar">
 	<!-- display options -->
-	<label for="chk-nonprinting">
-		<input id="chk-nonprinting" type="checkbox" checked>
-		Show paragraph marks
-	</label>
+	<div class="dropdown-menu-container">
+	<button id="btn-display-options" class="dropdown-list-button">View Options</button>
+	<ul id="display-options-list" class="dropdown-list dropshadow">
+		<li>
+			<label for="chk-nonprinting">
+				<input id="chk-nonprinting" type="checkbox" checked>
+				Show paragraph marks
+			</label>
+		</li>
 
-	<label for="chk-autozoom">
-		<input id="chk-autozoom" type="checkbox" checked>
-		Fit preview width
-	</label>
+		<li>
+			<label for="chk-autozoom">
+				<input id="chk-autozoom" type="checkbox" checked>
+				Fit preview width
+			</label>
+		</li>
 
-	<label for="chk-linebreaks">
-		<input id="chk-linebreaks" type="checkbox" checked>
-		Simple line breaks
-	</label>
+		<li>
+			<label for="chk-linebreaks">
+				<input id="chk-linebreaks" type="checkbox" checked>
+				Simple line breaks
+			</label>
+		</li>
 
-	<label for="chk-monospace">
-		<input id="chk-monospace" type="checkbox">
-		Monospace editor font
-	</label>
+		<li>
+			<label for="chk-monospace">
+				<input id="chk-monospace" type="checkbox">
+				Monospace editor font
+			</label>
+		</li>
+	</ul>
+	</div>
 
 	<!-- style options -->
 	<button id="btn-adjust-styles" disabled>Adjust Styles&hellip;</button>
@@ -69,7 +82,7 @@
 
 <div id="preview-scroller">
 	<div id="preview" class="show-nonprinting">
-		<div class="paper">
+		<div class="paper dropshadow">
 			<div class="page"></div>
 		</div>
 	</div>
@@ -92,9 +105,9 @@ var se = document.createElement("script");
 
 // Allow sending of non-GET AJAX requests.
 $(document).ajaxSend(function(e, xhr, options) {
-  var token = $("meta[name='csrf-token']").attr("content");
-  xhr.setRequestHeader("X-CSRF-Token", token);
-});
+		var token = $("meta[name='csrf-token']").attr("content");
+		xhr.setRequestHeader("X-CSRF-Token", token);
+		});
 
 <% if Rails.env.production? %>
 	se.src = "/javascripts/application-min.js";

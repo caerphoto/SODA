@@ -10,10 +10,13 @@ $(function () {
 		$pages = $(".page"),
 		$toolbar = $("#toolbar"),
 
+		$btnDisplayOptions = $("#btn-display-options"),
+		$displayOptionsList = $("#display-options-list"),
 		$chkNonprinting = $("#chk-nonprinting"),
 		$chkAutozoom = $("#chk-autozoom"),
 		$chkLinebreaks = $("#chk-linebreaks"),
 		$chkMonospace = $("#chk-monospace"),
+
 		$txtBaseFont = $("#txt-base-font"),
 		$txtBaseFontSize = $("#txt-base-font-size"),
 		$txtHeadingFont = $("#txt-heading-font"),
@@ -137,6 +140,16 @@ $(function () {
 		$btnSave.attr("disabled", !modified);
 
 	};
+
+	$(document.body).click(function () {
+		$(".dropdown-list").hide();
+	});
+
+	$btnDisplayOptions.click(function (e) {
+		e.stopPropagation();
+
+		$displayOptionsList.toggle();
+	});
 
 	$chkNonprinting.change(function () {
 		$preview.toggleClass("show-nonprinting", this.checked);
