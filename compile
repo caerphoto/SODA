@@ -5,8 +5,8 @@ compass compile -s compressed --force
 echo "Merging library JavaScript files..."
 cat \
 public/javascripts/jquery-min.js \
-public/javascripts/showdown-min.js \
 public/javascripts/underscore-min.js \
+public/javascripts/showdown-min.js \
 > public/javascripts/all.js
 
 echo "Minifying application.js..."
