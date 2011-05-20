@@ -119,9 +119,8 @@ hr {
 		}
 	}
 
-	em {
-		font-style: italic;
-	}
+	em { font-style: italic; }
+	strong { font-weight: bold; }
 
 	ul.basic li:before {
 		content: "\25EA";
