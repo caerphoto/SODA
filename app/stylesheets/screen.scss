@@ -93,9 +93,22 @@ hr {
 	margin: 3em auto;
 	max-width: 50em;
 
-	h1 {
-		font-size: 150%;
+	h1, h2, h3 {
 		font-weight: bold;
+	}
+
+	h1 {
+		font-size: 160%;
+		text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+	}
+
+	h2 {
+		font-size: 130%;
+	}
+
+	h3 {
+		font-size: 110%;
+		font-style: italic;
 	}
 
 	p {
@@ -105,6 +118,16 @@ hr {
 			font-weight: bold;
 		}
 	}
+
+	em {
+		font-style: italic;
+	}
+
+	ul.basic li:before {
+		content: "\25EA";
+		padding-right: 0.5em;
+	}
+
 }
 
 #main.shad {
