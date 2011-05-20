@@ -86,10 +86,10 @@ $(function () {
 				/([^>\n])\n/g, '$1<span class="nonprinting-br"></span><br>');
 		}
 
-		if ($rdoPreviewPrint.attr("checked")) {
-			$pages.html(tempHTML);
-		} else {
+		if ($rdoPreviewHTML.attr("checked")) {
 			$pages.text(tempHTML);
+		} else {
+			$pages.html(tempHTML);
 		}
 	};
 
