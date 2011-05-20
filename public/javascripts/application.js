@@ -1,4 +1,5 @@
-/*global $, Showdown, window, editingDocument */
+/*jslint nomen:false */
+/*global $, _, Showdown, window, editingDocument */
 
 $(function () {
 	var $html = $("html"),
@@ -28,6 +29,7 @@ $(function () {
 		$txtBaseFontSize = $("#txt-base-font-size"),
 		$txtHeadingFont = $("#txt-heading-font"),
 
+		$lastSaved = $("#last-saved"),
 		$btnSave = $("#btn-save"),
 
 		$debug = $("#debug"),
@@ -39,8 +41,10 @@ $(function () {
 
 		showdown = new Showdown.converter(),
 		prevText = "", lastSavedText, lastSavedTitle,
+		savedState = {},
+		currentState = {},
+		ageTimer, saveTimer,
         docPath = $("#doc-path").val(),
-		saveTimer, modified, lastSaveInterval, lastSaveTime,
 		previewVisible = true,
 		sizingEditor = false, sizeOffset, previewMargin =
 			$previewScroller.outerWidth(true) - $previewScroller.outerWidth(),
@@ -53,8 +57,9 @@ $(function () {
 
 		// Functions:
 		pxToPt, ptToPx, pxToMm, ptToMm, mmToPx,
-		updatePreview, saveDocument, resetLastSavedTimer, updateSaveStatus,
-		updateModifiedStatus;
+		updatePreview, resetSaveTimer, saveDocument,
+		resetAgeTimer, updateAgeStatus,
+		updateModifiedStatus, changeState, modified;
 
 	pxToPt = function (px) {
 		// 72 points per inch.
@@ -121,46 +126,72 @@ $(function () {
 		}
 	};
 
+	resetSaveTimer = function () {
+		clearTimeout(saveTimer);
+		saveTimer = setInterval(function () {
+			saveDocument();
+		}, 60000);
+	};
+
 	saveDocument = function () {
-		if (!modified) {
+		if (!modified()) {
 			return;
 		}
 
-		saveTimer = clearTimeout(saveTimer);
+		ageTimer = clearTimeout(ageTimer);
 		$saving.fadeIn(100);
 
-		$.post(docPath, {
-			"_method": "PUT",
-			content: $input.val(),
-			"private": $chkPrivateDoc.attr("checked") ? 1 : 0,
-			linebreaks: $chkLinebreaks.attr("checked") ? 1 : 0,
-			title: $docTitle.val()
+		$.post(docPath, _({ "_method": "PUT" }).extend(currentState),
+			function (status) {
+				$saving.fadeOut(100);
 
-		}, function (status) {
-			$saving.fadeOut(100);
+				if (status === "SUCCESS") {
+					savedState = currentState;
+					savedState.lastSaved = Date.now();
+					updateModifiedStatus();
 
-			if (status === "SUCCESS") {
-				modified = false;
-				lastSavedText = $input.val();
-				lastSavedTitle = $docTitle.val();
-				$btnSave.attr("disabled", true);
+					resetAgeTimer();
+					resetSaveTimer();
+				} else {
+					alert("Unable to save document.\n\n" + status);
+				}
 
-			} else {
-				alert("Unable to save document.\n\n" + status);
+			});
+	};
+
+	changeState = function (changes) {
+		currentState = _({}).extend(currentState, changes);
+		updateModifiedStatus();
+	};
+
+	modified = function () {
+		var result = false;
+
+		_(currentState).each(function (value, key) {
+			if (currentState[key] !== savedState[key]) {
+				result = true;
 			}
-
 		});
+		return result;
 	};
 
-	resetLastSavedTimer = function () {
-		lastSaveTime = Date.now();
-		updateSaveStatus();
-		lastSaveInterval = setInterval(updateSaveStatus, 10000);
+	updateModifiedStatus = function () {
+		var mod = modified();
+
+		$lastSaved.toggle(mod);
+		$btnSave.attr("disabled", !mod);
 	};
 
-	updateSaveStatus = function () {
+	resetAgeTimer = function () {
+		clearTimeout(ageTimer);
+		ageTimer = setInterval(function () {
+			updateAgeStatus();
+		}, 10000);
+	};
+
+	updateAgeStatus = function () {
 		var $docAge = $("#doc-age"),
-			docAge = Math.round((Date.now() - lastSaveTime) / 1000);
+			docAge = Math.round((Date.now() - savedState.lastSaved) / 1000);
 
 
 		if (docAge === 0) {
@@ -171,25 +202,6 @@ $(function () {
 			docAge = Math.ceil(docAge / 60);
 			$docAge.text(docAge + " minutes ago.");
 		}
-	};
-
-	updateModifiedStatus = function () {
-		var currentText = $input.val(), currentTitle = $docTitle.val();
-
-		modified = currentText !== lastSavedText ||
-			currentTitle !== lastSavedTitle;
-
-		if (modified) {
-			if (!saveTimer) {
-				saveTimer = setTimeout(saveDocument, SAVE_INTERVAL);
-				resetLastSavedTimer();
-			}
-		} else {
-			saveTimer = clearTimeout(saveTimer);
-		}
-
-		$btnSave.attr("disabled", !modified);
-
 	};
 
 	$html.click(function () {
@@ -231,14 +243,12 @@ $(function () {
 	});
 
 	$chkLinebreaks.change(function () {
-		modified = true;
+		changeState({ linebreaks: $chkLinebreaks.attr("checked") });
 		updatePreview();
-		saveDocument();
 	});
 
 	$chkPrivateDoc.change(function () {
-		modified = true;
-		saveDocument();
+		changeState({ privateDoc: $chkPrivateDoc.attr("checked") });
 	});
 
 	$chkMonospace.change(function () {
@@ -268,7 +278,7 @@ $(function () {
 	});
 
 	$docTitle.keyup(function () {
-		updateModifiedStatus();
+		changeState({ title: $docTitle.val() });
 	});
 
 	$input.keyup(function () {
@@ -278,8 +288,9 @@ $(function () {
 			return;
 		}
 
+		changeState({ content: newText });
+
 		updatePreview();
-		updateModifiedStatus();
 
 		prevText = newText;
 
@@ -363,9 +374,19 @@ $(function () {
 			$input.focus();
 		}
 
-		lastSavedText = $input.val();
-		lastSavedTitle = $docTitle.val();
-		modified = false;
+		// Set up initial saved state.
+		savedState = {
+			lastSaved: Date.now(),
+			content: $input.val(),
+			title: $docTitle.val(),
+			linebreaks: $chkLinebreaks.attr("checked"),
+			privateDoc: $chkPrivateDoc.attr("checked")
+		};
+
+		// Make current state the same as the saved state.
+		changeState(savedState);
+		resetAgeTimer();
+		resetSaveTimer();
     }
 	updatePreview();
 

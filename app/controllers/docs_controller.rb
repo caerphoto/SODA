@@ -71,8 +71,8 @@ class DocsController < ApplicationController
 			if @doc != :unauthorized
 				@doc.content = params[:content]
 				@doc.title = params[:title]
-				@doc.private = params[:private] == "1"
-				@doc.linebreaks = params[:linebreaks] == "1"
+				@doc.private = params[:privateDoc] == "true"
+				@doc.linebreaks = params[:linebreaks] == "true"
 
 				if @doc.save
 					render :text => "SUCCESS"

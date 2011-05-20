@@ -235,7 +235,7 @@ hr {
 	right: 0;
 	left: 0;
 	height: $toolbarHeight - 7;
-	padding-top: 5px;
+	padding-top: 10px;
 
 	background: #FFF;
 	border-bottom: 2px solid $linkColor;
@@ -245,7 +245,6 @@ hr {
 	z-index: 2;
 
 	label {
-		margin: 0.5em;
 		display: inline-block;
 		vertical-align: middle;
 	}
