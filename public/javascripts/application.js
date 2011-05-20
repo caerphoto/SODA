@@ -1,4 +1,4 @@
-/*global $, Attacklab, window, editingDocument */
+/*global $, Showdown, window, editingDocument */
 
 $(function () {
 	var $html = $("html"),
@@ -12,10 +12,15 @@ $(function () {
 		$pages = $(".page"),
 		$toolbar = $("#toolbar"),
 
-		$chkNonprinting = $("#chk-nonprinting"),
-		$chkAutozoom = $("#chk-autozoom"),
 		$chkLinebreaks = $("#chk-linebreaks"),
 		$chkMonospace = $("#chk-monospace"),
+
+		$rdoPreviewOff = $("#rdo-preview-off"),
+		$rdoPreviewPrint = $("#rdo-preview-print"),
+		$rdoPreviewHTML = $("#rdo-preview-html"),
+
+		$chkNonprinting = $("#chk-nonprinting"),
+		$chkAutozoom = $("#chk-autozoom"),
 
 		$txtBaseFont = $("#txt-base-font"),
 		$txtBaseFontSize = $("#txt-base-font-size"),
@@ -30,10 +35,11 @@ $(function () {
 
 		$editorSizer = $("#editor-sizer"),
 
-		showdown = new Attacklab.showdown.converter(),
+		showdown = new Showdown.converter(),
 		prevText = "", lastSavedText, lastSavedTitle,
         docPath = $("#doc-path").val(),
 		saveTimer, modified, lastSaveInterval, lastSaveTime,
+		previewVisible = true,
 		sizingEditor = false, sizeOffset, previewMargin =
 			$previewScroller.outerWidth(true) - $previewScroller.outerWidth(),
 
@@ -62,7 +68,14 @@ $(function () {
 	};
 
 	updatePreview = function () {
-		var newText = $input.val(), tempHTML = showdown.makeHtml(newText);
+		var newText, tempHTML;
+
+		if (!previewVisible) {
+			return;
+		}
+
+		newText = $input.val();
+		tempHTML = showdown.makeHtml(newText);
 
 		if ($chkLinebreaks.attr("checked")) {
 			tempHTML = tempHTML.replace(
@@ -73,7 +86,11 @@ $(function () {
 				/([^>\n])\n/g, '$1<span class="nonprinting-br"></span><br>');
 		}
 
-		$pages.html(tempHTML);
+		if ($rdoPreviewPrint.attr("checked")) {
+			$pages.html(tempHTML);
+		} else {
+			$pages.text(tempHTML);
+		}
 	};
 
 	saveDocument = function () {
@@ -154,6 +171,25 @@ $(function () {
 
 		$(".dropdown-list").hide();
 		$(this).next().toggle();
+	});
+
+	$rdoPreviewOff.click(function () {
+		$previewScroller.hide();
+		previewVisible = false;
+	});
+
+	$rdoPreviewPrint.click(function () {
+		$previewScroller.show();
+		previewVisible = true;
+		$preview.removeClass("raw");
+		updatePreview();
+	});
+
+	$rdoPreviewHTML.click(function () {
+		$previewScroller.show();
+		previewVisible = true;
+		$preview.addClass("raw");
+		updatePreview();
 	});
 
 	$chkNonprinting.change(function () {

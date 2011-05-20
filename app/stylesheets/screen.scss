@@ -465,6 +465,7 @@ hr {
 	-o-transform-origin: left top;
 	-ms-transform-origin: left top;
 	transform-origin: left top;
+
 }
 
 .paper {
@@ -542,6 +543,11 @@ hr {
 
 	} // .page
 } // .paper
+
+#preview.raw .page {
+	white-space: pre-wrap;
+	font-family: monospace;
+}
 
 #preview.show-nonprinting {
 	p:after, h1:after, h2:after, h3:after, h4:after, h5:after {
