@@ -1,6 +1,8 @@
 <div id="main" class="dropshadow">
 	<h1>Your Saved Documents</h1>
 <% if @docs %>
+	<p>Please be careful with the <strong>delete</strong> links, as currently the
+	action can't be undone, and there is no confirmation dialog.</p>
 	<ul class="doc-list">
 	<% @docs.each do |doc| %>
 		<li>
