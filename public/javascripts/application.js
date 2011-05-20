@@ -1,17 +1,17 @@
 /*global $, Attacklab, window, editingDocument */
 
 $(function () {
-	var $input = $("#editor textarea").length ?
+	var $html = $("html"),
+		$input = $("#editor textarea").length ?
 			$("#editor textarea") :
 			$("#doc-source"),
+		$editorBox = $("#editor"),
 		$docTitle = $("#doc-title"),
 		$previewScroller = $("#preview-scroller"),
 		$preview = $("#preview"),
 		$pages = $(".page"),
 		$toolbar = $("#toolbar"),
 
-		$btnDisplayOptions = $("#btn-display-options"),
-		$displayOptionsList = $("#display-options-list"),
 		$chkNonprinting = $("#chk-nonprinting"),
 		$chkAutozoom = $("#chk-autozoom"),
 		$chkLinebreaks = $("#chk-linebreaks"),
@@ -28,10 +28,14 @@ $(function () {
 
 		$zoomLevel = $("#zoom-level"),
 
+		$editorSizer = $("#editor-sizer"),
+
 		showdown = new Attacklab.showdown.converter(),
 		prevText = "", lastSavedText, lastSavedTitle,
         docPath = $("#doc-path").val(),
 		saveTimer, modified, lastSaveInterval, lastSaveTime,
+		sizingEditor = false, sizeOffset, previewMargin =
+			$previewScroller.outerWidth(true) - $previewScroller.outerWidth(),
 
 		PAGE_WIDTH = 210, // assume A4 paper size for now
 		PAGE_HEIGHT = 297,
@@ -141,14 +145,15 @@ $(function () {
 
 	};
 
-	$(document.body).click(function () {
+	$html.click(function () {
 		$(".dropdown-list").hide();
 	});
 
-	$btnDisplayOptions.click(function (e) {
+	$(".dropdown-list-button").click(function (e) {
 		e.stopPropagation();
 
-		$displayOptionsList.toggle();
+		$(".dropdown-list").hide();
+		$(this).next().toggle();
 	});
 
 	$chkNonprinting.change(function () {
@@ -206,13 +211,49 @@ $(function () {
 		prevText = newText;
 
 	}).focus(function () {
-		$(this).parent().addClass("focus");
+		$(this).parent().parent().addClass("focus");
 	}).blur(function () {
-		$(this).parent().removeClass("focus");
+		$(this).parent().parent().removeClass("focus");
 	});
 
 	$btnSave.click(function () {
 		saveDocument();
+	});
+
+	$editorSizer.mousedown(function (e) {
+		sizingEditor = true;
+		sizeOffset = $editorSizer.width() - 
+			(e.pageX - $editorSizer.offset().left) + 1;
+
+		$editorSizer.addClass("sizing");
+		e.preventDefault();
+		e.stopPropagation();
+	});
+
+	$html.mousemove(function (e) {
+		var editorRight, previewLeft;
+
+		if (!sizingEditor) {
+			return;
+		}
+
+		editorRight = $(document).width() - e.pageX - sizeOffset;
+		previewLeft = e.pageX + previewMargin - sizeOffset - 10;
+
+		$editorBox.css({
+			right: editorRight
+		});
+
+		$previewScroller.css({
+			left: previewLeft
+		});
+	}).mouseup(function () {
+		if (sizingEditor) {
+			$(window).resize();
+		}
+
+		sizingEditor = false;
+		$editorSizer.removeClass("sizing");
 	});
 
 	// Calculate font size based on preview 'page' width.

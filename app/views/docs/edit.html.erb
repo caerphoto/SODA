@@ -1,39 +1,62 @@
 <input type="hidden" value="<%= doc_path(@doc) %>" id="doc-path">
 
 <div id="toolbar">
-	<!-- display options -->
+
+	<!-- Editor options -->
 	<div class="dropdown-menu-container">
-	<button id="btn-display-options" class="dropdown-list-button">View Options</button>
-	<ul id="display-options-list" class="dropdown-list dropshadow">
-		<li>
-			<label for="chk-nonprinting">
-				<input id="chk-nonprinting" type="checkbox" checked>
-				Show paragraph marks
-			</label>
-		</li>
+		<button id="btn-editor-options" class="dropdown-list-button">Editor Options</button>
+		<ul id="editor-options-list" class="dropdown-list dropshadow">
+			<li>
+				<label for="chk-linebreaks">
+					<input id="chk-linebreaks" type="checkbox" checked>
+					Single line breaks
+				</label>
+			</li>
 
-		<li>
-			<label for="chk-autozoom">
-				<input id="chk-autozoom" type="checkbox" checked>
-				Fit preview width
-			</label>
-		</li>
-
-		<li>
-			<label for="chk-linebreaks">
-				<input id="chk-linebreaks" type="checkbox" checked>
-				Simple line breaks
-			</label>
-		</li>
-
-		<li>
-			<label for="chk-monospace">
-				<input id="chk-monospace" type="checkbox">
-				Monospace editor font
-			</label>
-		</li>
-	</ul>
+			<li>
+				<label for="chk-monospace">
+					<input id="chk-monospace" type="checkbox">
+					Monospace font
+				</label>
+			</li>
+		</ul>
 	</div>
+
+	<!-- Preview options -->
+	<div class="dropdown-menu-container">
+		<button id="btn-display-options" class="dropdown-list-button">Preview Options</button>
+		<ul id="display-options-list" class="dropdown-list dropshadow">
+			<li>
+				<label for="rdo-preview-off">
+					<input id="rdo-preview-off" type="radio" name="preview-type">
+					Off
+				</label>
+				<label for="rdo-preview-print">
+					<input id="rdo-preview-print" type="radio" name="preview-type" checked>
+					Print
+				</label>
+				<label for="rdo-preview-html">
+					<input id="rdo-preview-html" type="radio" name="preview-type">
+					HTML
+				</label>
+			</li>
+			<li class="menu-separator"></li>
+			<li>
+				<label for="chk-nonprinting">
+					<input id="chk-nonprinting" type="checkbox" checked>
+					Show paragraph marks
+				</label>
+			</li>
+
+			<li>
+				<label for="chk-autozoom">
+					<input id="chk-autozoom" type="checkbox" checked>
+					Fit window width
+				</label>
+			</li>
+		</ul>
+	</div>
+
 
 	<!-- style options -->
 	<button id="btn-adjust-styles" disabled>Adjust Styles&hellip;</button>
@@ -69,15 +92,16 @@
 	Saving document&hellip;
 </div>
 
-<div id="doc-title-wrapper">
+<div id="editor">
 	<label for="doc-title">Document name:</label>
-	<div>
+	<div id="editor-title-box">
 		<input id="doc-title" type="text" value="<%= @doc.title %>">
 	</div>
-</div>
 
-<div id="editor">
-	<textarea><%= @doc.content %></textarea>
+	<div id="editor-input-box">
+		<textarea><%= @doc.content %></textarea>
+	</div>
+	<div id="editor-sizer"></div>
 </div>
 
 <div id="preview-scroller">

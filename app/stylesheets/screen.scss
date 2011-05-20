@@ -2,6 +2,7 @@
 
 $linkColor: #2A6;
 $linkHoverColor: #4D8;
+$borderColor: #CCC;
 $paperBg: #F8F8F5;
 $pageBg: #F0F0E8;
 $buttonColor: #F1F4F1;
@@ -28,8 +29,12 @@ a {
 	}
 }
 
+input[type='text'], input[type='password'] {
+	border: 1px solid $borderColor;
+}
+
 button, input[type='button'], input[type='submit'] {
-	border: 1px solid #CCC;
+	border: 1px solid $borderColor;
 	background-color: $buttonColor;
 	border-radius: 3px;
 
@@ -46,14 +51,20 @@ button, input[type='button'], input[type='submit'] {
 	}
 
 	&[disabled] {
-		color: #CCC;
+		color: $borderColor;
 		background-color: $buttonDisabledColor;
 		cursor: default;
 		&:hover {
-			color: #CCC;
+			color: $borderColor;
 			background-color: $buttonDisabledColor;
 		}
 	}
+}
+
+hr {
+	border: none;
+	border-bottom: 1px solid $borderColor;
+	margin: 0.5em 5em;
 }
 
 .dropshadow {
@@ -70,7 +81,7 @@ button, input[type='button'], input[type='submit'] {
 }
 
 #main, .paper, #editor {
-	border: 1px solid #CCC;
+	border: 1px solid $borderColor;
 }
 
 #main, .paper {
@@ -107,7 +118,7 @@ button, input[type='button'], input[type='submit'] {
 	right: 0;
 	height: $navbarHeight - 1;
 
-	border-bottom: 1px solid #CCC;
+	border-bottom: 1px solid $borderColor;
 
 	background-color: $paperBg;
 	color: #333;
@@ -143,7 +154,7 @@ button, input[type='button'], input[type='submit'] {
 
 	li {
 		padding-bottom: 0.5em;
-		border-bottom: 1px solid #CCC;
+		border-bottom: 1px solid $borderColor;
 		margin-bottom: 0.5em;
 
 		&:last-child {
@@ -219,7 +230,7 @@ button, input[type='button'], input[type='submit'] {
 	input {
 		font-size: 100%;
 		outline: none;
-		border: 1px solid #CCC;
+		border: 1px solid $borderColor;
 
 		&.number {
 			width: 4em;
@@ -253,8 +264,13 @@ button, input[type='button'], input[type='submit'] {
 		top: 25px;
 		width: 13em;
 		display: none;
-		border: 1px solid #CCC;
+		border: 1px solid $borderColor;
 		background-color: $buttonColor;
+
+		.menu-separator {
+			border-bottom: 1px solid $borderColor;
+			margin: 0.5em 0;
+		}
 
 		label {
 			display: block;
@@ -265,6 +281,7 @@ button, input[type='button'], input[type='submit'] {
 			font-size: 12px;
 
 			&:hover {
+				color: $linkColor;
 				background-color: $buttonHoverColor;
 			}
 		}
@@ -289,7 +306,7 @@ button, input[type='button'], input[type='submit'] {
 	height: $statusbarHeight - 1;
 
 	background: #FFF;
-	border-top: 1px solid #CCC;
+	border-top: 1px solid $borderColor;
 
 	padding-left: 20px;
 
@@ -321,46 +338,56 @@ button, input[type='button'], input[type='submit'] {
 	bottom: $statusbarHeight;
 }
 
-#doc-title-wrapper {
-	position: absolute;
+#editor {
 	top: $toolbarHeight + $navbarHeight;
-	left: 20px;
 	right: 55%;
-	margin-top: 20px;
+	left: 20px;
+
+	margin: 20px auto;
+	padding: 2.2em 14px 10px 10px;
+	background-color: #FFF;
 
 	label {
 		display: block;
-		float: left;
-		width: 9em;
+		position: absolute;
+		left: 0;
+		top: 0.3em;
+		right: 0;
+		height: 1.9em;
+		padding-left: 0.5em;
+		border-bottom: 1px solid $borderColor;
 	}
 
-	div {
-		margin-left: 9em;
-		padding-right: 3px;
+	#editor-title-box {
+		position: absolute;
+		top: 0.3em;
+		left: 9em;
+		right: 16px;
 
 		input {
 			display: block;
 			width: 100%;
 			font-size: 100%;
 			outline: none;
-			border: 1px solid #CCC;
+			border: 1px solid $borderColor;
 		}
 	}
-}
 
-#editor {
-	top: $toolbarHeight + $navbarHeight + 50;
-	right: 55%;
-	left: 20px;
-
-	margin: 20px auto;
-	padding: 10px;
-	background-color: #FFF;
+	#editor-input-box {
+		position: absolute;
+		top: 2.5em;
+		right: 14px;
+		bottom: 0.4em;
+		left: 0.4em;
+		border: 1px solid #FFF;
+	}
 
 	textarea {
+		display: block;
 		outline: none;
-		resize: none;
+		resize: none; // hide resize handle in Webkit browsers
 		border: none;
+		padding: 0;
 
 		width: 100%;
 		height: 100%;
@@ -374,6 +401,20 @@ button, input[type='button'], input[type='submit'] {
 		&.monospace {
 			font-family: monospace;
 		}
+	}
+}
+
+#editor-sizer {
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 8px;
+	background-color: $borderColor;
+
+	&:hover, &.sizing {
+		background-color: $linkColor;
+		cursor: ew-resize;
 	}
 }
 
@@ -454,14 +495,14 @@ button, input[type='button'], input[type='submit'] {
 
 		blockquote {
 			margin: 1em 3em 1em 1em;
-			border-left: 1px solid #CCC;
+			border-left: 1px solid $borderColor;
 			padding-left: 1em;
 			color: #555;
 		}
 
 		pre, code {
 			background-color: #EEE;
-			border: 1px solid #CCC;
+			border: 1px solid $borderColor;
 			padding: 3px;
 			font-family: "Consolas", "Inconsolata", "Menlo", monospace;
 			font-size: 85%;
