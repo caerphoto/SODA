@@ -7,11 +7,7 @@ cat \
 public/javascripts/jquery-min.js \
 public/javascripts/showdown.js \
 public/javascripts/underscore-min.js \
-> MIN_TEMP
-
-echo "Minifying merged JavaScript files..."
-jsmin < MIN_TEMP > public/javascripts/all.js
-rm MIN_TEMP
+> public/javascripts/all.js
 
 echo "Minifying application.js..."
 jsmin < public/javascripts/application.js > public/javascripts/application-min.js
