@@ -9,6 +9,14 @@
 		HTML view
 	</label>
 
+	<div class="hidden">
+		<% if @doc.linebreaks %>
+			<input id="chk-linebreaks" type="checkbox" checked>
+		<% else %>
+			<input id="chk-linebreaks" type="checkbox">
+		<% end %>
+	</div>
+
 <% if user_signed_in? and current_user.id == @doc.user_id %>
 	<label>
 		<%= link_to "Edit this document", edit_doc_path(@doc) %>

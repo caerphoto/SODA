@@ -247,6 +247,7 @@ hr {
 	label {
 		display: inline-block;
 		vertical-align: middle;
+		margin-left: 1em;
 	}
 
 	input {
@@ -312,6 +313,14 @@ hr {
 	.info {
 		font-style: italic;
 		color: #AAA;
+	}
+
+	.links {
+		position: absolute;
+		right: 1em;
+		top: 10px;
+		display: inline-block;
+		text-align: right;
 	}
 
 	-moz-box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.1);
@@ -579,4 +588,8 @@ hr {
 	-moz-box-shadow: 0px 0 3px $linkColor;
 	-webkit-box-shadow: 0px 0 3px $linkColor;
 	box-shadow: 0px 0 3px $linkColor;
+}
+
+.hidden {
+	display: none;
 }
