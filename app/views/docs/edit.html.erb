@@ -7,16 +7,36 @@
 		<button id="btn-editor-options" class="dropdown-list-button">Editor Options</button>
 		<ul id="editor-options-list" class="dropdown-list dropshadow">
 			<li>
-				<label for="chk-linebreaks">
-					<input id="chk-linebreaks" type="checkbox" checked>
-					Single line breaks
-				</label>
-			</li>
-
-			<li>
 				<label for="chk-monospace">
 					<input id="chk-monospace" type="checkbox">
 					Monospace font
+				</label>
+			</li>
+		</ul>
+	</div>
+
+	<!-- Document options -->
+	<div class="dropdown-menu-container">
+		<button id="btn-document-options" class="dropdown-list-button">Document Options</button>
+		<ul id="document-options-list" class="dropdown-list dropshadow">
+			<li>
+			<label for="chk-linebreaks" title="When enabled, a single input line break will generate an output line break (HTML <br> tag). &#13;&#13;Otherwise, single line breaks can be inserted by adding two spaces to the end of a line.">
+				<% if @doc.linebreaks %>
+					<input id="chk-linebreaks" type="checkbox" checked>
+				<% else %>
+					<input id="chk-linebreaks" type="checkbox">
+				<% end %>
+					Single line breaks
+				</label>
+			</li>
+			<li>
+				<label for="chk-private-doc">
+				<% if @doc.private %>
+					<input id="chk-private-doc" type="checkbox" checked>
+				<% else %>
+					<input id="chk-private-doc" type="checkbox">
+				<% end %>
+					Private
 				</label>
 			</li>
 		</ul>
@@ -85,7 +105,7 @@
 </div>
 
 <div id="app-loading-message" class="loading-message">
-	Application loading. You may begin typing while this happens.
+	Loading real-time previewer.
 </div>
 
 <div id="doc-saving-message" class="saving-message">

@@ -4,6 +4,11 @@
 		Show paragraph marks
 	</label>
 
+	<label for="rdo-preview-html">
+		<input id="rdo-preview-html" type="checkbox">
+		HTML view
+	</label>
+
 <% if user_signed_in? and current_user.id == @doc.user_id %>
 	<label>
 		<%= link_to "Edit this document", edit_doc_path(@doc) %>

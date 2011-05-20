@@ -33,7 +33,7 @@ class DocsController < ApplicationController
 	end
 
 	def edit
-		@doc = Doc.get(params[:id], user_id)
+		@doc = Doc.edit(params[:id], user_id)
 
 		respond_to do |format|
 			format.html do
@@ -65,12 +65,14 @@ class DocsController < ApplicationController
 
 	def update
 		doc_id = params[:id]
-		@doc = Doc.get(doc_id, user_id)
+		@doc = Doc.edit(doc_id, user_id)
 
 		if @doc
 			if @doc != :unauthorized
 				@doc.content = params[:content]
 				@doc.title = params[:title]
+				@doc.private = params[:private] == "1"
+				@doc.linebreaks = params[:linebreaks] == "1"
 
 				if @doc.save
 					render :text => "SUCCESS"

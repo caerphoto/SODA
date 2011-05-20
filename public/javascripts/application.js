@@ -12,8 +12,10 @@ $(function () {
 		$pages = $(".page"),
 		$toolbar = $("#toolbar"),
 
-		$chkLinebreaks = $("#chk-linebreaks"),
 		$chkMonospace = $("#chk-monospace"),
+
+		$chkLinebreaks = $("#chk-linebreaks"),
+		$chkPrivateDoc = $("#chk-private-doc"),
 
 		$rdoPreviewOff = $("#rdo-preview-off"),
 		$rdoPreviewPrint = $("#rdo-preview-print"),
@@ -68,7 +70,10 @@ $(function () {
 	};
 
 	updatePreview = function () {
-		var newText, tempHTML;
+		var newText, tempHTML, i,
+			codeblock = /(<code(?:[^>]*)>[^<]*)<\/code>/g,
+			codeblocks = [],
+			HTMLView = $rdoPreviewHTML.attr("checked");
 
 		if (!previewVisible) {
 			return;
@@ -78,15 +83,38 @@ $(function () {
 		tempHTML = showdown.makeHtml(newText);
 
 		if ($chkLinebreaks.attr("checked")) {
+			// Encode tildes so we can use them as escape characters.
+			tempHTML = tempHTML.replace(/~/, "~T");
+
+			// Yank out <pre> blocks to prevent linebreaks from affecting them.
+			i = -1;
+			tempHTML = tempHTML.replace(codeblock, function () {
+				i += 1;
+				codeblocks[i] = arguments[1];
+				return "~C" + i + "</code>";
+			});
+
+			// Replace single carriage returns in with line breaks, and
+			// insert 'holder' for nonprinting linebreak markers if in 'print'
+			// preview mode.
 			tempHTML = tempHTML.replace(
-				// Remove trailing spaces.
-				/\s+\n/g, "").replace(
-				// Replace single carriage returns in paragraphs with line breaks,
-				// and insert 'holder' for nonprinting linebreak markers.
-				/([^>\n])\n/g, '$1<span class="nonprinting-br"></span><br>');
+				/([^>\n])\n/g, HTMLView ? 
+					'$1<br>\n' :
+					'$1<span class="nonprinting-br"></span><br>\n');
+
+			// Restore code blocks. Will fail if there are more than 9999
+			// separate code blocks.
+			i = -1;
+			tempHTML = tempHTML.replace(/~C\d{1,4}/g, function () {
+				i += 1;
+				return codeblocks[i];
+			});
+
+			// Restore tildes.
+			tempHTML = tempHTML.replace(/~T/, "~");
 		}
 
-		if ($rdoPreviewHTML.attr("checked")) {
+		if (HTMLView) {
 			$pages.text(tempHTML);
 		} else {
 			$pages.html(tempHTML);
@@ -102,8 +130,10 @@ $(function () {
 		$saving.fadeIn(100);
 
 		$.post(docPath, {
-			_method: "PUT",
+			"_method": "PUT",
 			content: $input.val(),
+			"private": $chkPrivateDoc.attr("checked") ? 1 : 0,
+			linebreaks: $chkLinebreaks.attr("checked") ? 1 : 0,
 			title: $docTitle.val()
 
 		}, function (status) {
@@ -188,7 +218,7 @@ $(function () {
 	$rdoPreviewHTML.click(function () {
 		$previewScroller.show();
 		previewVisible = true;
-		$preview.addClass("raw");
+		$preview.toggleClass("raw", $rdoPreviewHTML.attr("checked"));
 		updatePreview();
 	});
 
@@ -201,7 +231,14 @@ $(function () {
 	});
 
 	$chkLinebreaks.change(function () {
+		modified = true;
 		updatePreview();
+		saveDocument();
+	});
+
+	$chkPrivateDoc.change(function () {
+		modified = true;
+		saveDocument();
 	});
 
 	$chkMonospace.change(function () {
