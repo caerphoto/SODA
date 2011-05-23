@@ -4,6 +4,7 @@
 		<title>Soda</title>
 		<%= stylesheet_link_tag 'screen.css', :media => 'screen, projection' %>
 		<%= stylesheet_link_tag 'print.css', :media => 'print' %>
+		<link rel="icon" type="image/png" href="images/favicon.png">
 		<%= csrf_meta_tag %>
 	</head>
 	<body>
@@ -11,9 +12,7 @@
 		<div class="alert"><%= alert %></div>
 
 	<div id="navbar">
-		<div id="logo">
-			<%= link_to "Home page", root_path, :class => "logo" %>
-		</div>
+		<%= link_to "Home page", root_path, :id => "logo-navbar" %>
 
 	<% if user_signed_in? %>
 		<div id="center-links">

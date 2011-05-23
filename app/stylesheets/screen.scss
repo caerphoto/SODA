@@ -77,6 +77,17 @@ hr {
 	box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
 }
 
+#logo {
+	width: 0;
+	height: 63px;
+	padding-left: 174px;
+	padding-bottom: 0.5em;
+	margin-bottom: 1em;
+	background: inline-image("soda_logo.png") right top no-repeat;
+	border-bottom: 2px solid $borderColor;
+	overflow: hidden;
+}
+
 .github-link {
 	display: inline-block;
 	height: 22px;
@@ -172,11 +183,19 @@ hr {
 	}
 }
 
-#logo {
+#logo-navbar {
 	float: left;
+	display: block;
+	width: 0;
+	padding-left: 45px;
+	height: 17px;
+	background: inline-image("soda_logo-navbar.png") right top no-repeat;
+	overflow: hidden;
+	margin-left: 1em;
+	margin-top: 3px;
 
-	a {
-		font-weight: bold;
+	&:hover {
+		background-position: right -17px;
 	}
 }
 
