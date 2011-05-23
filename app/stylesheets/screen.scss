@@ -27,6 +27,10 @@ a {
 	&:hover {
 		color: $linkHoverColor;
 	}
+
+	img {
+		vertical-align: middle;
+	}
 }
 
 input[type='text'], input[type='password'] {
@@ -71,6 +75,21 @@ hr {
 	-moz-box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
 	box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
+}
+
+.github-link {
+	display: inline-block;
+	height: 22px;
+	width: 0;
+	padding-left: 49px;
+	overflow: hidden;
+	vertical-align: middle;
+
+	background: inline-image("github_logo-small.png") right 0 no-repeat;
+
+	&:hover {
+		background-position: right -22px;
+	}
 }
 
 #try-demo {

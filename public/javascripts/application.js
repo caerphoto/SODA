@@ -44,7 +44,7 @@ $(function () {
 		savedState = {},
 		currentState = {},
 		ageTimer, saveTimer,
-        docPath = $("#doc-path").val(),
+		docPath = $("#doc-path").val(),
 		previewVisible = true,
 		sizingEditor = false, sizeOffset, previewMargin =
 			$previewScroller.outerWidth(true) - $previewScroller.outerWidth(),
@@ -367,7 +367,7 @@ $(function () {
 	});
 
 	$("#app-loading-message").remove();
-    if (docPath) {
+	if (docPath) {
 		if (!$docTitle.val()) {
 			$docTitle.focus();
 		} else {
@@ -387,7 +387,7 @@ $(function () {
 		changeState(savedState);
 		resetAgeTimer();
 		resetSaveTimer();
-    }
+	}
 	updatePreview();
 
 	$(window).resize();
