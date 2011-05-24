@@ -45,18 +45,8 @@
 
 <% if Rails.env.production? %>
 	<%= javascript_include_tag "all.js" %>
+	<%= javascript_include_tag "application-min.js" %>
 <% else %>
-	<%=  javascript_include_tag :libs %>
+	<%= javascript_include_tag :libs %>
+	<%= javascript_include_tag "application.js" %>
 <% end %>
-
-<script type="text/javascript">
-	// Lazy loading of main application JS.
-var se = document.createElement("script");
-
-<% if Rails.env.production? %>
-	se.src = "/javascripts/application-min.js";
-<% else %>
-	se.src = "/javascripts/application.js";
-<% end %>
-document.getElementsByTagName("head")[0].appendChild(se);
-</script>
