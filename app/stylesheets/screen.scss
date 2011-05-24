@@ -13,6 +13,8 @@ $navbarHeight: 25px;
 $toolbarHeight: 45px;
 $statusbarHeight: 30px;
 
+$h1shad: 2px 2px 3px rgba(0, 0, 0, 0.3);
+
 body {
 	background-color: $pageBg;
 	color: #333;
@@ -129,7 +131,7 @@ hr {
 
 	h1 {
 		font-size: 160%;
-		text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+		text-shadow: $h1shad;
 	}
 
 	h2 {
@@ -157,10 +159,6 @@ hr {
 		padding-right: 0.5em;
 	}
 
-}
-
-#main.shad {
-	text-shadow: 0.2em 0.4em 5px rgba(0, 0, 80%, 0.1);
 }
 
 #navbar {
@@ -200,7 +198,12 @@ hr {
 }
 
 #center-links {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
 	text-align: center;
+	z-index: -1; // links are 'behind' other stuff on the bar
 }
 
 #user-panel {
@@ -233,12 +236,13 @@ hr {
 }
 
 .loading-message {
-	background: $linkColor inline-image("loading-w-g.gif") no-repeat 10px center;
+	background: $linkColor inline-image("loading-g-w.gif") no-repeat 10px center;
 	z-index: 99;
 	color: #FFF;
 }
 
 .saving-message {
+	background: $linkColor inline-image("loading-w-g.gif") no-repeat 10px center;
 	background-color: #FFF;
 	border: 4px solid $linkColor;
 	color: #333;
@@ -253,7 +257,7 @@ hr {
 	position: absolute;
 	top: $toolbarHeight + $navbarHeight + 20;
 	left: 50%;
-	padding: 10px 10px 10px 65px;
+	padding: 10px 10px 10px 32px;
 }
 
 #app-loading-message {
@@ -263,6 +267,7 @@ hr {
 }
 
 #doc-saving-message {
+	color: $linkColor;
 	display: none;
 }
 
@@ -364,6 +369,19 @@ hr {
 	-webkit-box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.1);
 	box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.1);
 }
+
+h1#doc-title {
+	position: absolute;
+	top: 0.15em;
+	left: 0;
+	right: 0;
+	text-align: center;
+	font-size: 200%;
+	font-weight: bold;
+	text-shadow: $h1shad; 
+	z-index: -1;
+}
+
 
 #statusbar {
 	position: absolute;
@@ -497,8 +515,9 @@ hr {
 	&.view-only {
 		position: static;
 		margin: $toolbarHeight + $navbarHeight auto $statusbarHeight auto;
-		width: 230mm;
-		overflow: auto;
+		padding-top: 1em;
+		width: 210mm;
+		overflow: visible; // allow shadow to show outside box
 	}
 }
 
@@ -510,7 +529,6 @@ hr {
 	-o-transform-origin: left top;
 	-ms-transform-origin: left top;
 	transform-origin: left top;
-
 }
 
 .paper {

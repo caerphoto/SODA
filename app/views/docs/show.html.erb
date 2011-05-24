@@ -17,11 +17,15 @@
 		<% end %>
 	</div>
 
+	<h1 id="doc-title">
+		<%= @doc.title ? @doc.title : "&lt;untitled&gt;" %>
+	</h1>
+
 <% if user_signed_in? and current_user.id == @doc.user_id %>
-	<label>
-		<%= link_to "Edit this document", edit_doc_path(@doc) %>
+	<div class="links">
+			<%= link_to "Edit document", edit_doc_path(@doc) %>
+	</div>
 <% end %>
-	</label>
 </div>
 
 <div id="app-loading-message" class="loading-message">
@@ -29,6 +33,7 @@
 </div>
 
 <input id="doc-source" type="hidden" value="<%= @doc.content %>">
+<input id="doc-title" type="hidden" value="<%= @doc.title %>">
 
 <div id="preview-scroller" class="view-only">
 	<div id="preview">

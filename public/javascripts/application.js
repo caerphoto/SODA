@@ -84,6 +84,9 @@ $(function () {
 			return;
 		}
 
+		document.title = ($docTitle.val() || $docTitle.text() || "<untitled>") +
+			" - Soda";
+
 		newText = $input.val();
 		tempHTML = showdown.makeHtml(newText);
 
@@ -367,6 +370,7 @@ $(function () {
 	});
 
 	$("#app-loading-message").remove();
+
 	if (docPath) {
 		if (!$docTitle.val()) {
 			$docTitle.focus();
