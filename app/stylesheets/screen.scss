@@ -535,10 +535,13 @@ h1#doc-title {
 
 		p, ul, ol, pre { margin-bottom: 0.5em; }
 
+		p { clear: both; }
+
 		em { font-style: italic; }
 		strong { font-weight: bold; }
 
 		h1, h2, h3, h4, h5, h6 {
+			// iPad doesn't have Lucida, wtf
 			font-family: "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", "Arial", sans-serif;
 			font-weight: bold;
 			margin-top: 1em;
@@ -592,6 +595,20 @@ h1#doc-title {
 			}
 		}
 
+		hr {
+			margin: 1em 5em;
+		}
+
+		img {
+			vertical-align: middle;
+		}
+
+		.img {
+			display: inline-block;
+			width: 100%;
+			text-align: center;
+		}
+
 	} // .page
 } // .paper
 
@@ -611,10 +628,6 @@ h1#doc-title {
 		width: 0;
 		overflow: visible;
 		display: inline-block;
-	}
-
-	br:after {
-		content: "¬";
 	}
 
 	.empty:after {

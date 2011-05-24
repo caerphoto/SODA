@@ -569,6 +569,12 @@ var _DoImages = function(text) {
 // Turn Markdown image shortcuts into <img> tags.
 //
 
+	// Added by Andy, 2011-5-24: custom 'block-level' image tag, which just
+	// wraps the image with a <span> set to the "img" class, which the Soda CSS
+	// makes into a 100% width inline-block element with text-align: center.
+
+	text = text.replace(/(!!\[(.*?)\][ ]?(?:\n[ ]*)?\[(.*?)\])()()()()/g,writeBlockImageTag);
+	text = text.replace(/(!!\[(.*?)\]\s?\([ \t]*()<?(\S+?)>?[ \t]*((['"])(.*?)\6[ \t]*)?\))/g,writeBlockImageTag);
 	//
 	// First, handle reference-style labeled images: ![alt text][id]
 	//
@@ -663,6 +669,51 @@ var writeImageTag = function(wholeMatch,m1,m2,m3,m4,m5,m6,m7) {
 	//}
 	
 	result += " />";
+	
+	return result;
+}
+
+var writeBlockImageTag = function(wholeMatch,m1,m2,m3,m4,m5,m6,m7) {
+	var whole_match = m1;
+	var alt_text   = m2;
+	var link_id	 = m3.toLowerCase();
+	var url		= m4;
+	var title	= m7;
+
+	if (!title) title = "";
+	
+	if (url == "") {
+		if (link_id == "") {
+			// lower-case and turn embedded newlines into spaces
+			link_id = alt_text.toLowerCase().replace(/ ?\n/g," ");
+		}
+		url = "#"+link_id;
+		
+		if (g_urls.get(link_id) != undefined) {
+			url = g_urls.get(link_id);
+			if (g_titles.get(link_id) != undefined) {
+				title = g_titles.get(link_id);
+			}
+		}
+		else {
+			return whole_match;
+		}
+	}	
+	
+	alt_text = alt_text.replace(/"/g,"&quot;");
+	url = escapeCharacters(url,"*_");
+	var result = "<span class=\"img\"><img src=\"" + url + "\" alt=\"" + alt_text + "\"";
+
+	// attacklab: Markdown.pl adds empty title attributes to images.
+	// Replicate this bug.
+
+	//if (title != "") {
+		title = title.replace(/"/g,"&quot;");
+		title = escapeCharacters(title,"*_");
+		result +=  " title=\"" + title + "\"";
+	//}
+	
+	result += " /></span>";
 	
 	return result;
 }
