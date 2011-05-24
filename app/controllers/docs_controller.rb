@@ -8,6 +8,7 @@ class DocsController < ApplicationController
 	end
 
 	def index
+		@title = "Your Saved Documents - Soda"
 		if user_signed_in?
 			@docs = current_user.docs
 		else
@@ -18,34 +19,38 @@ class DocsController < ApplicationController
 	def show
 		@doc = Doc.get(params[:id], user_id)
 
-		respond_to do |format|
-			format.html do
-				if @doc == :unauthorized
-					flash[:alert] = "Only the owner of that document may view it."
-					redirect_to new_user_session_path
-				elsif @doc == :not_found
-					redirect_to unknown_doc_path
+		if @doc
+			respond_to do |format|
+				format.html do
+					if @doc == :unauthorized
+						flash[:alert] = "Only the owner of that document may view it."
+						redirect_to new_user_session_path
+					end
 				end
-			end
 
-			format.json { render :json => @doc }
+				format.json { render :json => @doc }
+			end
+		else
+			redirect_to unknown_doc_path
 		end
 	end
 
 	def edit
 		@doc = Doc.edit(params[:id], user_id)
 
-		respond_to do |format|
-			format.html do
-				if @doc == :unauthorized
-					flash[:alert] = "Only the owner of that document may edit it."
-					redirect_to new_user_session_path
-				elsif @doc == :not_found
-					redirect_to unknown_doc_path
+		if @doc
+			respond_to do |format|
+				format.html do
+					if @doc == :unauthorized
+						flash[:alert] = "Only the owner of that document may edit it."
+						redirect_to new_user_session_path
+					end
 				end
-			end
 
-			format.json { render :json => @doc }
+				format.json { render :json => @doc }
+			end
+		else
+			redirect_to unknown_doc_path
 		end
 	end
 

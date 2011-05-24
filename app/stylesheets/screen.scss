@@ -70,7 +70,7 @@ button, input[type='button'], input[type='submit'] {
 hr {
 	border: none;
 	border-bottom: 1px solid $borderColor;
-	margin: 0.5em 5em;
+	margin: 1em 5em;
 }
 
 .dropshadow {
@@ -127,6 +127,7 @@ hr {
 
 	h1, h2, h3 {
 		font-weight: bold;
+		margin-top: 1em;
 	}
 
 	h1 {
@@ -139,8 +140,7 @@ hr {
 	}
 
 	h3 {
-		font-size: 110%;
-		font-style: italic;
+		font-size: 105%;
 	}
 
 	p {
@@ -154,9 +154,16 @@ hr {
 	em { font-style: italic; }
 	strong { font-weight: bold; }
 
+	ul.basic {
+		list-style: none;
+		padding-left: 1em;
+		text-indent: -0.6em;
+	}
 	ul.basic li:before {
+		display: inline-block;
+		width: 0.6em;
+		overflow: visible;
 		content: "\25EA";
-		padding-right: 0.5em;
 	}
 
 }
