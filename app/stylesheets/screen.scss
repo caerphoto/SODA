@@ -74,9 +74,9 @@ hr {
 }
 
 .dropshadow {
-	-moz-box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
-	box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+	-webkit-box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+	box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.06) inset;
 }
 
 #logo {
@@ -236,38 +236,26 @@ hr {
 }
 
 .loading-message {
-	background: $linkColor inline-image("loading-g-w.gif") no-repeat 10px center;
-	z-index: 99;
-	color: #FFF;
-}
-
-.saving-message {
 	background: $linkColor inline-image("loading-w-g.gif") no-repeat 10px center;
 	background-color: #FFF;
 	border: 4px solid $linkColor;
-	color: #333;
-
-	-moz-box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
-	box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
+	color: $linkColor;
 	z-index: 99;
-}
 
-#app-loading-message, #doc-saving-message {
 	position: absolute;
 	top: $toolbarHeight + $navbarHeight + 20;
 	left: 50%;
 	padding: 10px 10px 10px 32px;
-}
 
-#app-loading-message {
-	-moz-box-shadow:0px 0px 7px $linkColor;
-	-webkit-box-shadow:0px 0px 7px $linkColor;
-	box-shadow:0px 0px 7px $linkColor;
+	&.view-only {
+		top: 25%;
+		left: 50%;
+		width: 12em;
+		margin-left: -6em;
+	}
 }
 
 #doc-saving-message {
-	color: $linkColor;
 	display: none;
 }
 
@@ -537,7 +525,7 @@ h1#doc-title {
 
 	.page {
 		margin: 20mm;
-		border: 1px solid #EEE;
+		border: 1px dotted #DDD;
 
 		font-size: 12pt;
 		font-family: "Palatino", "Palatino Linotype", "Book Antiqua", serif;
@@ -610,6 +598,10 @@ h1#doc-title {
 #preview.raw .page {
 	white-space: pre-wrap;
 	font-family: monospace;
+}
+
+#preview.no-margins .page {
+	border: 1px solid $paperBg;
 }
 
 #preview.show-nonprinting {

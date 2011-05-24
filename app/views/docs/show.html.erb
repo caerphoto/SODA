@@ -1,13 +1,37 @@
 <div id="toolbar">
-	<label for="chk-nonprinting">
-		<input id="chk-nonprinting" type="checkbox">
-		Show paragraph marks
-	</label>
+	<div class="dropdown-menu-container">
+		<button id="btn-display-options" class="dropdown-list-button">View Options</button>
+		<ul id="display-options-list" class="dropdown-list dropshadow">
+			<li>
+				<label for="rdo-preview-print">
+					<input id="rdo-preview-print" type="radio" name="preview-type" checked>
+					Print
+				</label>
 
-	<label for="rdo-preview-html">
-		<input id="rdo-preview-html" type="checkbox">
-		HTML view
-	</label>
+				<label for="rdo-preview-html">
+					<input id="rdo-preview-html" type="radio" name="preview-type">
+					HTML
+				</label>
+			</li>
+
+			<li class="menu-separator"></li>
+
+			<li>
+				<label for="chk-nonprinting">
+					<input id="chk-nonprinting" type="checkbox">
+					Paragraph marks
+				</label>
+			</li>
+
+			<li>
+				<label for="chk-page-margins">
+					<input id="chk-page-margins" type="checkbox">
+					Margins
+				</label>
+			</li>
+
+		</ul>
+	</div>
 
 	<div class="hidden">
 		<% if @doc.linebreaks %>
@@ -28,7 +52,7 @@
 <% end %>
 </div>
 
-<div id="app-loading-message" class="loading-message">
+<div id="app-loading-message" class="loading-message view-only dropshadow">
 	Loading document&hellip;
 </div>
 
@@ -36,7 +60,7 @@
 <input id="doc-title" type="hidden" value="<%= @doc.title %>">
 
 <div id="preview-scroller" class="view-only">
-	<div id="preview">
+	<div id="preview" class="no-margins">
 		<div class="paper dropshadow">
 			<div class="page"></div>
 		</div>

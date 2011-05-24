@@ -51,20 +51,31 @@
 					<input id="rdo-preview-off" type="radio" name="preview-type">
 					Off
 				</label>
+
 				<label for="rdo-preview-print">
 					<input id="rdo-preview-print" type="radio" name="preview-type" checked>
 					Print
 				</label>
+
 				<label for="rdo-preview-html">
 					<input id="rdo-preview-html" type="radio" name="preview-type">
 					HTML
 				</label>
 			</li>
+
 			<li class="menu-separator"></li>
+
 			<li>
 				<label for="chk-nonprinting">
 					<input id="chk-nonprinting" type="checkbox" checked>
-					Show paragraph marks
+					Paragraph marks
+				</label>
+			</li>
+
+			<li>
+				<label for="chk-page-margins">
+					<input id="chk-page-margins" type="checkbox" checked>
+					Margins
 				</label>
 			</li>
 
@@ -74,6 +85,7 @@
 					Fit window width
 				</label>
 			</li>
+
 		</ul>
 	</div>
 
@@ -108,11 +120,11 @@
 </div>
 </div>
 
-<div id="app-loading-message" class="loading-message">
-	Loading real-time previewer&hellip;
+<div id="app-loading-message" class="loading-message dropshadow">
+	Loading real-time preview&hellip;
 </div>
 
-<div id="doc-saving-message" class="saving-message">
+<div id="doc-saving-message" class="loading-message dropshadow">
 	Saving document&hellip;
 </div>
 

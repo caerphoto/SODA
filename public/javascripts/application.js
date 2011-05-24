@@ -23,6 +23,7 @@ $(function () {
 		$rdoPreviewHTML = $("#rdo-preview-html"),
 
 		$chkNonprinting = $("#chk-nonprinting"),
+		$chkPageMargins = $("#chk-page-margins"),
 		$chkAutozoom = $("#chk-autozoom"),
 
 		$txtBaseFont = $("#txt-base-font"),
@@ -152,6 +153,7 @@ $(function () {
 					savedState = currentState;
 					savedState.lastSaved = Date.now();
 					updateModifiedStatus();
+					$input.focus();
 
 					resetAgeTimer();
 					resetSaveTimer();
@@ -243,6 +245,10 @@ $(function () {
 
 	$chkAutozoom.change(function () {
 		$(window).resize();
+	});
+
+	$chkPageMargins.change(function () {
+		$preview.toggleClass("no-margins", !$chkPageMargins.attr("checked"));
 	});
 
 	$chkLinebreaks.change(function () {
@@ -368,6 +374,10 @@ $(function () {
 
 		$zoomLevel.text(Math.round(zoom * 100));
 	});
+
+	//setTimeout(function () {
+		//$("#app-loading-message").remove();
+	//}, 2000);
 
 	$("#app-loading-message").remove();
 

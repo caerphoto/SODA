@@ -66,6 +66,7 @@ class DocsController < ApplicationController
 	def update
 		doc_id = params[:id]
 		@doc = Doc.edit(doc_id, user_id)
+		#sleep 1
 
 		if @doc
 			if @doc != :unauthorized
