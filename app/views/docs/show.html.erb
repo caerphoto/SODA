@@ -39,6 +39,13 @@
 		<% else %>
 			<input id="chk-linebreaks" type="checkbox">
 		<% end %>
+
+		<% if @doc.smartquotes %>
+			<input id="chk-smart-quotes" type="checkbox" checked>
+		<% else %>
+			<input id="chk-smart-quotes" type="checkbox">
+		<% end %>
+
 	</div>
 
 	<h1 id="doc-title">

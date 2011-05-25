@@ -16,6 +16,7 @@ $(function () {
 		$chkMonospace = $("#chk-monospace"),
 
 		$chkLinebreaks = $("#chk-linebreaks"),
+		$chkSmartQuotes = $("#chk-smart-quotes"),
 		$chkPrivateDoc = $("#chk-private-doc"),
 
 		$rdoPreviewOff = $("#rdo-preview-off"),
@@ -37,6 +38,7 @@ $(function () {
 		$saving = $("#doc-saving-message"),
 
 		$zoomLevel = $("#zoom-level"),
+		$updateSpeed = $("#update-speed"),
 
 		$editorSizer = $("#editor-sizer"),
 
@@ -45,6 +47,7 @@ $(function () {
 		savedState = {},
 		currentState = {},
 		ageTimer, saveTimer,
+		updateTimer, updateSpeed = 200,
 		docPath = $("#doc-path").val(),
 		previewVisible = true,
 		sizingEditor = false, sizeOffset, previewMargin =
@@ -76,58 +79,117 @@ $(function () {
 	};
 
 	updatePreview = function () {
-		var newText, tempHTML, i,
+		var newText, HTML, i,
 			codeblock = /(<code(?:[^>]*)>[^<]*)<\/code>/g,
-			codeblocks = [],
-			HTMLView = $rdoPreviewHTML.attr("checked");
+			codeblocks = [], mlCodeblocks = [], newlines = [],
+			HTMLView = $rdoPreviewHTML.attr("checked"),
+			updateStart,
+			extractCodeblocks, restoreCodeblocks;
 
 		if (!previewVisible) {
 			return;
 		}
 
+		updateStart = Date.now();
+
+		extractCodeblocks = function () {
+			// Encode tildes so we can use them as escape characters.
+			newText = newText.replace(/~/, "~T");
+
+			// Inline code blocks
+			codeblocks = [];
+			i = -1;
+			newText = newText.replace(/`(.+)`/g, function () {
+				i += 1;
+				codeblocks[i] = arguments[1];
+				return "~C" + i;
+			});
+
+			// Multi-line code blocks
+			mlCodeblocks = [];
+			i = -1;
+			newText = newText.replace(/((\n+ {4}.+)+)/g, function () {
+				i += 1;
+				mlCodeblocks[i] = arguments[1];
+				return "~M" + i;
+			});
+
+		};
+
+		restoreCodeblocks = function () {
+			i = -1;
+			newText = newText.replace(/~M\d{1,4}[~]?/g, function () {
+				i += 1;
+				return "    " + mlCodeblocks[i];
+			});
+
+			i = -1;
+			newText = newText.replace(/~C\d{1,4}/g, function () {
+				i += 1;
+				return "`" + codeblocks[i] + "`";
+			});
+
+			newText = newText.replace(/~T/, "~");
+		};
+
 		document.title = ($docTitle.val() || $docTitle.text() || "<untitled>") +
 			" - Soda";
 
 		newText = $input.val();
-		tempHTML = showdown.makeHtml(newText);
+
+		// Extract code blocks first, since we don't want smart quotes or <br>
+		// tags in those.
+		extractCodeblocks();
+
+		if ($chkSmartQuotes.attr("checked")) {
+			// Double quotes
+			newText = newText.
+				// Opening quotes
+				replace(/"([\w'])/g, "&ldquo;$1").
+				// All the rest
+				replace(/"/g, "&rdquo;");
+
+			// Single quotes/apostrophes
+			newText = newText.
+				// Apostrophes first
+				replace(/(\w)'(\w)/g, "$1&rsquo;$2").
+				// Opening quotes
+				replace(/'(\w)/g, "&lsquo;$1").
+				// All the rest
+				replace(/'/g, "&rsquo;");
+		}
 
 		if ($chkLinebreaks.attr("checked")) {
-			// Encode tildes so we can use them as escape characters.
-			tempHTML = tempHTML.replace(/~/, "~T");
-
-			// Yank out <pre> blocks to prevent linebreaks from affecting them.
 			i = -1;
-			tempHTML = tempHTML.replace(codeblock, function () {
-				i += 1;
-				codeblocks[i] = arguments[1];
-				return "~C" + i + "</code>";
-			});
+			newText = newText.
+				// Insert extra newline after a heading
+				replace(/^(#.+)$/gm, "$1\n").
+				// Remove groups of 2 or more newlines
+				replace(/\n{2,}/g, "~N").
+				replace(
+				/\n/g, HTMLView ? 
+					'<br>\n' :
+					'<span class="nonprinting-br"></span><br>\n').
+				// Restore multi-newlines.
+				replace(/~N/g, "\n\n");
 
-			// Replace single carriage returns in with line breaks, and
-			// insert 'holder' for nonprinting linebreak markers if in 'print'
-			// preview mode.
-			tempHTML = tempHTML.replace(
-				/([^>\n])\n/g, HTMLView ? 
-					'$1<br>\n' :
-					'$1<span class="nonprinting-br"></span><br>\n');
-
-			// Restore code blocks. Will fail if there are more than 9999
-			// separate code blocks.
-			i = -1;
-			tempHTML = tempHTML.replace(/~C\d{1,4}/g, function () {
-				i += 1;
-				return codeblocks[i];
-			});
-
-			// Restore tildes.
-			tempHTML = tempHTML.replace(/~T/, "~");
 		}
+
+		restoreCodeblocks();
+
+		HTML = showdown.makeHtml(newText);
 
 		if (HTMLView) {
-			$pages.text(tempHTML);
+			$pages.text(HTML);
 		} else {
-			$pages.html(tempHTML);
+			$pages.html(HTML);
 		}
+
+		setTimeout(function () {
+			updateSpeed = Date.now() - updateStart;
+			$updateSpeed.text(updateSpeed);
+		}, 0);
+
 	};
 
 	resetSaveTimer = function () {
@@ -256,6 +318,11 @@ $(function () {
 		updatePreview();
 	});
 
+	$chkSmartQuotes.change(function () {
+		changeState({ smartQuotes: $chkSmartQuotes.attr("checked") });
+		updatePreview();
+	});
+
 	$chkPrivateDoc.change(function () {
 		changeState({ privateDoc: $chkPrivateDoc.attr("checked") });
 	});
@@ -299,7 +366,14 @@ $(function () {
 
 		changeState({ content: newText });
 
-		updatePreview();
+		if (updateTimer) {
+			clearTimeout(updateTimer);
+		}
+
+		// Throttle preview updates so that the user's typing is not affected.
+		updateTimer = setTimeout(function () {
+			updatePreview();
+		}, updateSpeed + 200);
 
 		prevText = newText;
 
@@ -388,12 +462,14 @@ $(function () {
 			$input.focus();
 		}
 
-		// Set up initial saved state.
+		// Set up initial saved state, based on which checkboxes are initially
+		// checked.
 		savedState = {
 			lastSaved: Date.now(),
 			content: $input.val(),
 			title: $docTitle.val(),
 			linebreaks: $chkLinebreaks.attr("checked"),
+			smartquotes: $chkSmartQuotes.attr("checked"),
 			privateDoc: $chkPrivateDoc.attr("checked")
 		};
 

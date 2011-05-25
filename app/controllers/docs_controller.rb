@@ -77,8 +77,13 @@ class DocsController < ApplicationController
 			if @doc != :unauthorized
 				@doc.content = params[:content]
 				@doc.title = params[:title]
-				@doc.private = params[:privateDoc] == "true"
-				@doc.linebreaks = params[:linebreaks] == "true"
+
+				new_opts = {
+					:private => params[:privateDoc] == "true",
+					:linebreaks => params[:linebreaks] == "true",
+					:smartquotes => params[:smartQuotes] == "true"
+				}
+				@doc.set_options(new_opts)
 
 				if @doc.save
 					render :text => "SUCCESS"

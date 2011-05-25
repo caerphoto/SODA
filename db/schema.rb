@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110520174713) do
+ActiveRecord::Schema.define(:version => 20110525194809) do
 
   create_table "docs", :force => true do |t|
     t.text     "content",    :limit => 255
@@ -18,8 +18,7 @@ ActiveRecord::Schema.define(:version => 20110520174713) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "title"
-    t.boolean  "private",                   :default => true
-    t.boolean  "linebreaks",                :default => false
+    t.string   "options",                   :default => "{\"private\":true}"
   end
 
   create_table "users", :force => true do |t|

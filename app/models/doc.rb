@@ -25,6 +25,22 @@ class Doc < ActiveRecord::Base
 		end
 	end
 
+	def private
+		JSON.load(self.options)["private"]
+	end
+
+	def linebreaks
+		JSON.load(self.options)["linebreaks"]
+	end
+
+	def smartquotes
+		JSON.load(self.options)["smartquotes"]
+	end
+
+	def set_options(new_opts={})
+		self.options = JSON.load(self.options).merge(new_opts).to_json
+	end
+
 	def as_json
 		{
 			:content => self.content,

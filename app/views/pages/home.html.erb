@@ -31,9 +31,29 @@
 	<h2>Changelog</h2>
 	<p>This is not a complete history (see the <a
 		href="https://github.com/caerphoto/SODA">GitHub</a> page for that), just a
-	thing
-	I decided to add part-way through development.</p>
+	thing I decided to add part-way through development.</p>
 
+	<h3>25th May 2011</h3>
+	<ul class="basic">
+		<li>Added &ldquo;smart quotes&rdquo; option which, after much fiddling,
+		should work properly.</li>
+
+		<li>Preview updates are now throttled based on how quickly the browser is
+		able to perform them. Without it, if updates are particularly slow (longer
+		than about 200ms) it can affect typing as the browser constantly freezes
+		momentarily. See <a href="/docs/17">this document</a> for more details.</li>
+
+		<li>Cleaned up regex code that updates preview, so it isn't quite as hacky,
+		and is a bit more efficient.</li>
+
+		<li>Although in the process I managed to create a bug (or discover the one 
+		that was already there) whereby using 'Single line breaks' in conjunction
+		'underline'-style Markdown headings produces unexpected results. Honestly,
+		that linebreaks option is a nightmare to get working.</li>
+
+		<li>Minor changes to editor page appearance.</li>
+
+	</ul>
 	<h3>24th May 2011</h3>
 	<ul class="basic">
 		<li>'View document' page now displays the document name.</li>

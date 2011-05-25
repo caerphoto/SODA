@@ -29,6 +29,18 @@
 					Single line breaks
 				</label>
 			</li>
+
+			<li>
+				<label for="chk-smart-quotes">
+				<% if @doc.smartquotes %>
+					<input id="chk-smart-quotes" type="checkbox" checked>
+				<% else %>
+					<input id="chk-smart-quotes" type="checkbox">
+				<% end %>
+					Smart quotes
+				</label>
+			</li>
+
 			<li>
 				<label for="chk-private-doc">
 				<% if @doc.private %>
@@ -148,10 +160,17 @@
 	</div>
 </div>
 
-<div id="statusbar">Page width: 210mm, margins: 20mm, automatic zoom level:
-	<span id="zoom-level">1</span>%</div>
+<div id="statusbar">
+	<div id="general-info">
+		Page width: 210mm, margins: 20mm, automatic zoom level:
+		<span id="zoom-level">1</span>%
+	</div>
 
-<div id="debug"></div>
+	<div id="timing-info">
+		Preview refresh speed: <span id="update-speed">0</span>ms
+	</div>
+</div>
+
 
 <% if Rails.env.production? %>
 	<%= javascript_include_tag "all.js" %>
