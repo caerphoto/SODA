@@ -9,6 +9,7 @@ gem 'sqlite3'
 
 gem 'devise'
 gem 'omniauth'
+gem 'json'
 
 #gem "compass", ">= 0.10.6"
 

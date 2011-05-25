@@ -1,4 +1,6 @@
 class Doc < ActiveRecord::Base
+	require 'JSON'
+
 	belongs_to :user
 
 	def self.get(id, user_id=nil)
