@@ -1,5 +1,5 @@
 class Doc < ActiveRecord::Base
-	require 'JSON'
+	require 'json'
 
 	belongs_to :user
 
