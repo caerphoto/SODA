@@ -28,15 +28,15 @@ class Doc < ActiveRecord::Base
 	end
 
 	def private
-		JSON.parse(self.options)["private"]
+		JSON.parse(self.options || "{}")["private"]
 	end
 
 	def linebreaks
-		JSON.parse(self.options)["linebreaks"]
+		JSON.parse(self.options || "{}")["linebreaks"]
 	end
 
 	def smartquotes
-		JSON.parse(self.options)["smartquotes"]
+		JSON.parse(self.options || "{}")["smartquotes"]
 	end
 
 	def set_options(new_opts={})
