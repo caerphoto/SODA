@@ -40,7 +40,7 @@ class Doc < ActiveRecord::Base
 	end
 
 	def set_options(new_opts={})
-		self.options = JSON.parse(self.options).merge(new_opts).to_json
+		self.options = JSON.parse(self.options || "{}").merge(new_opts).to_json
 	end
 
 	def as_json
