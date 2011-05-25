@@ -46,6 +46,11 @@
 			<input id="chk-smart-quotes" type="checkbox">
 		<% end %>
 
+		<% if @doc.smartdashes %>
+			<input id="chk-smart-dashes" type="checkbox" checked>
+		<% else %>
+			<input id="chk-smart-dashes" type="checkbox">
+		<% end %>
 	</div>
 
 	<h1 id="doc-title">

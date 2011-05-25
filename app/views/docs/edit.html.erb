@@ -42,6 +42,17 @@
 			</li>
 
 			<li>
+				<label for="chk-smart-dashes">
+				<% if @doc.smartdashes %>
+					<input id="chk-smart-dashes" type="checkbox" checked>
+				<% else %>
+					<input id="chk-smart-dashes" type="checkbox">
+				<% end %>
+					Smart dashes
+				</label>
+			</li>
+
+			<li>
 				<label for="chk-private-doc">
 				<% if @doc.private %>
 					<input id="chk-private-doc" type="checkbox" checked>

@@ -27,6 +27,7 @@ class Doc < ActiveRecord::Base
 		end
 	end
 
+	# TODO: refactor this to use method_missing?
 	def private
 		JSON.parse(self.options || "{}")["private"]
 	end
@@ -37,6 +38,10 @@ class Doc < ActiveRecord::Base
 
 	def smartquotes
 		JSON.parse(self.options || "{}")["smartquotes"]
+	end
+
+	def smartdashes
+		JSON.parse(self.options || "{}")["smartdashes"]
 	end
 
 	def set_options(new_opts={})

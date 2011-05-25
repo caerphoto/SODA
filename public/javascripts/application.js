@@ -17,6 +17,7 @@ $(function () {
 
 		$chkLinebreaks = $("#chk-linebreaks"),
 		$chkSmartQuotes = $("#chk-smart-quotes"),
+		$chkSmartDashes = $("#chk-smart-dashes"),
 		$chkPrivateDoc = $("#chk-private-doc"),
 
 		$rdoPreviewOff = $("#rdo-preview-off"),
@@ -108,7 +109,7 @@ $(function () {
 			// Multi-line code blocks
 			mlCodeblocks = [];
 			i = -1;
-			newText = newText.replace(/((\n+ {4}.+)+)/g, function () {
+			newText = newText.replace(/((\n+( {4}|\t).+)+)/g, function () {
 				i += 1;
 				mlCodeblocks[i] = arguments[1];
 				return "~M" + i;
@@ -157,6 +158,11 @@ $(function () {
 				replace(/'(\w)/g, "&lsquo;$1").
 				// All the rest
 				replace(/'/g, "&rsquo;");
+		}
+
+		if ($chkSmartDashes.attr("checked")) {
+			newText = newText.replace(/(\w) - (\w)/g, "$1 &ndash; $2").
+				replace(/([\w\s"',.;:])--([\w\s"',.;:])/g, "$1&mdash;$2");
 		}
 
 		if ($chkLinebreaks.attr("checked")) {
@@ -320,6 +326,11 @@ $(function () {
 
 	$chkSmartQuotes.change(function () {
 		changeState({ smartQuotes: $chkSmartQuotes.attr("checked") });
+		updatePreview();
+	});
+
+	$chkSmartDashes.change(function () {
+		changeState({ smartDashes: $chkSmartDashes.attr("checked") });
 		updatePreview();
 	});
 
