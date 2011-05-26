@@ -84,7 +84,7 @@ class DocsController < ApplicationController
 					"smartquotes" => params[:smartQuotes] == "true",
 					"smartdashes" => params[:smartDashes] == "true"
 				}
-				@doc.options = new_opts.to_json
+				@doc.set_options(new_opts)
 
 				if @doc.save
 					render :text => "SUCCESS"
