@@ -234,6 +234,7 @@ $(function () {
 
 	changeState = function (changes) {
 		currentState = _({}).extend(currentState, changes);
+		console.dir(currentState);
 		updateModifiedStatus();
 	};
 
@@ -480,7 +481,8 @@ $(function () {
 			content: $input.val(),
 			title: $docTitle.val(),
 			linebreaks: $chkLinebreaks.attr("checked"),
-			smartquotes: $chkSmartQuotes.attr("checked"),
+			smartQuotes: $chkSmartQuotes.attr("checked"),
+			smartDashes: $chkSmartDashes.attr("checked"),
 			privateDoc: $chkPrivateDoc.attr("checked")
 		};
 
