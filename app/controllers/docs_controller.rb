@@ -79,10 +79,10 @@ class DocsController < ApplicationController
 				@doc.title = params[:title]
 
 				new_opts = {
-					:private => params[:privateDoc] == "true",
-					:linebreaks => params[:linebreaks] == "true",
-					:smartquotes => params[:smartQuotes] == "true",
-					:smartdashes => params[:smartDashes] == "true"
+					"private" => params[:privateDoc] == "true",
+					"linebreaks" => params[:linebreaks] == "true",
+					"smartquotes" => params[:smartQuotes] == "true",
+					"smartdashes" => params[:smartDashes] == "true"
 				}
 				@doc.set_options(new_opts)
 
