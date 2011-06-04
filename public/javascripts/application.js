@@ -41,6 +41,7 @@ $(function () {
 		$zoomLevel = $("#zoom-level"),
 		$updateSpeed = $("#update-speed"),
 
+		$syntaxGuide = $("#syntax-guide"),
 		$editorSizer = $("#editor-sizer"),
 
 		showdown = new Showdown.converter(),
@@ -153,31 +154,34 @@ $(function () {
 			// Single quotes/apostrophes
 			newText = newText.
 				// Apostrophes first
-				replace(/(\w)'(\w)/g, "$1&rsquo;$2").
+				replace(/\b'\b/g, "&rsquo;").
 				// Opening quotes
-				replace(/'(\w)/g, "&lsquo;$1").
+				replace(/'\b/g, "&lsquo;").
 				// All the rest
 				replace(/'/g, "&rsquo;");
 		}
 
 		if ($chkSmartDashes.attr("checked")) {
-			newText = newText.replace(/(\w) - (\w)/g, "$1 &ndash; $2").
-				replace(/([\w\s"',.;:])--([\w\s"',.;:])/g, "$1&mdash;$2");
+			newText = newText
+				.replace(/^-+$/gm, "~D")
+				.replace(/---/g, "&mdash;")
+				.replace(/--/g, "&ndash;")
+				.replace(/~D/g, "----");
 		}
 
 		if ($chkLinebreaks.attr("checked")) {
 			i = -1;
-			newText = newText.
+			newText = newText
 				// Insert extra newline after a heading
-				replace(/^(#.+)$/gm, "$1\n").
+				.replace(/^(#.+)$/gm, "$1\n")
 				// Remove groups of 2 or more newlines
-				replace(/\n{2,}/g, "~N").
-				replace(
+				.replace(/\n{2,}/g, "~N")
+				.replace(
 				/\n/g, HTMLView ? 
 					'<br>\n' :
-					'<span class="nonprinting-br"></span><br>\n').
+					'<span class="nonprinting-br"></span><br>\n')
 				// Restore multi-newlines.
-				replace(/~N/g, "\n\n");
+				.replace(/~N/g, "\n\n");
 
 		}
 
@@ -234,7 +238,6 @@ $(function () {
 
 	changeState = function (changes) {
 		currentState = _({}).extend(currentState, changes);
-		console.dir(currentState);
 		updateModifiedStatus();
 	};
 
@@ -397,6 +400,11 @@ $(function () {
 
 	$btnSave.click(function () {
 		saveDocument();
+	});
+
+	$syntaxGuide.click(function () {
+		$editorBox.toggleClass("show-syntax");
+		$syntaxGuide.scrollTop(0);
 	});
 
 	$editorSizer.mousedown(function (e) {
