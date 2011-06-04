@@ -469,9 +469,12 @@ $(function () {
 		$zoomLevel.text(Math.round(zoom * 100));
 	});
 
-	//setTimeout(function () {
-		//$("#app-loading-message").remove();
-	//}, 2000);
+	// IE8 doesn't have a now() method.
+	if (!Date.now) {
+		Date.now = function now() {
+			return +new Date();
+		};
+	}
 
 	$("#app-loading-message").remove();
 
