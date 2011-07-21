@@ -11,6 +11,7 @@ $(function () {
 		$previewScroller = $("#preview-scroller"),
 		$preview = $("#preview"),
 		$pages = $(".page"),
+		$htmlView = $("#html-view textarea"),
 		$toolbar = $("#toolbar"),
 
 		$chkMonospace = $("#chk-monospace"),
@@ -190,7 +191,7 @@ $(function () {
 		HTML = showdown.makeHtml(newText);
 
 		if (HTMLView) {
-			$pages.text(HTML);
+			$htmlView.text(HTML);
 		} else {
 			$pages.html(HTML);
 		}
@@ -300,14 +301,14 @@ $(function () {
 	$rdoPreviewPrint.click(function () {
 		$previewScroller.show();
 		previewVisible = true;
-		$preview.removeClass("raw");
+		$previewScroller.removeClass("raw");
 		updatePreview();
 	});
 
 	$rdoPreviewHTML.click(function () {
 		$previewScroller.show();
 		previewVisible = true;
-		$preview.toggleClass("raw", $rdoPreviewHTML.attr("checked"));
+		$previewScroller.toggleClass("raw", $rdoPreviewHTML.attr("checked"));
 		updatePreview();
 	});
 
