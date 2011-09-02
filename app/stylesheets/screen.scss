@@ -17,7 +17,7 @@ $h1shad: 2px 2px 3px rgba(0, 0, 0, 0.3);
 
 $headingFont: "Cabin", "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", "Arial", sans-serif;
 
-$bodyFontFamily: "OFL Sorts Mill Goudy TT", "Palatino", "Palatino Linotype", "Book Antiqua", serif;
+$bodyFontFamily: "Quattrocento", "Palatino", "Palatino Linotype", "Book Antiqua", serif;
 $bodyFontSize: 13pt;
 
 body {
@@ -647,8 +647,15 @@ h1#doc-title {
 
 		p { clear: both; }
 
-		em { font-style: italic; }
-		strong { font-weight: bold; }
+		em {
+			font-style: italic;
+			font-family: "Palatino", "Palatino Linotype", "Book Antiqua";
+		}
+
+		strong {
+			font-weight: bold;
+			letter-spacing: -1px;
+		}
 
 		h1, h2, h3, h4, h5, h6 {
 			// iPad doesn't have Lucida, wtf
