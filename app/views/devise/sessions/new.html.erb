@@ -1,8 +1,8 @@
 <div id="main" class="dropshadow">
-	<h1>Sign in</h2>
+	<h1>Sign In</h1>
 
 	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-		<p><%= f.label :email %><br />
+		<p><%= f.label :email, "E-mail" %><br />
 		<%= f.email_field :email %></p>
 
 		<p><%= f.label :password %><br />
@@ -15,5 +15,5 @@
 		<p><%= f.submit "Sign in" %></p>
 	<% end %>
 
-	<%= render :partial => "devise/shared/links" %>
+	<%#= render :partial => "devise/shared/links" %>
 </div>

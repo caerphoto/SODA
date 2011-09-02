@@ -10,7 +10,7 @@ class DocsController < ApplicationController
 	def index
 		@title = "Your Saved Documents - Soda"
 		if user_signed_in?
-			@docs = current_user.docs
+			@docs = current_user.docs.order(:title)
 		else
 			@docs = nil
 		end

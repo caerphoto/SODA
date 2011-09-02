@@ -46,6 +46,12 @@ input[type='text'], input[type='password'], input[type='email'] {
 	padding: 0.5em;
 }
 
+form {
+	input[type='text'], input[type='password'], input[type='email'] {
+		width: 20em;
+	}
+}
+
 button, input[type='button'], input[type='submit'] {
 	border: 1px solid $borderColor;
 	background-color: $buttonColor;
