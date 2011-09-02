@@ -15,6 +15,11 @@ $statusbarHeight: 30px;
 
 $h1shad: 2px 2px 3px rgba(0, 0, 0, 0.3);
 
+$headingFont: "Cabin", "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", "Arial", sans-serif;
+
+$bodyFontFamily: "Lora", "Palatino", "Palatino Linotype", "Book Antiqua", serif;
+$bodyFontSize: 11pt;
+
 body {
 	background-color: $pageBg;
 	color: #333;
@@ -35,8 +40,10 @@ a {
 	}
 }
 
-input[type='text'], input[type='password'] {
+input[type='text'], input[type='password'], input[type='email'] {
 	border: 1px solid $borderColor;
+	font-size: 14px;
+	padding: 0.5em;
 }
 
 button, input[type='button'], input[type='submit'] {
@@ -270,6 +277,12 @@ hr {
 
 #doc-saving-message {
 	display: none;
+	border: 1px solid $borderColor;
+	background: #FFF;
+	padding: 5px;
+	font-size: 12px;
+	color: $borderColor;
+	top: $toolbarHeight + $navbarHeight + 40;
 }
 
 #toolbar {
@@ -376,8 +389,8 @@ h1#doc-title {
 	top: 0.15em;
 	left: 0;
 	right: 0;
-	text-align: center;
 	font-size: 200%;
+	text-align: center;
 	font-weight: bold;
 	text-shadow: $h1shad; 
 	z-index: -1;
@@ -453,6 +466,7 @@ h1#doc-title {
 			display: block;
 			width: 100%;
 			font-size: 100%;
+			padding: 0;
 			outline: none;
 			border: 1px solid $borderColor;
 		}
@@ -623,13 +637,13 @@ h1#doc-title {
 		margin: 20mm;
 		border: 1px dotted #DDD;
 
-		font-size: 12pt;
-		font-family: "Palatino", "Palatino Linotype", "Book Antiqua", serif;
-		line-height: 1.4;
+		font-family: $bodyFontFamily;
+		font-size: $bodyFontSize;
+		line-height: 1.5;
 
 		text-rendering: geometricPrecision;
 
-		p, ul, ol, pre { margin-bottom: 0.5em; }
+		p, ul, ol, pre { margin-bottom: 1em; }
 
 		p { clear: both; }
 
@@ -638,7 +652,7 @@ h1#doc-title {
 
 		h1, h2, h3, h4, h5, h6 {
 			// iPad doesn't have Lucida, wtf
-			font-family: "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", "Arial", sans-serif;
+			font-family: $headingFont;
 			font-weight: bold;
 			margin-top: 1em;
 			margin-bottom: 0.5em;
@@ -654,8 +668,8 @@ h1#doc-title {
 		h3 { font-style: italic; }
 
 		h4 {
-			font-weight: normal;
 			font-style: italic;
+			font-size: 100%;
 		}
 
 		ul, ol {

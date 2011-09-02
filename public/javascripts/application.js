@@ -207,7 +207,7 @@ $(function () {
 		clearTimeout(saveTimer);
 		saveTimer = setInterval(function () {
 			saveDocument();
-		}, 60000);
+		}, 20000);
 	};
 
 	saveDocument = function () {
@@ -264,7 +264,7 @@ $(function () {
 		clearTimeout(ageTimer);
 		ageTimer = setInterval(function () {
 			updateAgeStatus();
-		}, 10000);
+		}, 5000);
 	};
 
 	updateAgeStatus = function () {

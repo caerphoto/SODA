@@ -57,6 +57,10 @@ class DocsController < ApplicationController
 	def create
 		if user_signed_in?
 			@doc = current_user.docs.build(:content => "")
+			@doc.set_options({
+				"private" => true,
+				"smartquotes" => true,
+				"smartdashes" => true })
 		else
 			@doc = Doc.create(:user_id => 0)
 		end
@@ -71,7 +75,7 @@ class DocsController < ApplicationController
 	def update
 		doc_id = params[:id]
 		@doc = Doc.edit(doc_id, user_id)
-		#sleep 1
+		#sleep 3
 
 		if @doc
 			if @doc != :unauthorized
