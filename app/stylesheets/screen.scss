@@ -17,8 +17,8 @@ $h1shad: 2px 2px 3px rgba(0, 0, 0, 0.3);
 
 $headingFont: "Cabin", "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", "Arial", sans-serif;
 
-$bodyFontFamily: "Lora", "Palatino", "Palatino Linotype", "Book Antiqua", serif;
-$bodyFontSize: 11pt;
+$bodyFontFamily: "OFL Sorts Mill Goudy TT", "Palatino", "Palatino Linotype", "Book Antiqua", serif;
+$bodyFontSize: 13pt;
 
 body {
 	background-color: $pageBg;
@@ -639,7 +639,7 @@ h1#doc-title {
 
 		font-family: $bodyFontFamily;
 		font-size: $bodyFontSize;
-		line-height: 1.5;
+		line-height: 1.4;
 
 		text-rendering: geometricPrecision;
 
