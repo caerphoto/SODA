@@ -1,16 +1,27 @@
 <div id="main" class="dropshadow">
 	<h1>Your Saved Documents</h1>
 <% if @docs %>
-	<ul class="doc-list">
-	<% @docs.each do |doc| %>
-		<li>
-			<label><%= doc.title || "<untitled document>" %></label>
-			<%= link_to "edit", edit_doc_path(doc) %> |
-			<%= link_to "view", doc_path(doc) %> |
-			<%= link_to "delete", delete_doc_path(doc), :class => "delete-link"  %>
-		</li>
-	<% end %>
-	</ul>
+	<table class="doc-list">
+		<thead>
+			<tr>
+				<th class="doc-name sortable">Document Name</th>
+				<th class="doc-controls"></th>
+				<th class="doc-date sortable">Last Modified</th>
+			</tr>
+		</thead>
+		<tbody>
+		<% @docs.each do |doc| %>
+			<tr>
+				<td class="doc-name"><%= doc.title || "<untitled document>" %></td>
+				<td class="doc-controls"><%= link_to "edit", edit_doc_path(doc) %> |
+				<%= link_to "view", doc_path(doc) %> |
+				<%= link_to "delete", delete_doc_path(doc), :class => "delete-link"  %>
+				</td>
+				<td class="doc-date"><%= doc.updated_at %></td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
 <% else %>
 	<% if user_signed_in? %>
 		<p>You do not have any saved documents. Would you like to create one?</p>
