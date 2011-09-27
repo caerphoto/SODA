@@ -414,11 +414,16 @@ h1#doc-title {
 	top: 0.15em;
 	left: 0;
 	right: 0;
-	font-size: 200%;
+	font-size: 100%;
 	text-align: center;
-	font-weight: bold;
-	text-shadow: $h1shad; 
+	font-weight: normal;
+	text-shadow: $h1shad;
+	line-height: 3.0;
 	z-index: -1;
+
+	span {
+		font-weight: bold;
+	}
 }
 
 

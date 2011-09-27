@@ -14,26 +14,13 @@
 				</label>
 			</li>
 
-			<li class="menu-separator"></li>
-
-			<li>
-				<label for="chk-nonprinting">
-					<input id="chk-nonprinting" type="checkbox">
-					Paragraph marks
-				</label>
-			</li>
-
-			<li>
-				<label for="chk-page-margins">
-					<input id="chk-page-margins" type="checkbox">
-					Margins
-				</label>
-			</li>
-
 		</ul>
 	</div>
 
 	<div class="hidden">
+		<input id="chk-nonprinting" type="checkbox">
+		<input id="chk-page-margins" type="checkbox">
+
 		<% if @doc.linebreaks %>
 			<input id="chk-linebreaks" type="checkbox" checked>
 		<% else %>
@@ -54,7 +41,7 @@
 	</div>
 
 	<h1 id="doc-title">
-		<%= @doc.title ? @doc.title : "&lt;untitled&gt;" %>
+		Document name: <span><%= @doc.title ? @doc.title : "&lt;untitled&gt;" %></span>
 	</h1>
 
 <% if user_signed_in? and current_user.id == @doc.user_id %>
