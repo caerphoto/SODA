@@ -15,10 +15,8 @@ $statusbarHeight: 30px;
 
 $h1shad: 0 1px 0 #FFF;
 
-$headingFont: "Cabin", "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", "Arial", sans-serif;
-
-$bodyFontFamily: "Quattrocento", "Palatino", "Palatino Linotype", "Book Antiqua", serif;
-$bodyFontSize: 13pt;
+$headingFont: "PT Sans", "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", "Arial", sans-serif;
+$bodyFontFamily: "PT Serif", "Georgia", serif;
 
 body {
 	background-color: $pageBg;
@@ -665,45 +663,71 @@ h1#doc-title {
 		border: 1px dotted #DDD;
 
 		font-family: $bodyFontFamily;
-		font-size: $bodyFontSize;
-		line-height: 1.4;
+		font-size: 16px;
+		line-height: 1.5;
 
 		text-rendering: geometricPrecision;
 
-		p, ul, ol, pre { margin-bottom: 1em; }
+		p, ul, ol, pre { margin-bottom: 1.5em; }
 
-		p { clear: both; }
+		p {
+			clear: both;
+		}
 
 		em {
 			font-style: italic;
-			font-family: "Palatino", "Palatino Linotype", "Book Antiqua";
 		}
 
 		strong {
 			font-weight: bold;
-			letter-spacing: -1pt;
 		}
 
 		h1, h2, h3, h4, h5, h6 {
-			// iPad doesn't have Lucida, wtf
 			font-family: $headingFont;
 			font-weight: bold;
-			margin-top: 1em;
-			margin-bottom: 0.5em;
 		}
 
 		h1 {
 			text-align: center;
-			font-size: 150%;
+			font-size: 1.5em;
+			line-height: 1; // base line height / h1 font size
+			margin: 1em 0;
 		}
 
-		h2 { font-size: 120%; }
+		h2 {
+			font-size: 1.1667em; // 14 / 12
+			line-height: 1.286; // base-line-height / font-size
+			margin-top: 1.929em;
+			margin-bottom: 0.643em;
+		}
 
-		h3 { font-style: italic; }
+		h3 {
+			font-size: 1em;
+			margin-top: 1.5em;
+			margin-bottom: 0;
+
+			font-style: italic;
+		}
 
 		h4 {
+			font-size: 1em;
+			margin-top: 1.5em;
+			margin-bottom: 0;
+
 			font-style: italic;
-			font-size: 100%;
+			font-weight: normal;
+		}
+
+		h5 {
+			font-size: 1em;
+			margin-top: 1.5em;
+			margin-bottom: 0;
+
+			font-weight: normal;
+		}
+
+		h2 + h3, h2 + h4, h2 + h5 {
+			margin-top: 0;
 		}
 
 		ul, ol {
@@ -716,7 +740,8 @@ h1#doc-title {
 		ol { list-style-type: decimal; }
 
 		blockquote {
-			margin: 1em 3em 1em 1em;
+			margin-right: 3em;
+			margin-left: 1em;
 			border-left: 1px solid $borderColor;
 			padding-left: 1em;
 			color: #555;
@@ -725,14 +750,16 @@ h1#doc-title {
 		pre, code {
 			background-color: #EEE;
 			border: 1px solid $borderColor;
-			padding: 3px;
+			padding: 1px 3px 0 3px;
 			font-family: "Consolas", "Inconsolata", "Menlo", monospace;
-			font-size: 85%;
+			font-size: 0.8125em;
 		}
 
 		pre {
-			padding: 4px 8px 0 8px;
-			margin: 1em 0;
+			padding: 0 8px 0 8px;
+			margin-bottom: 1.823em;
+			line-height: 1.846;
+
 			code {
 				padding: 0;
 				border: none;
@@ -741,7 +768,8 @@ h1#doc-title {
 		}
 
 		hr {
-			margin: 1em 5em;
+			margin: 1.5em 5em;
+
 		}
 
 		img {
