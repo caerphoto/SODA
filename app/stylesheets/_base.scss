@@ -1,0 +1,72 @@
+body {
+	background-color: $pageBg;
+	color: #333;
+	line-height: 1.5;
+	font-family: sans-serif;
+}
+
+a {
+	color: $linkColor;
+	text-decoration: none;
+
+	&:hover {
+		color: $linkHoverColor;
+	}
+
+	img {
+		vertical-align: middle;
+	}
+}
+
+input[type='text'], input[type='password'], input[type='email'] {
+	border: 1px solid $borderColor;
+	font-size: 14px;
+	padding: 0.5em;
+}
+
+form {
+	input[type='text'], input[type='password'], input[type='email'] {
+		width: 20em;
+	}
+}
+
+button, input[type='button'], input[type='submit'] {
+	border: 1px solid $borderColor;
+	background-color: $buttonColor;
+	border-radius: 3px;
+
+	cursor: pointer;
+	outline: none;
+	font-size: 12px;
+
+	padding: 0 1em;
+	height: 26px;
+
+	&:hover {
+		background-color: $buttonHoverColor;
+		color: $linkColor;
+	}
+
+	&[disabled] {
+		color: $borderColor;
+		background-color: $buttonDisabledColor;
+		cursor: default;
+		&:hover {
+			color: $borderColor;
+			background-color: $buttonDisabledColor;
+		}
+	}
+}
+
+hr {
+	border: none;
+	border-bottom: 1px solid $borderColor;
+	margin: 1em 5em;
+}
+
+.dropshadow {
+	-moz-box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
+	box-shadow:4px 4px 7px rgba(0, 0, 0, 0.3);
+}
+

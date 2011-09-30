@@ -1,0 +1,165 @@
+#editor {
+	top: $toolbarHeight + $navbarHeight;
+	right: 55%;
+	left: 20px;
+
+	margin: 20px auto;
+	padding: 2.2em 14px 10px 10px;
+	background-color: #FFF;
+
+	label {
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0.3em;
+		right: 0;
+		height: 1.9em;
+		padding-left: 0.5em;
+		border-bottom: 1px solid $borderColor;
+	}
+
+	#editor-title-box {
+		position: absolute;
+		top: 0.3em;
+		left: 9em;
+		right: 16px;
+
+		input {
+			display: block;
+			width: 100%;
+			font-size: 100%;
+			padding: 0;
+			outline: none;
+			border: 1px solid $borderColor;
+		}
+	}
+
+	#editor-input-box {
+		position: absolute;
+		top: 2.5em;
+		right: 7px;
+		bottom: 14px;
+		left: 0.4em;
+		border: 1px solid #FFF;
+	}
+
+	textarea {
+		display: block;
+		outline: none;
+		resize: none; // hide resize handle in Webkit browsers
+		border: none;
+		padding: 0;
+
+		width: 100%;
+		height: 100%;
+
+		font-family: "Lucida Grande", "Lucida Sans Unicode", "Helvetica Neue", "Arial", sans-serif;
+		font-size: 14px;
+
+		overflow-x: hidden;
+		overflow-y: scroll;
+
+		&.monospace {
+			font-family: monospace;
+		}
+	}
+}
+
+#syntax-guide {
+	position: absolute;
+	left: 0;
+	right: 8px;
+	bottom: 0;
+	height: 14px;
+	overflow-y: hidden;
+
+	border-top: 1px solid $borderColor;
+	background-color: $paperBg;
+	color: #888;
+	cursor: n-resize;
+
+	font-size: 14px;
+
+	&:hover {
+		background-color: $linkColor;
+		border-color: $linkColor;
+		#syntax-hint {
+			color: #FFF;
+		}
+	}
+
+	h2 {
+		font-weight: bold;
+		text-align: center;
+	}
+
+	h3 {
+		font-weight: bold;
+		margin-top: 0.5em;
+	}
+
+	em { font-style: italic; }
+	strong { font-weight: bold; }
+
+	p {
+		margin-left: 0.5em;
+		kbd, &.syntax-literal {
+			font-family: monospace;
+			white-space: pre;
+		}
+
+		&.syntax-literal {
+			margin: 0.5em 0 0.5em 1.5em;
+			overflow-x: hidden;
+			em {
+				font-style: normal;
+				color: #D33;
+			}
+			.spaces {
+				color: #CCC;
+			}
+		}
+	}
+
+	ul { margin-left: 1.5em; }
+}
+
+#syntax-hint {
+	font-size: 10px;
+	text-align: center;
+}
+
+#editor.show-syntax {
+	#editor-input-box {
+		bottom: 200px;
+	}
+
+	#syntax-guide {
+		cursor: s-resize;
+		height: 196px;
+		color: #333;
+		padding: 0.2em 0.4em;
+		overflow-y: scroll;
+		&:hover {
+			background-color: $paperBg;
+		}
+	}
+
+	#syntax-hint {
+		display: none;
+	}
+}
+
+#editor-sizer {
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 8px;
+	background-color: $borderColor;
+
+	&:hover, &.sizing {
+		background-color: $linkColor;
+		cursor: ew-resize;
+	}
+}

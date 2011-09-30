@@ -1,0 +1,50 @@
+#main {
+	padding: 2em;
+	margin: 3em auto;
+	max-width: 50em;
+
+	h1, h2, h3 {
+		font-weight: bold;
+		margin-top: 1em;
+	}
+
+	h1 {
+		font-size: 160%;
+		text-shadow: $h1shad;
+	}
+
+	h2 {
+		font-size: 130%;
+	}
+
+	h3 {
+		font-size: 105%;
+	}
+
+	p {
+		margin-bottom: 1em;
+
+		&.first {
+			font-weight: bold;
+		}
+	}
+
+	em { font-style: italic; }
+	strong { font-weight: bold; }
+
+	ul.basic {
+		list-style: none;
+		padding-left: 1em;
+		text-indent: -0.6em;
+
+		li {
+			&:before {
+				display: inline-block;
+				width: 0.6em;
+				overflow: visible;
+				content: "\25EA";
+			}
+		}
+	}
+
+}
