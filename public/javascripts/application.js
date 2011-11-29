@@ -453,6 +453,7 @@ $(function () {
 
     // Calculate font size based on preview 'page' width.
     $(window).resize(function () {
+        var fit;
         // Assume A4 paper size for now (210mm wide).
         zoom = ($previewScroller.width() - 40) / PAGE_WIDTH / PPMM;
 
@@ -465,7 +466,8 @@ $(function () {
                 "transform": "scale(" + zoom + ")"
             });
         } else {
-            $preview.toggleClass("fit-width", $rdoFitWidth.attr("checked"));
+            fit = !!$rdoFitWidth.attr("checked");
+            $preview.toggleClass("fit-width", fit);
 
             $preview.css({
                 "-webkit-transform": "",
