@@ -1,19 +1,22 @@
 <div id="main" class="dropshadow">
-	<h1>Sign In</h1>
+  <h1>Sign In</h1>
 
-	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-		<p><%= f.label :email, "E-mail" %><br />
-		<%= f.email_field :email %></p>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
-		<p><%= f.label :password %><br />
-		<%= f.password_field :password %></p>
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <p><%= f.label :email, "E-mail" %><br />
+    <%= f.email_field :email %></p>
 
-		<% if devise_mapping.rememberable? -%>
-			<p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
-		<% end -%>
+    <p><%= f.label :password %><br />
+    <%= f.password_field :password %></p>
 
-		<p><%= f.submit "Sign in" %></p>
-	<% end %>
+    <% if devise_mapping.rememberable? -%>
+      <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+    <% end -%>
 
-	<%#= render :partial => "devise/shared/links" %>
+    <p><%= f.submit "Sign in" %></p>
+  <% end %>
+
+  <%#= render :partial => "devise/shared/links" %>
 </div>
