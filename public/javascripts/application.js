@@ -26,8 +26,11 @@ $(function () {
         $rdoPreviewPrint = $("#rdo-preview-print"),
         $rdoPreviewHTML = $("#rdo-preview-html"),
 
+        $rdoActualSize = $("#rdo-actual-size"),
+        $rdoScalePreview = $("#rdo-scale-preview"),
+        $rdoFitWidth = $("#rdo-fit-width"),
+
         $chkPageMargins = $("#chk-page-margins"),
-        $chkAutozoom = $("#chk-autozoom"),
 
         $txtBaseFont = $("#txt-base-font"),
         $txtBaseFontSize = $("#txt-base-font-size"),
@@ -320,7 +323,7 @@ $(function () {
         updatePreview();
     });
 
-    $chkAutozoom.change(function () {
+    $('input[name="preview-zoom"]').change(function () {
         $(window).resize();
     });
 
@@ -453,8 +456,8 @@ $(function () {
         // Assume A4 paper size for now (210mm wide).
         zoom = ($previewScroller.width() - 40) / PAGE_WIDTH / PPMM;
 
-        if ($chkAutozoom && $chkAutozoom.attr("checked")) {
-            $preview.css({
+        if ($rdoScalePreview.attr("checked")) {
+            $preview.removeClass("fit-width").css({
                 "-webkit-transform": "scale(" + zoom + ")",
                 "-moz-transform": "scale(" + zoom + ")",
                 "-o-transform": "scale(" + zoom + ")",
@@ -462,6 +465,8 @@ $(function () {
                 "transform": "scale(" + zoom + ")"
             });
         } else {
+            $preview.toggleClass("fit-width", $rdoFitWidth.attr("checked"));
+
             $preview.css({
                 "-webkit-transform": "",
                 "-moz-transform": "",

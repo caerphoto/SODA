@@ -16,18 +16,24 @@
 }
 
 #preview {
-    width: 215mm;
+    width: 210mm;
+    padding-right: 5mm;
 
     -webkit-transform-origin: left top;
     -moz-transform-origin: left top;
     -o-transform-origin: left top;
     -ms-transform-origin: left top;
     transform-origin: left top;
+
+    &.fit-width {
+        width: 100%;
+        padding: 0;
+    }
 }
 
 .paper {
-    width: 210mm;
-    margin: 5mm 5mm 10mm 0;
+    //width: auto;
+    margin: 5mm 0 10mm 0;
 
     .page {
         margin: 20mm;
@@ -155,6 +161,14 @@
 
     } // .page
 } // .paper
+
+#preview.fit-width .paper {
+    margin-right: 5mm;
+
+    .page {
+        margin: 20mm 5%;
+    }
+}
 
 #preview-scroller.raw {
     overflow: hidden;

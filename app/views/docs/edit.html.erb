@@ -89,21 +89,46 @@
       <li class="menu-separator"></li>
 
       <li>
+        <label for="rdo-actual-size">
+          <input id="rdo-actual-size" type="radio" name="preview-zoom">
+          Actual size
+        </label>
+      </li>
+
+      <li id="scale-preview-option">
+        <label for="rdo-scale-preview">
+          <input id="rdo-scale-preview" type="radio" name="preview-zoom">
+          Scale to fit
+        </label>
+      </li>
+
+      <li>
+        <label for="rdo-fit-width">
+          <input id="rdo-fit-width" type="radio" name="preview-zoom" checked>
+          Adjust width only
+        </label>
+      </li>
+
+      <li class="menu-separator"></li>
+
+      <li>
         <label for="chk-page-margins">
           <input id="chk-page-margins" type="checkbox" checked>
           Margins
         </label>
       </li>
 
-      <li>
-        <label for="chk-autozoom">
-          <input id="chk-autozoom" type="checkbox" checked>
-          Fit window width
-        </label>
-      </li>
-
     </ul>
   </div>
+
+<!--[if lt IE 9]>
+<script>
+  (function () {
+    document.getElementById("scale-preview-option").className += " hidden";
+  }());
+</script>
+<![endif]-->
+
 
 
   <!-- style options -->
