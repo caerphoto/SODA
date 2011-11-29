@@ -2,293 +2,285 @@
 
 <div id="toolbar">
 
-	<!-- Editor options -->
-	<div class="dropdown-menu-container">
-		<button id="btn-editor-options" class="dropdown-list-button">Editor Options</button>
-		<ul id="editor-options-list" class="dropdown-list dropshadow">
-			<li>
-				<label for="chk-monospace">
-					<input id="chk-monospace" type="checkbox">
-					Monospace font
-				</label>
-			</li>
-		</ul>
-	</div>
+  <!-- Editor options -->
+  <div class="dropdown-menu-container">
+    <button id="btn-editor-options" class="dropdown-list-button">Editor Options</button>
+    <ul id="editor-options-list" class="dropdown-list dropshadow">
+      <li>
+        <label for="chk-monospace">
+          <input id="chk-monospace" type="checkbox">
+          Monospace font
+        </label>
+      </li>
+    </ul>
+  </div>
 
-	<!-- Document options -->
-	<div class="dropdown-menu-container">
-		<button id="btn-document-options" class="dropdown-list-button">Document Options</button>
-		<ul id="document-options-list" class="dropdown-list dropshadow">
-			<li>
-			<label for="chk-linebreaks" title="When enabled, a single input line break will generate an output line break (HTML <br> tag). &#13;&#13;Otherwise, single line breaks can be inserted by adding two spaces to the end of a line.">
-				<% if @doc.linebreaks %>
-					<input id="chk-linebreaks" type="checkbox" checked>
-				<% else %>
-					<input id="chk-linebreaks" type="checkbox">
-				<% end %>
-					Single line breaks
-				</label>
-			</li>
+  <!-- Document options -->
+  <div class="dropdown-menu-container">
+    <button id="btn-document-options" class="dropdown-list-button">Document Options</button>
+    <ul id="document-options-list" class="dropdown-list dropshadow">
+      <li>
+      <label for="chk-linebreaks" title="When enabled, a single input line break will generate an output line break (HTML <br> tag). &#13;&#13;Otherwise, single line breaks can be inserted by adding two spaces to the end of a line.">
+        <% if @doc.linebreaks %>
+          <input id="chk-linebreaks" type="checkbox" checked>
+        <% else %>
+          <input id="chk-linebreaks" type="checkbox">
+        <% end %>
+          Single line breaks
+        </label>
+      </li>
 
-			<li>
-				<label for="chk-smart-quotes">
-				<% if @doc.smartquotes %>
-					<input id="chk-smart-quotes" type="checkbox" checked>
-				<% else %>
-					<input id="chk-smart-quotes" type="checkbox">
-				<% end %>
-					Smart quotes
-				</label>
-			</li>
+      <li>
+        <label for="chk-smart-quotes">
+        <% if @doc.smartquotes %>
+          <input id="chk-smart-quotes" type="checkbox" checked>
+        <% else %>
+          <input id="chk-smart-quotes" type="checkbox">
+        <% end %>
+          Smart quotes
+        </label>
+      </li>
 
-			<li>
-				<label for="chk-smart-dashes">
-				<% if @doc.smartdashes %>
-					<input id="chk-smart-dashes" type="checkbox" checked>
-				<% else %>
-					<input id="chk-smart-dashes" type="checkbox">
-				<% end %>
-					Smart dashes
-				</label>
-			</li>
+      <li>
+        <label for="chk-smart-dashes">
+        <% if @doc.smartdashes %>
+          <input id="chk-smart-dashes" type="checkbox" checked>
+        <% else %>
+          <input id="chk-smart-dashes" type="checkbox">
+        <% end %>
+          Smart dashes
+        </label>
+      </li>
 
-			<li>
-				<label for="chk-private-doc">
-				<% if @doc.private %>
-					<input id="chk-private-doc" type="checkbox" checked>
-				<% else %>
-					<input id="chk-private-doc" type="checkbox">
-				<% end %>
-					Private
-				</label>
-			</li>
-		</ul>
-	</div>
+      <li>
+        <label for="chk-private-doc">
+        <% if @doc.private %>
+          <input id="chk-private-doc" type="checkbox" checked>
+        <% else %>
+          <input id="chk-private-doc" type="checkbox">
+        <% end %>
+          Private
+        </label>
+      </li>
+    </ul>
+  </div>
 
-	<!-- Preview options -->
-	<div class="dropdown-menu-container">
-		<button id="btn-display-options" class="dropdown-list-button">Preview Options</button>
-		<ul id="display-options-list" class="dropdown-list dropshadow">
-			<li>
-				<label for="rdo-preview-off">
-					<input id="rdo-preview-off" type="radio" name="preview-type">
-					Off
-				</label>
+  <!-- Preview options -->
+  <div class="dropdown-menu-container">
+    <button id="btn-display-options" class="dropdown-list-button">Preview Options</button>
+    <ul id="display-options-list" class="dropdown-list dropshadow">
+      <li>
+        <label for="rdo-preview-off">
+          <input id="rdo-preview-off" type="radio" name="preview-type">
+          Off
+        </label>
 
-				<label for="rdo-preview-print">
-					<input id="rdo-preview-print" type="radio" name="preview-type" checked>
-					Print
-				</label>
+        <label for="rdo-preview-print">
+          <input id="rdo-preview-print" type="radio" name="preview-type" checked>
+          Normal
+        </label>
 
-				<label for="rdo-preview-html">
-					<input id="rdo-preview-html" type="radio" name="preview-type">
-					HTML
-				</label>
-			</li>
+        <label for="rdo-preview-html">
+          <input id="rdo-preview-html" type="radio" name="preview-type">
+          HTML
+        </label>
+      </li>
 
-			<li class="menu-separator"></li>
+      <li class="menu-separator"></li>
 
-			<li>
-				<label for="chk-nonprinting">
-					<input id="chk-nonprinting" type="checkbox" checked>
-					Paragraph marks
-				</label>
-			</li>
+      <li>
+        <label for="chk-page-margins">
+          <input id="chk-page-margins" type="checkbox" checked>
+          Margins
+        </label>
+      </li>
 
-			<li>
-				<label for="chk-page-margins">
-					<input id="chk-page-margins" type="checkbox" checked>
-					Margins
-				</label>
-			</li>
+      <li>
+        <label for="chk-autozoom">
+          <input id="chk-autozoom" type="checkbox" checked>
+          Fit window width
+        </label>
+      </li>
 
-			<li>
-				<label for="chk-autozoom">
-					<input id="chk-autozoom" type="checkbox" checked>
-					Fit window width
-				</label>
-			</li>
-
-		</ul>
-	</div>
+    </ul>
+  </div>
 
 
-	<!-- style options -->
-	<button id="btn-adjust-styles" disabled>Adjust Styles&hellip;</button>
+  <!-- style options -->
+  <button id="btn-adjust-styles" disabled>Adjust Styles&hellip;</button>
 
-	<!--
-	<label for="txt-base-font">
-		Paragraph font:
-		<input id="txt-base-font" type="text" value="Palatino">
-	</label>
+  <!-- Stuff not implemented yet:
+  <label for="txt-base-font">
+    Paragraph font:
+    <input id="txt-base-font" type="text" value="Palatino">
+  </label>
 
-	<label for="txt-base-font-size">
-		<input id="txt-base-font-size" class="number" type="text" value="12">
-		pt
-	</label>
+  <label for="txt-base-font-size">
+    <input id="txt-base-font-size" class="number" type="text" value="12">
+    pt
+  </label>
 
-	<label for="txt-heading-font">
-		Heading font:
-		<input id="txt-heading-font" type="text" value="Lucida Grande">
-	</label>
-	-->
+  <label for="txt-heading-font">
+    Heading font:
+    <input id="txt-heading-font" type="text" value="Lucida Grande">
+  </label>
+  -->
 
-	<!-- title and save -->
-	<button id="btn-save" disabled>Save</button>
-	<label class="info" id="last-saved">Last saved <span id="doc-age">just now.</span></label>
+  <!-- title and save -->
+  <button id="btn-save" disabled>Save</button>
+  <label class="info" id="last-saved">Last saved <span id="doc-age">just now.</span></label>
 
-	<div class="links">
-		<%= link_to "View document", doc_path(@doc) %>
-	</div>
+  <div class="links">
+    <%= link_to "View document", doc_path(@doc) %>
+  </div>
 </div>
 </div>
 
 <div id="app-loading-message" class="loading-message dropshadow">
-	Loading real-time preview&hellip;
+  Loading real-time preview&hellip;
 </div>
 
 <div id="doc-saving-message" class="loading-message dropshadow">
-	Saving document&hellip;
+  Saving document&hellip;
 </div>
 
 <div id="editor">
-	<label for="doc-title">Document name:</label>
-	<div id="editor-title-box">
-		<input id="doc-title" type="text" value="<%= @doc.title %>">
-	</div>
+  <label for="doc-title">Document name:</label>
+  <div id="editor-title-box">
+    <input id="doc-title" type="text" value="<%= @doc.title %>">
+  </div>
 
-	<div id="editor-input-box">
-		<textarea><%= @doc.content %></textarea>
-	</div>
-	<div id="editor-sizer"></div>
+  <div id="editor-input-box">
+    <textarea><%= @doc.content %></textarea>
+  </div>
+  <div id="editor-sizer"></div>
 
-	<div id="syntax-guide">
-		<div id="syntax-hint">&#x25AA; Quick Syntax Guide &#x25AA;</div>
-		<h2>Quick Syntax Guide</h2>
+  <div id="syntax-guide">
+    <div id="syntax-hint">&#x25AA; Quick Syntax Guide &#x25AA;</div>
+    <h2>Quick Syntax Guide</h2>
 
-		<h3>Paragraphs</h3>
-		<p>Insert a blank line between blocks of text to create paragraphs.</p>
+    <h3>Paragraphs</h3>
+    <p>Insert a blank line between blocks of text to create paragraphs.</p>
 
-		<h3>Headings</h3>
-		<p>Use one or more # characters at the start of a line to create headings.
-		The number of # characters determines the heading level.</p>
+    <h3>Headings</h3>
+    <p>Use one or more # characters at the start of a line to create headings.
+    The number of # characters determines the heading level.</p>
 
-		<h3>Emphasis</h3>
-		<p>Surround text in *asterisks* to create <em>emphasised text</em>, and
-		**double asterisks** to create <strong>strongly emphasised
-			text</strong>.</p>
+    <h3>Emphasis</h3>
+    <p>Surround text in *asterisks* to create <em>emphasised text</em>, and
+    **double asterisks** to create <strong>strongly emphasised
+      text</strong>.</p>
 
-		<h3>Block Quotes</h3>
-		<p>Put a &gt; character at the start of a paragraph to mark that paragraph
-		as a block quote.</p>
+    <h3>Block Quotes</h3>
+    <p>Put a &gt; character at the start of a paragraph to mark that paragraph
+    as a block quote.</p>
 
-		<h3>Dashes and Lines</h3>
-		<p>One or more - (hyphen) characters only on a line surrounded by blank
-		lines creates a horizontal rule: <hr></p>
-		<p>If the <em>Smart Dashes</em> option is enabled:</p>
-		<ul>
-			<li>-- creates an <em>en dash</em>: &ndash;</li>
-			<li>--- creates an <em>em dash</em>: &mdash;</li>
-		</ul>
+    <h3>Dashes and Lines</h3>
+    <p>One or more - (hyphen) characters only on a line surrounded by blank
+    lines creates a horizontal rule: <hr></p>
+    <p>If the <em>Smart Dashes</em> option is enabled:</p>
+    <ul>
+      <li>-- creates an <em>en dash</em>: &ndash;</li>
+      <li>--- creates an <em>em dash</em>: &mdash;</li>
+    </ul>
 
-		<h3>Lists</h3>
-		<p>Unordered lists are created by putting a * or a - at the start of each item. The list must have a blank line above and below it:</p>
-		<p class="syntax-literal">* Eggs
+    <h3>Lists</h3>
+    <p>Unordered lists are created by putting a * or a - at the start of each item. The list must have a blank line above and below it:</p>
+    <p class="syntax-literal">* Eggs
 * Bacon
 * Ham</p>
 
-		<p>Numbered lists are created by putting <kbd>1.</kbd> before the first
-		item; subsequent items can either have correct numbers, or you can just put
-		<kbd>1.</kbd> before each one:</p>
-		<p class="syntax-literal">1. Collect underpants
+    <p>Numbered lists are created by putting <kbd>1.</kbd> before the first
+    item; subsequent items can either have correct numbers, or you can just put
+    <kbd>1.</kbd> before each one:</p>
+    <p class="syntax-literal">1. Collect underpants
 2. ?
 3. Profit</p>
 
-		<p>To include more than one paragraph in a list item above it, indent it by 4 spaces.</p>
+    <p>To include more than one paragraph in a list item above it, indent it by 4 spaces.</p>
 
-		<h3>Images</h3>
-		<p>There are two parts to inserting an image, the <em>insertion</em> and
-		the <em>reference</em>. The <em>insertion</em> is placed in the document
-		where you want the image to appear, and looks like this:</p>
-		<p class="syntax-literal">![image alt text][<em>ref1</em>]</p>
-		<p>The <em>reference</em> is placed later in the document surrounded by
-		blank lines (or other reference lines), and looks like this:</p>
-		<p class="syntax-literal">[<em>ref1</em>]: http://www.example.com/filename.jpg</p>
-		<p>To centre the image horizontally, and prevent text from wrapping either
-		side of it, use two !  characters for the <em>insertion</em> instead of
-		one.</p>
+    <h3>Images</h3>
+    <p>There are two parts to inserting an image, the <em>insertion</em> and
+    the <em>reference</em>. The <em>insertion</em> is placed in the document
+    where you want the image to appear, and looks like this:</p>
+    <p class="syntax-literal">![image alt text][<em>ref1</em>]</p>
+    <p>The <em>reference</em> is placed later in the document surrounded by
+    blank lines (or other reference lines), and looks like this:</p>
+    <p class="syntax-literal">[<em>ref1</em>]: http://www.example.com/filename.jpg</p>
+    <p>To centre the image horizontally, and prevent text from wrapping either
+    side of it, use two !  characters for the <em>insertion</em> instead of
+    one.</p>
 
-		<h3>Links</h3>
-		<p>There are three ways to insert links. The first is <em>inline</em>, and
-		looks like this:</p>
-		<p class="syntax-literal">[link text](http://www.example.com/)</p>
+    <h3>Links</h3>
+    <p>There are three ways to insert links. The first is <em>inline</em>, and
+    looks like this:</p>
+    <p class="syntax-literal">[link text](http://www.example.com/)</p>
 
-		<p>The second is by <em>reference</em>, and works similarly to images:</p>
-		<p class="syntax-literal">Here is [a link to a different page][<em>ref2</em>].
+    <p>The second is by <em>reference</em>, and works similarly to images:</p>
+    <p class="syntax-literal">Here is [a link to a different page][<em>ref2</em>].
 
 [<em>ref2</em>]: http://www.example.com/</p>
 
-		<p>Finally, if the link text is short, you can just use it as the reference
-		itself:</p>
-		<p class="syntax-literal">This paragraph contains a [<em>link</em>] to another page.
+    <p>Finally, if the link text is short, you can just use it as the reference
+    itself:</p>
+    <p class="syntax-literal">This paragraph contains a [<em>link</em>] to another page.
 
 [<em>link</em>]: http://www.example.com/</p>
 
-		<h3>Code</h3>
-		<p>Code blocks can be inserted in two ways. The first is <em>inline</em>,
-		where you just surround the code text with `<kbd>backticks</kbd>`. The
-		second way is for larger blocks of code and is done by indenting your code
-		by at least 4 spaces (or one tab):</p>
-		<p class="syntax-literal"><span class="spaces">&#xB7;&#xB7;&#xB7;&#xB7;</span>var paras = document.querySelectorAll("p"), l, i;
+    <h3>Code</h3>
+    <p>Code blocks can be inserted in two ways. The first is <em>inline</em>,
+    where you just surround the code text with `<kbd>backticks</kbd>`. The
+    second way is for larger blocks of code and is done by indenting your code
+    by at least 4 spaces (or one tab):</p>
+    <p class="syntax-literal"><span class="spaces">&#xB7;&#xB7;&#xB7;&#xB7;</span>var paras = document.querySelectorAll("p"), l, i;
 <span class="spaces">&#xB7;&#xB7;&#xB7;&#xB7;</span>for (i = 0, l = paras.length; i &lt; l; i += 1) {
 <span class="spaces">&#xB7;&#xB7;&#xB7;&#xB7;&#xB7;&#xB7;</span>paras[i].style.color = "rgba(255, 0, 0, 0.7)";
 <span class="spaces">&#xB7;&#xB7;&#xB7;&#xB7;</span>}</p>
-	</div>
+  </div>
 </div>
 
 <div id="preview-scroller">
-	<div id="html-view">
-		<textarea></textarea>
-	</div>
+  <div id="html-view">
+    <textarea></textarea>
+  </div>
 
-	<div id="preview" class="show-nonprinting">
-		<div class="paper dropshadow">
-			<div class="page"></div>
-		</div>
-	</div>
+  <div id="preview" class="">
+    <div class="paper dropshadow">
+      <div class="page"></div>
+    </div>
+  </div>
 </div>
 
 <div id="statusbar">
-	<div id="general-info">
-		Page width: 210mm, margins: 20mm, automatic zoom level:
-		<span id="zoom-level">1</span>%
-	</div>
+  <div id="general-info">
+    Preview zoom: <span id="zoom-level">1</span>%
+  </div>
 
-	<div id="timing-info">
-		Preview refresh speed: <span id="update-speed">0</span>ms
-	</div>
+  <div id="timing-info">
+    Preview refresh speed: <span id="update-speed">0</span>ms
+  </div>
 </div>
 
 <% if Rails.env.production? %>
-	<%= javascript_include_tag "all.js" %>
+  <%= javascript_include_tag "all.js" %>
 <% else %>
-	<%=  javascript_include_tag :libs %>
+  <%=  javascript_include_tag :libs %>
 <% end %>
 
 <script type="text/javascript">
-	// Lazy loading of main application JS.
+  // Lazy loading of main application JS.
 var se = document.createElement("script");
 
 // Allow sending of non-GET AJAX requests.
 $(document).ajaxSend(function(e, xhr, options) {
-	var token = $("meta[name='csrf-token']").attr("content");
-	xhr.setRequestHeader("X-CSRF-Token", token);
+  var token = $("meta[name='csrf-token']").attr("content");
+  xhr.setRequestHeader("X-CSRF-Token", token);
 });
 
 <% if Rails.env.production? %>
-	se.src = "/javascripts/application-min.js";
+  se.src = "/javascripts/application-min.js";
 <% else %>
-	se.src = "/javascripts/application.js";
+  se.src = "/javascripts/application.js";
 <% end %>
 
 document.getElementsByTagName("head")[0].appendChild(se);

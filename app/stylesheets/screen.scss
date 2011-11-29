@@ -21,44 +21,44 @@ $bodyFontFamily: "PT Serif", "Georgia", serif;
 @import "base";
 
 #logo {
-	width: 0;
-	height: 63px;
-	padding-left: 174px;
-	padding-bottom: 0.5em;
-	margin-bottom: 1em;
-	background: inline-image("soda_logo.png") right top no-repeat;
-	border-bottom: 2px solid $borderColor;
-	overflow: hidden;
+    width: 0;
+    height: 63px;
+    padding-left: 174px;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    background: inline-image("soda_logo.png") right top no-repeat;
+    border-bottom: 2px solid $borderColor;
+    overflow: hidden;
 }
 
 .github-link {
-	display: inline-block;
-	height: 22px;
-	width: 0;
-	padding-left: 49px;
-	overflow: hidden;
-	vertical-align: middle;
+    display: inline-block;
+    height: 22px;
+    width: 0;
+    padding-left: 49px;
+    overflow: hidden;
+    vertical-align: middle;
 
-	background: inline-image("github_logo-small.png") right 0 no-repeat;
+    background: inline-image("github_logo-small.png") right 0 no-repeat;
 
-	&:hover {
-		background-position: right -22px;
-	}
+    &:hover {
+        background-position: right -22px;
+    }
 }
 
 #try-demo {
-	text-align: center;
-	a {
-		font-size: 150%;
-	}
+    text-align: center;
+    a {
+        font-size: 150%;
+    }
 }
 
 #main, .paper, #editor {
-	border: 1px solid $borderColor;
+    border: 1px solid $borderColor;
 }
 
 #main, .paper {
-	background-color: $paperBg;
+    background-color: $paperBg;
 }
 
 @import "main";
@@ -66,117 +66,117 @@ $bodyFontFamily: "PT Serif", "Georgia", serif;
 @import "nav";
 
 .doc-list {
-	margin: 1em 0;
-	border-collapse: collapse;
-	width: auto;
-	table-layout: fixed;
-	width: 100%;
+    margin: 1em 0;
+    border-collapse: collapse;
+    width: auto;
+    table-layout: fixed;
+    width: 100%;
 
-	thead {
-		border-bottom: 2px solid $borderColor;
-	}
+    thead {
+        border-bottom: 2px solid $borderColor;
+    }
 
-	tr {
-		border-bottom: 1px solid $borderColor;
+    tr {
+        border-bottom: 1px solid $borderColor;
 
-		&:last-child {
-			border: none;
-		}
-	}
+        &:last-child {
+            border: none;
+        }
+    }
 
-	th {
-		font-weight: bold;
-	}
+    th {
+        font-weight: bold;
+    }
 
-	th, td {
-		padding: 0.5em 0;
-	}
+    th, td {
+        padding: 0.5em 0;
+    }
 
-	.doc-name {
-		//width: 20em;
-	}
+    .doc-name {
+        //width: 20em;
+    }
 
-	.doc-controls {
-		width: 10em;
-	}
+    .doc-controls {
+        width: 10em;
+    }
 
-	.delete-link {
-		font-size: 60%;
-	}
+    .delete-link {
+        font-size: 60%;
+    }
 
-	.doc-date {
-		width: 12em;
-	}
+    .doc-date {
+        width: 12em;
+    }
 }
 
 .loading-message {
-	background: $linkColor inline-image("loading-w-g.gif") no-repeat 10px center;
-	background-color: #FFF;
-	border: 4px solid $linkColor;
-	color: $linkColor;
-	z-index: 99;
+    background: $linkColor inline-image("loading-w-g.gif") no-repeat 10px center;
+    background-color: #FFF;
+    border: 4px solid $linkColor;
+    color: $linkColor;
+    z-index: 99;
 
-	position: absolute;
-	top: $toolbarHeight + $navbarHeight + 20;
-	left: 50%;
-	padding: 10px 10px 10px 32px;
+    position: absolute;
+    top: $toolbarHeight + $navbarHeight + 20;
+    left: 50%;
+    padding: 10px 10px 10px 32px;
 
-	&.view-only {
-		top: 25%;
-		left: 50%;
-		width: 12em;
-		margin-left: -6em;
-	}
+    &.view-only {
+        top: 25%;
+        left: 50%;
+        width: 12em;
+        margin-left: -6em;
+    }
 }
 
 #doc-saving-message {
-	display: none;
-	border: 1px solid $borderColor;
-	background: #FFF;
-	padding: 5px;
-	font-size: 12px;
-	color: $borderColor;
-	top: $toolbarHeight + $navbarHeight + 40;
+    display: none;
+    border: 1px solid $borderColor;
+    background: #FFF;
+    padding: 5px;
+    font-size: 12px;
+    color: $borderColor;
+    top: $toolbarHeight + $navbarHeight + 40;
 }
 
 @import "toolbar";
 
 #statusbar {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
-	height: $statusbarHeight - 1;
+    height: $statusbarHeight - 1;
 
-	background: #FFF;
-	border-top: 1px solid $borderColor;
-	font-size: 75%;
-	color: #333;
+    background: #FFF;
+    border-top: 1px solid $borderColor;
+    font-size: 75%;
+    color: #333;
 
-	div {
-		position: absolute;
-		top: 0.3em;
-	}
+    div {
+        position: absolute;
+        top: 0.3em;
+    }
 }
 
 #general-info {
-	left: 1em;
+    left: 1em;
 }
 
 #timing-info {
-	right: 1em;
-	color: #AAA;
+    right: 1em;
+    color: #AAA;
 }
 
 #doc-source {
-	// Source text for read-only document ('show' action view).
-	display: none;
+    // Source text for read-only document ('show' action view).
+    display: none;
 }
 
 #editor, #preview-scroller {
-	position: absolute;
-	bottom: $statusbarHeight;
+    position: absolute;
+    bottom: $statusbarHeight;
 }
 
 @import "editor";
@@ -184,12 +184,12 @@ $bodyFontFamily: "PT Serif", "Georgia", serif;
 @import "preview";
 
 .focus, input:focus, button:focus {
-	border-color: $linkColor !important;
-	-moz-box-shadow: 0px 0 4px 1px $linkColor;
-	-webkit-box-shadow: 0px 0 4px 1px $linkColor;
-	box-shadow: 0px 0 4px 1px $linkColor;
+    border-color: $linkColor !important;
+    -moz-box-shadow: 0px 0 4px 1px $linkColor;
+    -webkit-box-shadow: 0px 0 4px 1px $linkColor;
+    box-shadow: 0px 0 4px 1px $linkColor;
 }
 
 .hidden {
-	display: none;
+    display: none;
 }

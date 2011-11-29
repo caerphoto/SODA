@@ -1,52 +1,52 @@
 
 #navbar {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: $navbarHeight - 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: $navbarHeight - 1;
 
-	border-bottom: 1px solid $borderColor;
+    border-bottom: 1px solid $borderColor;
 
-	background-color: $paperBg;
-	color: #333;
+    background-color: $paperBg;
+    color: #333;
 
-	font-size: 14px;
+    font-size: 14px;
 
-	z-index: 101;
-	div {
-		padding: 0.2em 0.5em;
-	}
+    z-index: 101;
+    div {
+        padding: 0.2em 0.5em;
+    }
 }
 
 #logo-navbar {
-	float: left;
-	display: block;
-	width: 0;
-	padding-left: 50px;
-	height: 17px;
-	background: inline-image("soda_logo-navbar.png") right top no-repeat;
-	overflow: hidden;
-	margin-left: 1em;
-	margin-top: 3px;
+    float: left;
+    display: block;
+    width: 0;
+    padding-left: 50px;
+    height: 17px;
+    background: inline-image("soda_logo-navbar.png") right top no-repeat;
+    overflow: hidden;
+    margin-left: 1em;
+    margin-top: 3px;
 
-	&:hover {
-		background-position: right -17px;
-	}
+    &:hover {
+        background-position: right -17px;
+    }
 }
 
 #center-links {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	text-align: center;
-	z-index: -1; // links are 'behind' other stuff on the bar
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: -1; // links are 'behind' other stuff on the bar
 }
 
 #user-panel {
-	position: absolute;
-	top: 0;
-	right: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 

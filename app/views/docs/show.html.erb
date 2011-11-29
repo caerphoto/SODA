@@ -1,78 +1,77 @@
 <div id="toolbar">
-	<div class="dropdown-menu-container">
-		<button id="btn-display-options" class="dropdown-list-button">View Options</button>
-		<ul id="display-options-list" class="dropdown-list dropshadow">
-			<li>
-				<label for="rdo-preview-print">
-					<input id="rdo-preview-print" type="radio" name="preview-type" checked>
-					Print
-				</label>
+  <div class="dropdown-menu-container">
+    <button id="btn-display-options" class="dropdown-list-button">View Options</button>
+    <ul id="display-options-list" class="dropdown-list dropshadow">
+      <li>
+        <label for="rdo-preview-print">
+          <input id="rdo-preview-print" type="radio" name="preview-type" checked>
+          Normal
+        </label>
 
-				<label for="rdo-preview-html">
-					<input id="rdo-preview-html" type="radio" name="preview-type">
-					HTML
-				</label>
-			</li>
+        <label for="rdo-preview-html">
+          <input id="rdo-preview-html" type="radio" name="preview-type">
+          HTML
+        </label>
+      </li>
 
-		</ul>
-	</div>
+    </ul>
+  </div>
 
-	<div class="hidden">
-		<input id="chk-nonprinting" type="checkbox">
-		<input id="chk-page-margins" type="checkbox">
+  <div class="hidden">
+    <input id="chk-page-margins" type="checkbox">
 
-		<% if @doc.linebreaks %>
-			<input id="chk-linebreaks" type="checkbox" checked>
-		<% else %>
-			<input id="chk-linebreaks" type="checkbox">
-		<% end %>
+    <% if @doc.linebreaks %>
+      <input id="chk-linebreaks" type="checkbox" checked>
+    <% else %>
+      <input id="chk-linebreaks" type="checkbox">
+    <% end %>
 
-		<% if @doc.smartquotes %>
-			<input id="chk-smart-quotes" type="checkbox" checked>
-		<% else %>
-			<input id="chk-smart-quotes" type="checkbox">
-		<% end %>
+    <% if @doc.smartquotes %>
+      <input id="chk-smart-quotes" type="checkbox" checked>
+    <% else %>
+      <input id="chk-smart-quotes" type="checkbox">
+    <% end %>
 
-		<% if @doc.smartdashes %>
-			<input id="chk-smart-dashes" type="checkbox" checked>
-		<% else %>
-			<input id="chk-smart-dashes" type="checkbox">
-		<% end %>
-	</div>
+    <% if @doc.smartdashes %>
+      <input id="chk-smart-dashes" type="checkbox" checked>
+    <% else %>
+      <input id="chk-smart-dashes" type="checkbox">
+    <% end %>
+  </div>
 
-	<h1 id="doc-title">
-		Document name: <span><%= @doc.title ? @doc.title : "&lt;untitled&gt;" %></span>
-	</h1>
+  <h1 id="doc-title">
+    Document name: <span><%= @doc.title ? @doc.title : "&lt;untitled&gt;" %></span>
+  </h1>
 
 <% if user_signed_in? and current_user.id == @doc.user_id %>
-	<div class="links">
-			<%= link_to "Edit document", edit_doc_path(@doc) %>
-	</div>
+  <div class="links">
+      <%= link_to "Edit document", edit_doc_path(@doc) %>
+  </div>
 <% end %>
 </div>
 
 <div id="app-loading-message" class="loading-message view-only dropshadow">
-	Loading document&hellip;
+  Loading document&hellip;
 </div>
 
 <input id="doc-source" type="hidden" value="<%= @doc.content %>">
 <input id="doc-title" type="hidden" value="<%= @doc.title %>">
 
 <div id="preview-scroller" class="view-only">
-	<div id="html-view">
-		<textarea></textarea>
-	</div>
-	<div id="preview" class="no-margins">
-		<div class="paper dropshadow">
-			<div class="page"></div>
-		</div>
-	</div>
+  <div id="html-view">
+    <textarea></textarea>
+  </div>
+  <div id="preview" class="no-margins">
+    <div class="paper dropshadow">
+      <div class="page"></div>
+    </div>
+  </div>
 </div>
 
 <% if Rails.env.production? %>
-	<%= javascript_include_tag "all.js" %>
-	<%= javascript_include_tag "application-min.js" %>
+  <%= javascript_include_tag "all.js" %>
+  <%= javascript_include_tag "application-min.js" %>
 <% else %>
-	<%= javascript_include_tag :libs %>
-	<%= javascript_include_tag "application.js" %>
+  <%= javascript_include_tag :libs %>
+  <%= javascript_include_tag "application.js" %>
 <% end %>

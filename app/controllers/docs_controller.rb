@@ -11,6 +11,24 @@ class DocsController < ApplicationController
 		@title = "Your Saved Documents - Soda"
 		if user_signed_in?
 			@docs = current_user.docs.order(:title)
+			@docs_json = []
+
+			for doc in @docs
+				dd = doc.updated_at
+				dt = doc.updated_at
+
+				@docs_json.push({
+					:name => doc.title,
+					:view_path => doc_path(doc),
+					:edit_path => edit_doc_path(doc),
+					:delete_path => delete_doc_path(doc),
+					:date => [ dd.year, dd.month, dd.day ].join("/"),
+					:time => [ dt.hour, dt.min ].join(":"),
+					:size => doc.content.length
+
+				})
+			end
+
 		else
 			@docs = nil
 		end

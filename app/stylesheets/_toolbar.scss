@@ -1,115 +1,115 @@
 #toolbar {
-	position: absolute;
-	top: $navbarHeight;
-	right: 0;
-	left: 0;
-	height: $toolbarHeight - 7;
-	padding-top: 10px;
+    position: absolute;
+    top: $navbarHeight;
+    right: 0;
+    left: 0;
+    height: $toolbarHeight - 7;
+    padding-top: 10px;
 
-	background: #FFF;
-	border-bottom: 2px solid $linkColor;
+    background: #FFF;
+    border-bottom: 2px solid $linkColor;
 
-	font-size: 14px;
+    font-size: 14px;
 
-	z-index: 2;
+    z-index: 2;
 
-	label {
-		display: inline-block;
-		vertical-align: middle;
-		margin-left: 1em;
-	}
+    label {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 1em;
+    }
 
-	input {
-		font-size: 100%;
-		outline: none;
-		border: 1px solid $borderColor;
+    input {
+        font-size: 100%;
+        outline: none;
+        border: 1px solid $borderColor;
 
-		&.number {
-			width: 4em;
-		}
-	}
+        &.number {
+            width: 4em;
+        }
+    }
 
-	button {
-		margin-left: 1em;
-		vertical-align: middle;
-	}
+    button {
+        margin-left: 1em;
+        vertical-align: middle;
+    }
 
-	.dropdown-menu-container {
-		margin-left: 1em;
-		position: relative;
-		display: inline-block;
-		button {
-			margin: 0;
-		}
-	}
+    .dropdown-menu-container {
+        margin-left: 1em;
+        position: relative;
+        display: inline-block;
+        button {
+            margin: 0;
+        }
+    }
 
-	.dropdown-list-button {
-		&:after {
-			padding-left: 0.7em;
-			content: "\25AA";
-		}
-	}
+    .dropdown-list-button {
+        &:after {
+            padding-left: 0.7em;
+            content: "\25AA";
+        }
+    }
 
-	.dropdown-list {
-		position: absolute;
-		left: 0;
-		top: 25px;
-		width: 13em;
-		display: none;
-		border: 1px solid $borderColor;
-		background-color: $buttonColor;
+    .dropdown-list {
+        position: absolute;
+        left: 0;
+        top: 25px;
+        width: 13em;
+        display: none;
+        border: 1px solid $borderColor;
+        background-color: $buttonColor;
 
-		.menu-separator {
-			border-bottom: 1px solid $borderColor;
-			margin: 0.5em 0;
-		}
+        .menu-separator {
+            border-bottom: 1px solid $borderColor;
+            margin: 0.5em 0;
+        }
 
-		label {
-			display: block;
-			margin: 0;
-			padding: 0.6em 1em 0.5em 0.5em;
-			cursor: pointer;
+        label {
+            display: block;
+            margin: 0;
+            padding: 0.6em 1em 0.5em 0.5em;
+            cursor: pointer;
 
-			font-size: 12px;
+            font-size: 12px;
 
-			&:hover {
-				color: $linkColor;
-				background-color: $buttonHoverColor;
-			}
-		}
-	}
+            &:hover {
+                color: $linkColor;
+                background-color: $buttonHoverColor;
+            }
+        }
+    }
 
-	.info {
-		font-style: italic;
-		color: #AAA;
-	}
+    .info {
+        font-style: italic;
+        color: #AAA;
+    }
 
-	.links {
-		position: absolute;
-		right: 1em;
-		top: 10px;
-		display: inline-block;
-		text-align: right;
-	}
+    .links {
+        position: absolute;
+        right: 1em;
+        top: 10px;
+        display: inline-block;
+        text-align: right;
+    }
 
-	-moz-box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.1);
-	-webkit-box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.1);
-	box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 h1#doc-title {
-	position: absolute;
-	top: 0.15em;
-	left: 0;
-	right: 0;
-	font-size: 100%;
-	text-align: center;
-	font-weight: normal;
-	text-shadow: $h1shad;
-	line-height: 3.0;
-	z-index: -1;
+    position: absolute;
+    top: 0.15em;
+    left: 0;
+    right: 0;
+    font-size: 100%;
+    text-align: center;
+    font-weight: normal;
+    text-shadow: $h1shad;
+    line-height: 3.0;
+    z-index: -1;
 
-	span {
-		font-weight: bold;
-	}
+    span {
+        font-weight: bold;
+    }
 }
