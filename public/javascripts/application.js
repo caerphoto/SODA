@@ -221,31 +221,40 @@ $(function () {
         }, 20000);
     };
 
-    saveDocument = function () {
+    saveDocument = function (callback) {
         if (!modified()) {
-            return;
+            if (typeof callback === "function") {
+                return callback();
+            }
         }
 
         ageTimer = clearTimeout(ageTimer);
         $saving.fadeIn(100);
 
-        $.post(docPath, _({ "_method": "PUT" }).extend(currentState),
-            function (status) {
+        $.ajax({
+            url: docPath,
+            type: "PUT",
+            data: currentState,
+            success: function (status) {
                 $saving.fadeOut(100);
 
-                if (status === "SUCCESS") {
-                    savedState = currentState;
-                    savedState.lastSaved = Date.now();
-                    updateModifiedStatus();
-                    $input.focus();
+                savedState = currentState;
+                savedState.lastSaved = Date.now();
+                updateModifiedStatus();
+                $input.focus();
 
-                    resetAgeTimer();
-                    resetSaveTimer();
-                } else {
-                    alert("Unable to save document.\n\n" + status);
+                resetAgeTimer();
+                resetSaveTimer();
+
+                if (typeof callback === "function") {
+                    callback();
                 }
-
-            });
+            },
+            error: function (response) {
+                window.alert("Unable to save document.\n\n" +
+                    response.responseText);
+            }
+        });
     };
 
     changeState = function (changes) {
@@ -462,7 +471,7 @@ $(function () {
                 "-webkit-transform": "scale(" + zoom + ")",
                 "-moz-transform": "scale(" + zoom + ")",
                 "-o-transform": "scale(" + zoom + ")",
-                "-ms-transform": "scale(" + zoom + ")",
+                msTransform: "scale(" + zoom + ")",
                 "transform": "scale(" + zoom + ")"
             });
         } else {
@@ -487,6 +496,16 @@ $(function () {
             return +new Date();
         };
     }
+
+    $("#view-document").click(function (e) {
+        var link = this;
+
+        e.preventDefault();
+
+        saveDocument(function () {
+            window.location = link.href;
+        });
+    });
 
     $("#app-loading-message").remove();
 

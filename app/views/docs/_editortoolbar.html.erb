@@ -1,0 +1,161 @@
+<div id="toolbar">
+
+  <!-- Editor options -->
+  <div class="dropdown-menu-container">
+    <button id="btn-editor-options" class="dropdown-list-button">Editor Options</button>
+    <ul id="editor-options-list" class="dropdown-list dropshadow">
+      <li>
+        <label for="chk-monospace">
+          <input id="chk-monospace" type="checkbox">
+          Monospace font
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Document options -->
+  <div class="dropdown-menu-container">
+    <button id="btn-document-options" class="dropdown-list-button">Document Options</button>
+    <ul id="document-options-list" class="dropdown-list dropshadow">
+      <li>
+      <label for="chk-linebreaks" title="When enabled, a single input line break will generate an output line break (HTML <br> tag). &#13;&#13;Otherwise, single line breaks can be inserted by adding two spaces to the end of a line.">
+        <% if @doc.linebreaks %>
+          <input id="chk-linebreaks" type="checkbox" checked>
+        <% else %>
+          <input id="chk-linebreaks" type="checkbox">
+        <% end %>
+          Single line breaks
+        </label>
+      </li>
+
+      <li>
+        <label for="chk-smart-quotes">
+        <% if @doc.smartquotes %>
+          <input id="chk-smart-quotes" type="checkbox" checked>
+        <% else %>
+          <input id="chk-smart-quotes" type="checkbox">
+        <% end %>
+          Smart quotes
+        </label>
+      </li>
+
+      <li>
+        <label for="chk-smart-dashes">
+        <% if @doc.smartdashes %>
+          <input id="chk-smart-dashes" type="checkbox" checked>
+        <% else %>
+          <input id="chk-smart-dashes" type="checkbox">
+        <% end %>
+          Smart dashes
+        </label>
+      </li>
+
+      <li>
+        <label for="chk-private-doc">
+        <% if @doc.private %>
+          <input id="chk-private-doc" type="checkbox" checked>
+        <% else %>
+          <input id="chk-private-doc" type="checkbox">
+        <% end %>
+          Private
+        </label>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Preview options -->
+  <div class="dropdown-menu-container">
+    <button id="btn-display-options" class="dropdown-list-button">Preview Options</button>
+    <ul id="display-options-list" class="dropdown-list dropshadow">
+      <li>
+        <label for="rdo-preview-off">
+          <input id="rdo-preview-off" type="radio" name="preview-type">
+          Off
+        </label>
+
+        <label for="rdo-preview-print">
+          <input id="rdo-preview-print" type="radio" name="preview-type" checked>
+          Normal
+        </label>
+
+        <label for="rdo-preview-html">
+          <input id="rdo-preview-html" type="radio" name="preview-type">
+          HTML
+        </label>
+      </li>
+
+      <li class="menu-separator"></li>
+
+      <li>
+        <label for="rdo-actual-size">
+          <input id="rdo-actual-size" type="radio" name="preview-zoom">
+          Actual size
+        </label>
+      </li>
+
+      <li id="scale-preview-option">
+        <label for="rdo-scale-preview">
+          <input id="rdo-scale-preview" type="radio" name="preview-zoom">
+          Scale to fit
+        </label>
+      </li>
+
+      <li>
+        <label for="rdo-fit-width">
+          <input id="rdo-fit-width" type="radio" name="preview-zoom" checked>
+          Adjust width only
+        </label>
+      </li>
+
+      <li class="menu-separator"></li>
+
+      <li>
+        <label for="chk-page-margins">
+          <input id="chk-page-margins" type="checkbox" checked>
+          Margins
+        </label>
+      </li>
+
+    </ul>
+  </div>
+
+<!--[if lt IE 9]>
+<script>
+  (function () {
+    document.getElementById("scale-preview-option").className += " hidden";
+  }());
+</script>
+<![endif]-->
+
+
+
+  <!-- style options -->
+  <button id="btn-adjust-styles" disabled>Adjust Styles&hellip;</button>
+
+  <!-- Stuff not implemented yet:
+  <label for="txt-base-font">
+    Paragraph font:
+    <input id="txt-base-font" type="text" value="Palatino">
+  </label>
+
+  <label for="txt-base-font-size">
+    <input id="txt-base-font-size" class="number" type="text" value="12">
+    pt
+  </label>
+
+  <label for="txt-heading-font">
+    Heading font:
+    <input id="txt-heading-font" type="text" value="Lucida Grande">
+  </label>
+  -->
+
+  <!-- title and save -->
+  <button id="btn-save" disabled>Save</button>
+  <label class="info" id="last-saved">Last saved <span id="doc-age">just
+    now.</span></label>
+
+  <div class="links">
+    <%= link_to "View document", doc_path(@doc), :id => "view-document" %>
+  </div>
+</div>
+
