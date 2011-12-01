@@ -1,4 +1,4 @@
-/*global $, _, Showdown, window, editingDocument */
+/*global $, _, Showdown, window */
 
 $(function () {
     "use strict";
@@ -57,9 +57,11 @@ $(function () {
         docPath = $("#doc-path").val(),
         previewVisible = true,
         sizingEditor = false, sizeOffset,
+
+        editingDocument = $editorBox.length > 0,
         previewMargin =
             $previewScroller.outerWidth(true) - $previewScroller.outerWidth(),
-        editorMargin = $editorBox.offset().left,
+        editorMargin = editingDocument ? $editorBox.offset().left : 0,
         editorPadding = $editorBox.innerWidth() - $editorBox.width(),
 
         PAGE_WIDTH = 210, // assume A4 paper size for now
@@ -89,6 +91,8 @@ $(function () {
     };
 
     updatePreview = function () {
+        // Updates the content of the preview.
+
         var newText, HTML, i,
             codeblock = /(<code(?:[^>]*)>[^<]*)<\/code>/g,
             codeblocks = [], mlCodeblocks = [], newlines = [],
@@ -339,58 +343,68 @@ $(function () {
         updatePreview();
     });
 
-    $('input[name="preview-zoom"]').change(function () {
-        $(window).resize();
-    });
+    $("#app-loading-message").remove();
+    updatePreview();
+
+    // No need to set up any more even handlers etc. if the document is in View
+    // mode.
+    if (!editingDocument) {
+        return;
+    }
 
     $chkPageMargins.change(function () {
         $preview.toggleClass("no-margins", !$chkPageMargins.attr("checked"));
     });
 
     $chkLinebreaks.change(function () {
-        changeState({ linebreaks: $chkLinebreaks.attr("checked") });
+        //changeState({ linebreaks: $chkLinebreaks.attr("checked") });
+        changeState({ linebreaks: this.checked });
         updatePreview();
     });
 
     $chkSmartQuotes.change(function () {
-        changeState({ smartQuotes: $chkSmartQuotes.attr("checked") });
+        //changeState({ smartQuotes: $chkSmartQuotes.attr("checked") });
+        changeState({ smartQuotes: this.checked });
         updatePreview();
     });
 
     $chkSmartDashes.change(function () {
-        changeState({ smartDashes: $chkSmartDashes.attr("checked") });
+        //changeState({ smartDashes: $chkSmartDashes.attr("checked") });
+        changeState({ smartDashes: this.checked });
         updatePreview();
     });
 
     $chkPrivateDoc.change(function () {
-        changeState({ privateDoc: $chkPrivateDoc.attr("checked") });
+        //changeState({ privateDoc: $chkPrivateDoc.attr("checked") });
+        changeState({ privateDoc: this.checked });
     });
 
     $chkMonospace.change(function () {
-        $input.toggleClass("monospace", $chkMonospace.attr("checked"));
+        //$input.toggleClass("monospace", $chkMonospace.attr("checked"));
+        $input.toggleClass("monospace", this.checked);
     });
 
-    $txtBaseFont.change(function () {
-        $pages.css({ fontFamily: $txtBaseFont.val() });
-    });
+    //$txtBaseFont.change(function () {
+        //$pages.css({ fontFamily: $txtBaseFont.val() });
+    //});
 
-    $txtBaseFontSize.change(function () {
-        $pages.css({ "font-size": $txtBaseFontSize.val() + "pt" });
-    });
+    //$txtBaseFontSize.change(function () {
+        //$pages.css({ "font-size": $txtBaseFontSize.val() + "pt" });
+    //});
 
-    $txtHeadingFont.change(function () {
-        var styleElement, $styleElement = $("#heading-styles");
+    //$txtHeadingFont.change(function () {
+        //var styleElement, $styleElement = $("#heading-styles");
 
-        if ($styleElement.length === 0) {
-            styleElement = document.createElement("style");
-            $styleElement = $(styleElement);
-            $styleElement.appendTo(document.head);
-        }
+        //if ($styleElement.length === 0) {
+            //styleElement = document.createElement("style");
+            //$styleElement = $(styleElement);
+            //$styleElement.appendTo(document.head);
+        //}
 
-        $styleElement.html("h1,h2,h3,h4,h5,h6 { font-family: '" +
-            $txtHeadingFont.val() + "' !important; }");
+        //$styleElement.html("h1,h2,h3,h4,h5,h6 { font-family: '" +
+            //$txtHeadingFont.val() + "' !important; }");
 
-    });
+    //});
 
     $docTitle.keyup(function () {
         changeState({ title: $docTitle.val() });
@@ -493,7 +507,7 @@ $(function () {
                 "-webkit-transform": "",
                 "-moz-transform": "",
                 "-o-transform": "",
-                "-ms-transform": "",
+                msTransform: "",
                 "transform": ""
             });
         }
@@ -501,12 +515,9 @@ $(function () {
         $zoomLevel.text(Math.round(zoom * 100));
     });
 
-    // IE8 doesn't have a now() method.
-    if (!Date.now) {
-        Date.now = function now() {
-            return +new Date();
-        };
-    }
+    $('input[name="preview-zoom"]').change(function () {
+         $(window).resize();
+     });
 
     $("#view-document").click(function (e) {
         var link = this;
@@ -518,9 +529,14 @@ $(function () {
         });
     });
 
-    $("#app-loading-message").remove();
+    // IE8 doesn't have a now() method.
+    if (!Date.now) {
+        Date.now = function now() {
+            return +new Date();
+        };
+    }
 
-    if (docPath) {
+    if (docPath && editingDocument) {
         if (!$docTitle.val()) {
             $docTitle.focus();
         } else {
@@ -544,7 +560,7 @@ $(function () {
         resetAgeTimer();
         resetSaveTimer();
     }
-    updatePreview();
 
     $(window).resize();
+    updatePreview();
 });
