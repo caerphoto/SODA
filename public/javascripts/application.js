@@ -56,12 +56,16 @@ $(function () {
         updateTimer, updateSpeed = 200,
         docPath = $("#doc-path").val(),
         previewVisible = true,
-        sizingEditor = false, sizeOffset, previewMargin =
+        sizingEditor = false, sizeOffset,
+        previewMargin =
             $previewScroller.outerWidth(true) - $previewScroller.outerWidth(),
+        editorMargin = $editorBox.offset().left,
+        editorPadding = $editorBox.innerWidth() - $editorBox.width(),
 
         PAGE_WIDTH = 210, // assume A4 paper size for now
         PAGE_HEIGHT = 297,
-        SAVE_INTERVAL = 1000 * 60 * 2,
+        DEFAULT_SAVE_INTERVAL = 1000 * 60 * 2,
+        SAVE_INTERVAL = DEFAULT_SAVE_INTERVAL,
 
         zoom = 1, PPI = 96, PPMM = PPI / 25.4,
 
@@ -216,9 +220,11 @@ $(function () {
 
     resetSaveTimer = function () {
         clearTimeout(saveTimer);
+        SAVE_INTERVAL = DEFAULT_SAVE_INTERVAL;
+
         saveTimer = setInterval(function () {
             saveDocument();
-        }, 20000);
+        }, SAVE_INTERVAL);
     };
 
     saveDocument = function (callback) {
@@ -253,6 +259,7 @@ $(function () {
             error: function (response) {
                 window.alert("Unable to save document.\n\n" +
                     response.responseText);
+                SAVE_INTERVAL *= 1.5; // keep waiting a bit longer each time
             }
         });
     };
@@ -426,7 +433,7 @@ $(function () {
 
     $editorSizer.mousedown(function (e) {
         sizingEditor = true;
-        sizeOffset = $editorSizer.width() - 
+        sizeOffset = $editorSizer.width() -
             (e.pageX - $editorSizer.offset().left) + 1;
 
         $editorSizer.addClass("sizing");
@@ -435,22 +442,26 @@ $(function () {
     });
 
     $html.mousemove(function (e) {
-        var editorRight, previewLeft;
+        var editorWidth, previewLeft;
 
         if (!sizingEditor) {
             return;
         }
 
-        editorRight = $(document).width() - e.pageX - sizeOffset;
-        previewLeft = e.pageX + previewMargin - sizeOffset - 10;
+        e.preventDefault();
+
+        editorWidth = e.pageX - editorMargin - editorPadding + sizeOffset - 2;
+        previewLeft = e.pageX + previewMargin + sizeOffset - 20;
 
         $editorBox.css({
-            right: editorRight
+            right: "auto",
+            width: editorWidth
         });
 
         $previewScroller.css({
             left: previewLeft
         });
+
     }).mouseup(function () {
         if (sizingEditor) {
             $(window).resize();
