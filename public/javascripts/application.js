@@ -91,6 +91,14 @@ $(function () {
         return mm * zoom * PPMM;
     };
 
+    // IE8 doesn't have a now() method.
+    if (!Date.now) {
+        Date.now = function now() {
+            return +new Date();
+        };
+    }
+
+
     updatePreview = function () {
         // Updates the content of the preview.
 
@@ -533,13 +541,6 @@ $(function () {
             window.location = link.href;
         });
     });
-
-    // IE8 doesn't have a now() method.
-    if (!Date.now) {
-        Date.now = function now() {
-            return +new Date();
-        };
-    }
 
     if (docPath && editingDocument) {
         if (!$docTitle.val()) {
