@@ -19,44 +19,29 @@
     <ul id="document-options-list" class="dropdown-list dropshadow">
       <li>
       <label for="chk-linebreaks" title="When enabled, a single input line break will generate an output line break (HTML <br> tag). &#13;&#13;Otherwise, single line breaks can be inserted by adding two spaces to the end of a line.">
-        <% if @doc.linebreaks %>
-          <input id="chk-linebreaks" type="checkbox" checked>
-        <% else %>
-          <input id="chk-linebreaks" type="checkbox">
-        <% end %>
+          <input id="chk-linebreaks" type="checkbox"
+            <%= " checked" if @doc.linebreaks %>>
           Single line breaks
         </label>
       </li>
 
       <li>
         <label for="chk-smart-quotes">
-        <% if @doc.smartquotes %>
-          <input id="chk-smart-quotes" type="checkbox" checked>
-        <% else %>
-          <input id="chk-smart-quotes" type="checkbox">
-        <% end %>
+          <input id="chk-smart-quotes" type="checkbox"<%= " checked" if @doc.smartquotes %>>
           Smart quotes
         </label>
       </li>
 
       <li>
         <label for="chk-smart-dashes">
-        <% if @doc.smartdashes %>
-          <input id="chk-smart-dashes" type="checkbox" checked>
-        <% else %>
-          <input id="chk-smart-dashes" type="checkbox">
-        <% end %>
+          <input id="chk-smart-dashes" type="checkbox"<%= " checked" if @doc.smartdashes %>>
           Smart dashes
         </label>
       </li>
 
       <li>
         <label for="chk-private-doc">
-        <% if @doc.private %>
-          <input id="chk-private-doc" type="checkbox" checked>
-        <% else %>
-          <input id="chk-private-doc" type="checkbox">
-        <% end %>
+          <input id="chk-private-doc" type="checkbox"<%= " checked" if @doc.private %>>
           Private
         </label>
       </li>

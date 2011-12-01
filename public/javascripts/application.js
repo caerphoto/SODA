@@ -20,6 +20,7 @@ $(function () {
         $chkLinebreaks = $("#chk-linebreaks"),
         $chkSmartQuotes = $("#chk-smart-quotes"),
         $chkSmartDashes = $("#chk-smart-dashes"),
+        $chkSmartEllipses = $("#chk-smart-ellipses"),
         $chkPrivateDoc = $("#chk-private-doc"),
 
         $rdoPreviewOff = $("#rdo-preview-off"),
@@ -205,6 +206,10 @@ $(function () {
 
         }
 
+        // This isn't optional at the moment. Sorry. You'll have proper ellipses
+        // in your document whether you like it or not.
+        newText = newText.replace(/\.{3}/g, "&hellip;");
+
         restoreCodeblocks();
 
         HTML = showdown.makeHtml(newText);
@@ -357,30 +362,30 @@ $(function () {
     });
 
     $chkLinebreaks.change(function () {
-        //changeState({ linebreaks: $chkLinebreaks.attr("checked") });
         changeState({ linebreaks: this.checked });
         updatePreview();
     });
 
     $chkSmartQuotes.change(function () {
-        //changeState({ smartQuotes: $chkSmartQuotes.attr("checked") });
         changeState({ smartQuotes: this.checked });
         updatePreview();
     });
 
     $chkSmartDashes.change(function () {
-        //changeState({ smartDashes: $chkSmartDashes.attr("checked") });
         changeState({ smartDashes: this.checked });
         updatePreview();
     });
 
+    $chkSmartEllipses.change(function () {
+        changeState({ smartEllipses: this.checked });
+        updatePreview();
+    });
+
     $chkPrivateDoc.change(function () {
-        //changeState({ privateDoc: $chkPrivateDoc.attr("checked") });
         changeState({ privateDoc: this.checked });
     });
 
     $chkMonospace.change(function () {
-        //$input.toggleClass("monospace", $chkMonospace.attr("checked"));
         $input.toggleClass("monospace", this.checked);
     });
 
