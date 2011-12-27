@@ -1,62 +1,87 @@
 <div id="main" class="dropshadow">
-	<h1>Your Saved Documents</h1>
-	<%= button_to "New Document", docs_path, :method => "POST" %>
+  <h1>Your Saved Documents</h1>
+  <%= button_to "New Document", docs_path, :method => "POST" %>
 
 <% if @docs %>
-	<table class="doc-list">
-		<thead>
-			<tr>
-				<th class="doc-name sortable">Document Name</th>
-				<th class="doc-controls"></th>
-				<th class="doc-date sortable">Last Modified</th>
-			</tr>
-		</thead>
-		<tbody>
-		<% @docs.each do |doc| %>
-			<tr>
-				<td class="doc-name"><%= doc.title || "<untitled document>" %></td>
-				<td class="doc-controls"><%= link_to "edit", edit_doc_path(doc) %> |
-				<%= link_to "view", doc_path(doc) %> |
-				<%= link_to "delete", delete_doc_path(doc), :class => "delete-link"  %>
-				</td>
-				<td class="doc-date"><%= doc.updated_at %></td>
-			</tr>
-		<% end %>
-		</tbody>
-	</table>
+  <table id="docs" class="doc-list">
+    <thead>
+      <tr>
+        <th class="name">Document Name</th>
+        <th class="controls"></th>
+        <th class="date">Last Modified</th>
+      </tr>
+    </thead>
+    <tbody id="docs">
+    <% @docs.each do |doc| %>
+      <tr>
+        <td class="name"><%= doc.title || "<untitled document>" %></td>
+        <td class="controls"><%= link_to "edit", edit_doc_path(doc) %> |
+        <%= link_to "view", doc_path(doc) %> |
+        <%= link_to "delete", delete_doc_path(doc), :class => "delete-link"  %>
+        </td>
+        <td class="date"><%= doc.updated_at %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 
 <% else %>
 
-	<% if user_signed_in? %>
-		<p>You do not have any saved documents. Would you like to create one?</p>
-	<% else %>
-		<p>Only <%= link_to "registered", new_user_registration_path %> users can
-		see a list of documents they have created.</p>
+  <% if user_signed_in? %>
+    <p>You do not have any saved documents. Would you like to create one?</p>
+  <% else %>
+    <p>Only <%= link_to "registered", new_user_registration_path %> users can
+    see a list of documents they have created.</p>
 
-		<p>You can still save documents without registering, but they will be
-		publicly visible and you will need to make a note of their URLs.</p>
-	<% end %>
+    <p>You can still save documents without registering, but they will be
+    publicly visible and you will need to make a note of their URLs.</p>
+  <% end %>
 <% end %>
 
-	<%= button_to "New Document", docs_path, :method => "POST" %>
+  <%= button_to "New Document", docs_path, :method => "POST" %>
 
 </div>
 
 <% if Rails.env.production? %>
-	<%= javascript_include_tag "all.js" %>
+  <%= javascript_include_tag "all.js" %>
 <% else %>
-	<%=  javascript_include_tag :libs %>
+  <%=  javascript_include_tag :libs %>
 <% end %>
 
-<script>
-	var SODA;
-	if (!SODA) {
-		SODA = {};
-	}
-
-	SODA.doc_list = <%= raw @docs_json.to_json %>;
-
-	$(function () {
-		$("<script src='javascripts/file-list.js'>").insertBefore($("script").first());
-	});
+<script type="text/mustache" id="docs-template">
+  <thead>
+    <tr>
+      <th class="name">Document Name</th>
+      <th class="controls"></th>
+      <th class="date">Last Modified</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#documents}}
+    <tr>
+      <td class="name">
+        <a href="{{edit_path}}">{{name}}</a>
+      </td>
+      <td class="controls">
+        <a href="{{view_path}}">view</a> &middot;
+        <a href="{{delete_path}}" class="delete-link">delete</a>
+      </td>
+      <td class="date">{{date_str}}</td>
+    </tr>
+  {{/documents}}
+  </tbody>
 </script>
+
+<script>
+  var SODA;
+  if (!SODA) {
+    SODA = {};
+  }
+
+  SODA.doc_list = <%= raw @docs_json.to_json %>;
+
+  $(function () {
+    $("<script src='/javascripts/file-list.js'>").insertBefore($("script").first());
+  });
+</script>
+

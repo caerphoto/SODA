@@ -89,14 +89,49 @@ $bodyFontFamily: "PT Serif", "Georgia", serif;
     }
 
     th, td {
-        padding: 0.5em 0;
+        padding: 0.5em 1em;
     }
 
-    .doc-name {
+    &.sortable {
+        th.name, th.date {
+            cursor: pointer;
+            position: relative;
+
+            &:hover {
+                background-color: #DDD;
+            }
+
+            &::after {
+                display: block;
+                position: absolute;
+                right: 0.5em;
+                top: 0.5em;
+                //padding-left: 1em;
+            }
+        }
+    }
+
+    &.sort-name .name,
+    &.sort-date .date {
+        background-color: #F0F0F0;
+    }
+
+
+    &.sort-name th.name::after,
+    &.sort-date th.date::after {
+        content: "\2191";
+    }
+
+    &.sort-name.desc th.name::after,
+    &.sort-date.desc th.date::after {
+        content: "\2193";
+    }
+
+    .name {
         //width: 20em;
     }
 
-    .doc-controls {
+    .controls {
         width: 10em;
     }
 
@@ -104,8 +139,14 @@ $bodyFontFamily: "PT Serif", "Georgia", serif;
         font-size: 60%;
     }
 
-    .doc-date {
+    .date {
         width: 12em;
+    }
+}
+
+@media screen and (max-device-width: 480px) {
+    .doc-list .controls {
+        display: none;
     }
 }
 
@@ -192,4 +233,43 @@ $bodyFontFamily: "PT Serif", "Georgia", serif;
 
 .hidden {
     display: none;
+}
+
+@media print {
+    #toolbar, #navbar, #editor {
+        display: none;
+    }
+
+    #preview-scroller, #preview, .paper, .page, .view-only {
+        position: static;
+        border: none !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        color: #000;
+    }
+
+    .page {
+        font-size: 10pt !important;
+    }
+
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+
+    .page > h1:first-child,
+    .page > h2:first-child,
+    .page > h3:first-child,
+    .page > p:first-child {
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    @page {
+        margin-left: 2cm;
+        margin-right: 2cm;
+        margin-top: 2cm;
+        margin-bottom: 2cm;
+    }
 }
