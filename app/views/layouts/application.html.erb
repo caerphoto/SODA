@@ -22,7 +22,8 @@
 
     <div id="user-panel-mobile">
     <% if user_signed_in? %>
-      <%= link_to "your docs", docs_path %>
+      <%= link_to "your docs", docs_path %> |
+      <%= link_to "sign out", destroy_user_session_path %>
     <% else %>
       <%= link_to "sign in", new_user_session_path %>
     <% end %>
