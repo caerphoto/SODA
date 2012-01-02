@@ -68,22 +68,15 @@
 <% end %>
 
 <script type="text/javascript">
-  // Lazy loading of main application JS.
-(function () {
-  var se = document.createElement("script");
-
   // Allow sending of non-GET AJAX requests.
-  $(document).ajaxSend(function(e, xhr, options) {
+  $(document).ajaxSend(function (e, xhr, options) {
     var token = $("meta[name='csrf-token']").attr("content");
     xhr.setRequestHeader("X-CSRF-Token", token);
   });
-
-  <% if Rails.env.production? %>
-    se.src = "/javascripts/application-min.js";
-  <% else %>
-    se.src = "/javascripts/application.js";
-<% end %>
-
-  document.getElementsByTagName("head")[0].appendChild(se);
-}());
 </script>
+
+<% if Rails.env.production? %>
+<script src="/javascripts/application-min.js"></script>
+<% else %>
+<script src="/javascripts/application.js"></script>
+<% end %>

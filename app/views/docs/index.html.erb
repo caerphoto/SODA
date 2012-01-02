@@ -14,10 +14,12 @@
     <tbody id="docs">
     <% @docs.each do |doc| %>
       <tr>
-        <td class="name"><%= doc.title || "<untitled document>" %></td>
-        <td class="controls"><%= link_to "edit", edit_doc_path(doc) %> |
-        <%= link_to "view", doc_path(doc) %> |
-        <%= link_to "delete", delete_doc_path(doc), :class => "delete-link"  %>
+        <td class="name">
+          <%= link_to doc.title || "<untitled document>", doc_path(doc) %>
+        </td>
+        <td class="controls">
+          <%= link_to "edit", edit_doc_path(doc) %> |
+          <%= link_to "delete", delete_doc_path(doc), :class => "delete-link"  %>
         </td>
         <td class="date"><%= doc.updated_at %></td>
       </tr>
@@ -99,8 +101,9 @@
 
   SODA.doc_list = <%= raw @docs_json.to_json %>;
 
-  $(function () {
-    $("<script src='/javascripts/file-list.js'>").insertBefore($("script").first());
-  });
+  //$(function () {
+    //$("<script src='/javascripts/file-list.js'>").insertBefore($("script").first());
+  //});
 </script>
 
+<script src="/javascripts/file-list.js"></script>

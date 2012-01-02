@@ -69,7 +69,7 @@ $bodyFontFamily: "PT Serif", "Georgia", serif;
     margin: 1em 0;
     border-collapse: collapse;
     width: auto;
-    table-layout: fixed;
+    table-layout: auto;
     width: 100%;
 
     thead {
@@ -132,7 +132,7 @@ $bodyFontFamily: "PT Serif", "Georgia", serif;
     }
 
     .controls {
-        width: 10em;
+        //width: 10em;
     }
 
     .delete-link {
@@ -140,8 +140,9 @@ $bodyFontFamily: "PT Serif", "Georgia", serif;
     }
 
     .date {
-        max-width: 12em;
+        width: 7em;
     }
+
 }
 
 @media screen and (max-device-width: 480px) {
@@ -149,12 +150,19 @@ $bodyFontFamily: "PT Serif", "Georgia", serif;
         padding: 0.5em;
     }
 
-    .doc-list .controls {
-        display: none;
-    }
+    .doc-list {
+        .name {
+            font-size: 0.8em;
+        }
 
-    .doc-list .date {
-        width: 7em;
+        .controls {
+            display: none;
+        }
+
+        .date {
+            width: 6em;
+            font-size: 0.7em;
+        }
     }
 }
 

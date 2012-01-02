@@ -113,7 +113,21 @@ SODA.fileList = (function () {
 
     return {
         init: function (options) {
-            var i, l, d, sorting;
+            var i, l, d, sorting,
+            months = [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec"
+            ];
 
             options = options || {};
 
@@ -132,8 +146,14 @@ SODA.fileList = (function () {
 
             for (i = 0, l = opt.documents.length; i < l; i += 1) {
                 d = opt.documents[i];
-                d.date_str = d.date;
+
+                d.date_str = (d.date || "").split("/");
+
+                d.date_str[1] = months[parseInt(d.date_str[1], 10) - 1];
+                d.date_str = d.date_str.reverse().join(" ");
+
                 d.date = new Date(d.date);
+                d.date = +d.date;
             }
 
             sortItems();
