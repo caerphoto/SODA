@@ -140,13 +140,21 @@ $bodyFontFamily: "PT Serif", "Georgia", serif;
     }
 
     .date {
-        width: 12em;
+        max-width: 12em;
     }
 }
 
 @media screen and (max-device-width: 480px) {
+    #main {
+        padding: 0.5em;
+    }
+
     .doc-list .controls {
         display: none;
+    }
+
+    .doc-list .date {
+        width: 7em;
     }
 }
 
@@ -236,6 +244,14 @@ $bodyFontFamily: "PT Serif", "Georgia", serif;
 }
 
 @media print {
+    // Works in Firefox 8, but not Chrome 16.
+    // Disabled for now as it should be made optional in the app UI.
+    //body {
+        //-webkit-column-count: 2;
+        //-moz-column-count: 2;
+        //column-count: 2;
+    //}
+
     #toolbar, #navbar, #editor {
         display: none;
     }

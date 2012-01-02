@@ -7,7 +7,9 @@ if (!SODA) {
 SODA.fileList = (function () {
     "use strict";
 
-    var opt = {}, by, humanSize, sortItems, setupSorting, renderTable;
+    var opt = {},
+        $window = $(window),
+        by, humanSize, sortItems, setupSorting, renderTable;
 
     by = {
         name: function (a, b) {
@@ -97,7 +99,12 @@ SODA.fileList = (function () {
 
         sort_by_name = opt.sort_by === "name";
 
-        opt.element.innerHTML = Mustache.to_html(opt.template, view);
+        if ($window.width() <= 480) {
+            opt.element.innerHTML = Mustache.to_html(opt.narrow_template, view);
+        } else {
+            opt.element.innerHTML = Mustache.to_html(opt.template, view);
+        }
+
         opt.$element.toggleClass("sort-name", sort_by_name);
         opt.$element.toggleClass("sort-date", !sort_by_name);
         opt.$element.toggleClass("desc", opt.desc);
@@ -121,6 +128,7 @@ SODA.fileList = (function () {
             opt.element = options.element;
             opt.$element = $(opt.element);
             opt.template = options.template || "";
+            opt.narrow_template = options.narrow_template || "";
 
             for (i = 0, l = opt.documents.length; i < l; i += 1) {
                 d = opt.documents[i];
@@ -150,5 +158,6 @@ SODA.fileList.init({
     documents: SODA.doc_list,
     sorting: window.localStorage && window.localStorage.getItem("sorting"),
     element: document.getElementById("docs"),
-    template: document.getElementById("docs-template").innerHTML
+    template: document.getElementById("docs-template").innerHTML,
+    narrow_template: document.getElementById("docs-template-narrow").innerHTML
 });

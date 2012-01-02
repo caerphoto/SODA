@@ -44,9 +44,22 @@
     z-index: -1; // links are 'behind' other stuff on the bar
 }
 
-#user-panel {
+#user-panel, #user-panel-mobile {
     position: absolute;
     top: 0;
     right: 0;
 }
 
+#user-panel-mobile {
+    display: none;
+}
+
+@media screen and (max-device-width: 480px) {
+    #center-links, form.button_to {
+        display: none;
+    }
+
+    #user-panel-mobile {
+        display: block;
+    }
+}

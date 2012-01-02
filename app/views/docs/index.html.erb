@@ -72,6 +72,25 @@
   </tbody>
 </script>
 
+<script type="text/mustache" id="docs-template-narrow">
+  <thead>
+    <tr>
+      <th class="name">Name</th>
+      <th class="date">Modified</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#documents}}
+    <tr>
+      <td class="name">
+        <a href="{{view_path}}">{{name}}</a>
+      </td>
+      <td class="date">{{date_str}}</td>
+    </tr>
+  {{/documents}}
+  </tbody>
+</script>
+
 <script>
   var SODA;
   if (!SODA) {
