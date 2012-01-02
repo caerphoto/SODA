@@ -4,27 +4,15 @@
 
 <% if @docs %>
   <table id="docs" class="doc-list">
-    <thead>
-      <tr>
-        <th class="name">Document Name</th>
-        <th class="controls"></th>
-        <th class="date">Last Modified</th>
-      </tr>
-    </thead>
-    <tbody id="docs">
-    <% @docs.each do |doc| %>
-      <tr>
-        <td class="name">
-          <%= link_to doc.title || "<untitled document>", doc_path(doc) %>
-        </td>
-        <td class="controls">
-          <%= link_to "edit", edit_doc_path(doc) %> |
-          <%= link_to "delete", delete_doc_path(doc), :class => "delete-link"  %>
-        </td>
-        <td class="date"><%= doc.updated_at %></td>
-      </tr>
-    <% end %>
-    </tbody>
+    <noscript>
+      <tbody>
+        <tr>
+          <td>
+            <p>SODA requires JavaScript to function, but it appears to be disabled in your browser.</p>
+          </td>
+        </tr>
+      </tbody>
+    </noscript>
   </table>
 
 <% else %>
@@ -100,10 +88,6 @@
   }
 
   SODA.doc_list = <%= raw @docs_json.to_json %>;
-
-  //$(function () {
-    //$("<script src='/javascripts/file-list.js'>").insertBefore($("script").first());
-  //});
 </script>
 
 <script src="/javascripts/file-list.js"></script>
