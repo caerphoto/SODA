@@ -104,7 +104,7 @@ $(function () {
 
         var newText, HTML, i,
             codeblock = /(<code(?:[^>]*)>[^<]*)<\/code>/g,
-            codeblocks = [], mlCodeblocks = [], newlines = [],
+            codeblocks = [], fCodeblocks = [], mlCodeblocks = [], newlines = [],
             HTMLView = $rdoPreviewHTML.attr("checked"),
             updateStart,
             extractCodeblocks, restoreCodeblocks;
@@ -119,6 +119,25 @@ $(function () {
             // Encode tildes so we can use them as escape characters.
             newText = newText.replace(/~/, "~T");
 
+            // Multi-line code blocks
+            fCodeblocks = [];
+            i = -1;
+            newText = newText.replace(/```((?:.|\n)+?)```/g,
+            function (wholeMatch, code) {
+                i += 1;
+                fCodeblocks[i] = "```" + code + "```";
+                return "~F" + i;
+            });
+
+            mlCodeblocks = [];
+            i = -1;
+            newText = newText.replace(/((\n+([ ]{4}|\t).+)+)/g,
+            function (wholeMatch, code) {
+                i += 1;
+                mlCodeblocks[i] = "    " + code;
+                return "~M" + i;
+            });
+
             // Inline code blocks
             codeblocks = [];
             i = -1;
@@ -127,23 +146,19 @@ $(function () {
                 codeblocks[i] = arguments[1];
                 return "~C" + i;
             });
-
-            // Multi-line code blocks
-            mlCodeblocks = [];
-            i = -1;
-            newText = newText.replace(/((\n+( {4}|\t).+)+)/g, function () {
-                i += 1;
-                mlCodeblocks[i] = arguments[1];
-                return "~M" + i;
-            });
-
         };
 
         restoreCodeblocks = function () {
             i = -1;
+            newText = newText.replace(/~F\d{1,4}[~]?/g, function () {
+                i += 1;
+                return  fCodeblocks[i];
+            });
+
+            i = -1;
             newText = newText.replace(/~M\d{1,4}[~]?/g, function () {
                 i += 1;
-                return "    " + mlCodeblocks[i];
+                return  mlCodeblocks[i];
             });
 
             i = -1;
