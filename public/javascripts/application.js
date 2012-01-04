@@ -67,7 +67,7 @@ $(function () {
 
         PAGE_WIDTH = 210, // assume A4 paper size for now
         PAGE_HEIGHT = 297,
-        DEFAULT_SAVE_INTERVAL = 1000 * 60 * 2,
+        DEFAULT_SAVE_INTERVAL = 1000 * 30,
         SAVE_INTERVAL = DEFAULT_SAVE_INTERVAL,
 
         zoom = 1, PPI = 96, PPMM = PPI / 25.4,
