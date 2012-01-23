@@ -14,137 +14,67 @@
   <a href="http://daringfireball.net/projects/markdown/">Markdown</a>. The
   styles are defined for the whole document, creating a consistent look.</p>
 
-<!--  <p id="try-demo">
-<%= link_to "Create a document", docs_path, :method => "POST" %></p>-->
+  <h2>Screenshots</h2>
+
+  <ul class="screenshot_thumbs">
+    <li>
+      <span class="thumb_caption">Editor in &lsquo;Preview&rsquo; mode</span>
+      <a href="http://caerphoto.com/screenshots/soda_screenshot_.editor-preview.png">
+        <img src="http://caerphoto.com/screenshots/thumb_soda_screenshot_editor-preview.jpg">
+      </a>
+    </li><li>
+      <span class="thumb_caption">Editor in &lsquo;HTML&rsquo; mode</span>
+      <a href="http://caerphoto.com/screenshots/soda_screenshot_editor-html.png">
+        <img src="http://caerphoto.com/screenshots/thumb_soda_screenshot_editor-html.jpg">
+      </a>
+    </li><li>
+      <span class="thumb_caption">Viewer in &lsquo;Preview&rsquo; mode</span>
+      <a href="http://caerphoto.com/screenshots/soda_screenshot_view.png">
+        <img src="http://caerphoto.com/screenshots/thumb_soda_screenshot_view.jpg">
+      </a>
+    </li><li>
+      <span class="thumb_caption">Viewer in &lsquo;HTML&rsquo; mode</span>
+      <a href="http://caerphoto.com/screenshots/soda_screenshot_preview-html.png">
+        <img src="http://caerphoto.com/screenshots/thumb_soda_screenshot_preview-html.jpg">
+      </a>
+    </li><li>
+      <span class="thumb_caption">Viewer mobile</span>
+      <a href="http://caerphoto.com/screenshots/soda_screenshot_view-iphone.png">
+        <img src="http://caerphoto.com/screenshots/thumb_soda_screenshot_view-iphone.jpg">
+      </a>
+    </li><li>
+      <span class="thumb_caption">Documents list</span>
+      <a href="http://caerphoto.com/screenshots/soda_screenshot_docs.png">
+        <img src="http://caerphoto.com/screenshots/thumb_soda_screenshot_docs.jpg">
+      </a>
+    </li><li>
+      <span class="thumb_caption">Documents list mobile</span>
+      <a href="http://caerphoto.com/screenshots/soda_screenshot_docs-iphone.png">
+        <img src="http://caerphoto.com/screenshots/thumb_soda_screenshot_docs-iphone.jpg">
+      </a>
+    </li>
+
+  </ul>
 
   <hr>
 
   <p class="first">
-  Note: at present only <%= link_to "registered", new_user_registration_path %> users
-  are able to create and save documents. This will not always be the case.</p>
-
-  <p>Once registered, click the 'Your saved documents' link at the top to get
-  started.</p>
+  To get started, <%= link_to "register", new_user_registration_path %> and
+  click the New Document button!</p>
 
   <hr>
 
-  <h2>Changelog</h2>
-  <p>This is not a complete history (see the <a
-    href="https://github.com/caerphoto/SODA">GitHub</a> page for that), just a
-  thing I decided to add part-way through development.</p>
+  <h2>Last Update</h2>
 
-  <h3>2nd January 2012</h3>
+  <h3>23rd January 2012</h3>
   <ul class="basic">
-    <li>Various improvements to presentation on small screens &ndash; a
-    simplified documents list, and a more mobile-optimised document
-    display.</li>
-    <li>Greatly improved printed output &ndash; when printed, documents should
-    now look pretty much like they do in the preview (i.e. without all the page
-    navigation stuff).</li>
+    <li>Fixed sort direction arrows on documents list table in Firefox. The issue was caused by Firefox not allowing <code>position: relative</code> on table cells.</li>
+    <li>Updated front page with screenshots.</li>
   </ul>
 
-  <h3>29th November 2011</h3>
-  <ul class="basic">
-    <li>Discovered the PT Sans and PT Serif fonts on Google Fonts, and decided
-      to use them.</li>
-    <li>After signing in, users are now redirected to their documents list,
-      rather than the site&rsquo;s home page. At last.</li>
-    <li>Added a new &lsquo;fit width only&rsquo; Preview option.</li>
-    <li>Hid the &lsquo;scale to fit&rsquo; Preview option for IE 8 and lower,
-      since it doesn&rsquo;t work anyway.</li>
-    <li>The editor box now uses the same font as the preview, though
-      there&rsquo;s still the  option to use a monospace font if desired.</li>
-    <li>Document title is now correctly displayed in browser titlebar/tab in
-      View mode.</li>
-    <li>A few minor CSS tweaks.</li>
-  </ul>
-
-  <h3>8th September 2011</h3>
-  <ul class="basic">
-    <li>Changed &lsquo;Your Saved Documents&rsquo; page to use a table instead
-    of a list, and added a &lsquo;last modified&rsquo; column.</li>
-  </ul>
-
-  <h3>2nd September 2011</h3>
-  <ul class="basic">
-    <li>Changed document fonts: <a
-      href="http://www.impallari.com/quattrocento">Quattrocento</a> for body
-      text and <a href="http://www.impallari.com/cabin">Cabin</a> for
-      headings.</li>
-    <li>Smart Dashes and Smart Quotes options are now enabled by default.</li>
-    <li>Fixed incorrect/unapplied styles on input elements.</li>
-    <li>Autosave now happens every 20 seconds, instead of every 60 seconds.</li>
-    <li>The 'Saving&hellip;' popup is now less intrusive.</li>
-    <li>Document deletion now prompts for confirmation.</li>
-    <li>Documents are sorted in alphabetical order by title.</li>
-  </ul>
-  <h3>21st July 2011</h3>
-  <ul class="basic">
-    <li>Changed HTML view in Edit and View modes to use a non-scaled textarea,
-    making it easier to select and copy the resulting code.</li>
-  </ul>
-
-  <h3>4th June 2011</h3>
-  <ul class="basic">
-    <li>Added a Quick Syntax Guide, toggleable by clicking the bar at the
-    bottom of the editor box.</li> <li>Changed the menu buttons to use a small
-    square symbol &#x25AA; instead of the &#x25BE; character (Unicode 0x25BE, BLACK
-    DOWN-POINTING SMALL TRIANGLE), as the latter is not part of the WGL4
-    Character Set, thus cannot be guaranteed to be present on Windows
-    machines. A different solution might be to use a small sprite instead of a
-    text character, but that makes changing colours or font sizes more
-    work.</li>
-  </ul>
-
-  <h3>25th May 2011</h3>
-  <ul class="basic">
-    <li>Added &ldquo;smart quotes&rdquo; and smart&mdash;dashes options.</li>
-
-    <li>Preview updates are now throttled based on how quickly the browser is
-    able to perform them. Without it, if updates are particularly slow (longer
-    than about 200ms) it can affect typing as the browser constantly freezes
-    momentarily. See <a href="/docs/17">this document</a> for more details.</li>
-
-    <li>Cleaned up regex code that updates preview, so it isn't quite as hacky,
-    and is a bit more efficient.</li>
-
-    <li>Although in the process I managed to create a bug (or discover the one 
-    that was already there) whereby using 'Single line breaks' in conjunction
-    'underline'-style Markdown headings produces unexpected results. Honestly,
-    that linebreaks option is a nightmare to get working.</li>
-
-    <li>Minor changes to editor page appearance.</li>
-
-  </ul>
-  <h3>24th May 2011</h3>
-  <ul class="basic">
-    <li>'View document' page now displays the document name.</li>
-
-    <li>It also has its view options condensed into a dropdown menu, and has
-    gained an option to toggle the display of page margins (also available in
-    on the 'edit document' page).</li>
-
-    <li>Modified the Showdown converter to allow for specifying block-level
-    images. See <a href="/docs/16">this demo document</a>
-    for an explanation.</li>
-
-    <li>Various minor CSS tweaks.</li>
-  </ul>
-
-  <h3>20th May 2011</h3>
-  <ul class="basic">
-    <li>Editor box is now resizable (preview changes size to match).</li>
-
-    <li>Options that affect the edior and the preview have been split into their
-    own menus now.</li>
-
-    <li>Document name box merged into editor box.</li>
-
-    <li>Added options to change what kind of preview shows &ndash; "print",
-    HTML or none.</li>
-
-    <li>Added this changelog.</li>
-  </ul>
+  <p>See the <a
+    href="https://github.com/caerphoto/SODA">GitHub</a> page for a complete
+  history.</p>
 
   <hr>
 

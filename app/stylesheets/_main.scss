@@ -40,6 +40,7 @@
         list-style: none;
         padding-left: 1em;
         text-indent: -0.6em;
+        margin-bottom: 1em;
 
         li {
             &:before {
@@ -51,4 +52,39 @@
         }
     }
 
+    .screenshot_thumbs {
+        border: 1px solid #EEE;
+        box-shadow: 0 0 4px rgba(0,0,0,0.1);
+        background-color: #FFF;
+        padding: 1em;
+        text-align: center;
+        margin: 1em 2em 2em 2em;
+        max-height: 400px;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+    }
+
+    .screenshot_thumbs li {
+        display: inline-block;
+        padding: 1em;
+        border: 1px solid #FFF;
+    }
+
+    .screenshot_thumbs li:hover {
+        border-color: #CCC;
+    }
+
+    .screenshot_thumbs li:first-child {
+    }
+
+    .thumb_caption, .screenshot_thumbs a {
+        display: block;
+}
+
+#changelog {
+    max-height: 20em;
+    overflow-y: scroll;
+
+    }
 }

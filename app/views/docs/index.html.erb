@@ -42,9 +42,11 @@
 <script type="text/mustache" id="docs-template">
   <thead>
     <tr>
-      <th class="name">Document Name</th>
+      <%# need inner <div>s because Firefox doesn't allow table cells to be
+      position: relative %>
+      <th class="name"><div>Document Name</div></th>
       <th class="controls"></th>
-      <th class="date">Last Modified</th>
+      <th class="date"><div>Last Modified</div></th>
     </tr>
   </thead>
   <tbody>
@@ -66,8 +68,8 @@
 <script type="text/mustache" id="docs-template-narrow">
   <thead>
     <tr>
-      <th class="name">Name</th>
-      <th class="date">Modified</th>
+      <th class="name"><div>Name</div></th>
+      <th class="date"><div>Modified</div></th>
     </tr>
   </thead>
   <tbody>

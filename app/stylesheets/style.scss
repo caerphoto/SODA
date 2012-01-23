@@ -88,12 +88,13 @@ $bodyFontFamily: "Georgia", serif;
         font-weight: bold;
     }
 
-    th, td {
+    th div, td {
         padding: 0.5em 1em;
     }
 
+
     &.sortable {
-        th.name, th.date {
+        th div {
             cursor: pointer;
             position: relative;
 
@@ -117,13 +118,13 @@ $bodyFontFamily: "Georgia", serif;
     }
 
 
-    &.sort-name th.name::after,
-    &.sort-date th.date::after {
+    &.sort-name th.name div::after,
+    &.sort-date th.date div::after {
         content: "\2191";
     }
 
-    &.sort-name.desc th.name::after,
-    &.sort-date.desc th.date::after {
+    &.sort-name.desc th.name div::after,
+    &.sort-date.desc th.date div::after {
         content: "\2193";
     }
 
@@ -143,27 +144,6 @@ $bodyFontFamily: "Georgia", serif;
         width: 7em;
     }
 
-}
-
-@media screen and (max-device-width: 480px) {
-    #main {
-        padding: 0.5em;
-    }
-
-    .doc-list {
-        .name {
-            font-size: 0.8em;
-        }
-
-        .controls {
-            display: none;
-        }
-
-        .date {
-            width: 6em;
-            font-size: 0.7em;
-        }
-    }
 }
 
 .loading-message {
@@ -291,9 +271,54 @@ $bodyFontFamily: "Georgia", serif;
     }
 
     @page {
-        margin-left: 2cm;
-        margin-right: 2cm;
+        margin-left: 3cm;
+        margin-right: 3cm;
         margin-top: 2cm;
         margin-bottom: 2cm;
     }
 }
+
+@media screen and (max-device-width: 480px) {
+    #logo {
+        background-size: 88px 32px;
+        padding-left: 88px;
+        height: 32px;
+    }
+
+    #navbar {
+        height: $navbarHeight * 1.5;
+        line-height: $navbarHeight * 1.5;
+    }
+
+    #logo-navbar {
+        margin-top: 9px;
+    }
+
+    #main {
+        padding: 0.5em;
+
+        .screenshot_thumbs {
+            margin: 1em;
+        }
+        .screenshot_thumbs, .screenshot_thumbs li {
+            padding: 0.5em;
+        }
+
+    }
+
+    .doc-list {
+        th.name, th.date, td.name {
+            font-size: 0.8em;
+        }
+
+        .controls {
+            display: none;
+        }
+
+        td.date {
+            width: 6em;
+            font-size: 0.7em;
+        }
+    }
+}
+
