@@ -141,7 +141,7 @@ $(function () {
             // Inline code blocks
             codeblocks = [];
             i = -1;
-            newText = newText.replace(/`(.+)`/g, function () {
+            newText = newText.replace(/`([^`]+)`/g, function () {
                 i += 1;
                 codeblocks[i] = arguments[1];
                 return "~C" + i;
@@ -279,7 +279,6 @@ $(function () {
                 savedState = currentState;
                 savedState.lastSaved = Date.now();
                 updateModifiedStatus();
-                $input.focus();
 
                 resetAgeTimer();
                 resetSaveTimer();
@@ -465,7 +464,9 @@ $(function () {
     });
 
     $btnSave.click(function () {
-        saveDocument();
+        saveDocument(function () {
+            $input.focus();
+        });
     });
 
     $syntaxGuide.click(function () {
