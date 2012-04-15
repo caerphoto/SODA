@@ -263,6 +263,8 @@ $(function () {
         if (!modified()) {
             if (typeof callback === "function") {
                 return callback();
+            } else {
+                return;
             }
         }
 
