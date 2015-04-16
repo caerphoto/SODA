@@ -13,9 +13,15 @@ class DocsController < ApplicationController
       @docs = current_user.docs.order(:title)
       @docs_json = []
 
-      for doc in @docs
+      @docs.each do |doc|
         dd = doc.updated_at
         dt = doc.updated_at
+
+        if params[:format] == "json"
+          content = doc.content
+        else
+          content = ""
+        end
 
         @docs_json.push({
           :name => doc.title,
@@ -24,13 +30,18 @@ class DocsController < ApplicationController
           :delete_path => delete_doc_path(doc),
           :date => [ dd.year, dd.month, dd.day ].join("/"),
           :time => [ dt.hour, dt.min ].join(":"),
-          :size => doc.content.length
+          :size => doc.content.length,
+          :content => content
 
         })
       end
 
     else
       @docs = nil
+    end
+
+    if params[:format] == "json"
+      send_data @docs_json.to_json, filename: "all_documents.json"
     end
   end
 
